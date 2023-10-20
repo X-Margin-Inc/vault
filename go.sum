@@ -1099,6 +1099,8 @@ github.com/Sectorbob/mlab-ns2 v0.0.0-20171030222938-d3aa0c295a8a/go.mod h1:D73UA
 github.com/Shopify/logrus-bugsnag v0.0.0-20171204204709-577dee27f20d/go.mod h1:HI8ITrYtUY+O+ZhtlqUnD8+KwNPOyugEhfP9fdUIaEQ=
 github.com/X-Margin-Inc/gramine-vault-plugin-secrets-kv v0.0.1 h1:XX4qORLkfSHO8XrAi1eceqQaeHLuRJn+LMqU6g8r9oE=
 github.com/X-Margin-Inc/gramine-vault-plugin-secrets-kv v0.0.1/go.mod h1:I/FECjEXUamATskfnmq9SdhVz9owNrldx7W62NmyqBo=
+github.com/X-Margin-Inc/gramine-vault-plugin-secrets-kv v0.0.2 h1:M4aL6U5qiqjbtN2Mkm1QNxtHxxJgf2Jl4q1GJJyteyo=
+github.com/X-Margin-Inc/gramine-vault-plugin-secrets-kv v0.0.2/go.mod h1:zfn/LhOBQ9CwcamZ1vE1bP3HLuuKKXcE79ctTpVRzO8=
 github.com/abdullin/seq v0.0.0-20160510034733-d5467c17e7af h1:DBNMBMuMiWYu0b+8KMJuWmfCkcxl09JwdlqwDZZ6U14=
 github.com/abdullin/seq v0.0.0-20160510034733-d5467c17e7af/go.mod h1:5Jv4cbFiHJMsVxt52+i0Ha45fjshj6wxYr1r19tB9bw=
 github.com/acomagu/bufpipe v1.0.4 h1:e3H4WUzM3npvo5uv95QuJM3cQspFNtFBzvJ2oNjKIDQ=
