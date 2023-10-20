@@ -41,7 +41,7 @@ import (
 	credToken "github.com/hashicorp/vault/builtin/credential/token"
 	credUserpass "github.com/hashicorp/vault/builtin/credential/userpass"
 
-	logicalKv "github.com/hashicorp/vault-plugin-secrets-kv"
+	logicalKv "github.com/X-Margin-Inc/gramine-vault-plugin-secrets-kv"
 	logicalDb "github.com/hashicorp/vault/builtin/logical/database"
 
 	physAerospike "github.com/hashicorp/vault/physical/aerospike"
