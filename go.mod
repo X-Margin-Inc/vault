@@ -37,6 +37,7 @@ require (
 	github.com/ProtonMail/go-crypto v0.0.0-20230626094100-7e9e0395ebec
 	github.com/SAP/go-hdb v0.14.1
 	github.com/Sectorbob/mlab-ns2 v0.0.0-20171030222938-d3aa0c295a8a
+	github.com/X-Margin-Inc/gramine-vault-plugin-secrets-kv v0.0.3
 	github.com/aerospike/aerospike-client-go/v5 v5.6.0
 	github.com/aliyun/alibaba-cloud-sdk-go v1.62.521
 	github.com/aliyun/aliyun-oss-go-sdk v0.0.0-20190307165228-86c17b95fcd5
@@ -219,8 +220,13 @@ require (
 	golang.org/x/exp v0.0.0-20230522175609-2e198f4a06a1
 	golang.org/x/net v0.17.0
 	golang.org/x/oauth2 v0.11.0
+<<<<<<< HEAD
 	golang.org/x/sync v0.3.0
 	golang.org/x/sys v0.14.0
+=======
+	golang.org/x/sync v0.4.0
+	golang.org/x/sys v0.13.0
+>>>>>>> fixed
 	golang.org/x/term v0.13.0
 	golang.org/x/text v0.13.0
 	golang.org/x/tools v0.10.0

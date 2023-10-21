@@ -12,8 +12,8 @@ import (
 
 	"github.com/hashicorp/vault/internalshared/configutil"
 
-	"github.com/hashicorp/go-hclog"
 	logicalKv "github.com/X-Margin-Inc/gramine-vault-plugin-secrets-kv"
+	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/vault/audit"
 	auditFile "github.com/hashicorp/vault/builtin/audit/file"
 	auditSocket "github.com/hashicorp/vault/builtin/audit/socket"
