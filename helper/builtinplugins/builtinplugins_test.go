@@ -6,7 +6,7 @@ package builtinplugins
 import (
 	"testing"
 
-	logicalKv "github.com/hashicorp/vault-plugin-secrets-kv"
+	logicalKv "github.com/X-Margin-Inc/vault-plugin-secrets-kv"
 	"github.com/hashicorp/vault/api"
 	logicalDb "github.com/hashicorp/vault/builtin/logical/database"
 	vaulthttp "github.com/hashicorp/vault/http"

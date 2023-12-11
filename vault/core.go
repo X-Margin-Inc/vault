@@ -28,7 +28,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	kv "github.com/hashicorp/vault-plugin-secrets-kv"
+	kv "github.com/X-Margin-Inc/vault-plugin-secrets-kv"
 
 	"github.com/armon/go-metrics"
 	"github.com/hashicorp/errwrap"

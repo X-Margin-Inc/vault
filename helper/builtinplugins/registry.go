@@ -6,7 +6,7 @@ package builtinplugins
 import (
 	"context"
 
-	logicalKv "github.com/X-Margin-Inc/gramine-vault-plugin-secrets-kv"
+	logicalKv "github.com/X-Margin-Inc/vault-plugin-secrets-kv"
 	credAliCloud "github.com/hashicorp/vault-plugin-auth-alicloud"
 	credAzure "github.com/hashicorp/vault-plugin-auth-azure"
 	credCentrify "github.com/hashicorp/vault-plugin-auth-centrify"

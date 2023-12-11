@@ -7,7 +7,7 @@ import (
 	"context"
 	"testing"
 
-	kv "github.com/hashicorp/vault-plugin-secrets-kv"
+	kv "github.com/X-Margin-Inc/vault-plugin-secrets-kv"
 	"github.com/hashicorp/vault/sdk/logical"
 
 	"github.com/hashicorp/vault/helper/testhelpers"

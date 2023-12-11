@@ -12,7 +12,7 @@ import (
 
 	"github.com/hashicorp/vault/internalshared/configutil"
 
-	logicalKv "github.com/X-Margin-Inc/gramine-vault-plugin-secrets-kv"
+	logicalKv "github.com/X-Margin-Inc/vault-plugin-secrets-kv"
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/vault/audit"
 	auditFile "github.com/hashicorp/vault/builtin/audit/file"

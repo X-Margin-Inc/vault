@@ -37,7 +37,7 @@ require (
 	github.com/ProtonMail/go-crypto v0.0.0-20230626094100-7e9e0395ebec
 	github.com/SAP/go-hdb v0.14.1
 	github.com/Sectorbob/mlab-ns2 v0.0.0-20171030222938-d3aa0c295a8a
-	github.com/X-Margin-Inc/gramine-vault-plugin-secrets-kv v0.0.3
+	github.com/X-Margin-Inc/vault-plugin-secrets-kv v0.0.1
 	github.com/aerospike/aerospike-client-go/v5 v5.6.0
 	github.com/aliyun/alibaba-cloud-sdk-go v1.62.521
 	github.com/aliyun/aliyun-oss-go-sdk v0.0.0-20190307165228-86c17b95fcd5
@@ -153,7 +153,7 @@ require (
 	github.com/hashicorp/vault-plugin-secrets-gcp v0.17.0
 	github.com/hashicorp/vault-plugin-secrets-gcpkms v0.15.1
 	github.com/hashicorp/vault-plugin-secrets-kubernetes v0.6.0
-	github.com/X-Margin-Inc/gramine-vault-plugin-secrets-kv v0.0.2
+	github.com/X-Margin-Inc/vault-plugin-secrets-kv v0.0.1
 	github.com/hashicorp/vault-plugin-secrets-mongodbatlas v0.10.2
 	github.com/hashicorp/vault-plugin-secrets-openldap v0.11.2
 	github.com/hashicorp/vault-plugin-secrets-terraform v0.7.3

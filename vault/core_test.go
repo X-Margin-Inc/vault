@@ -15,7 +15,7 @@ import (
 
 	"github.com/hashicorp/vault/command/server"
 
-	logicalKv "github.com/hashicorp/vault-plugin-secrets-kv"
+	logicalKv "github.com/X-Margin-Inc/vault-plugin-secrets-kv"
 	logicalDb "github.com/hashicorp/vault/builtin/logical/database"
 
 	"github.com/hashicorp/vault/builtin/plugin"

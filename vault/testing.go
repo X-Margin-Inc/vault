@@ -34,7 +34,7 @@ import (
 	log "github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-secure-stdlib/reloadutil"
 	raftlib "github.com/hashicorp/raft"
-	kv "github.com/hashicorp/vault-plugin-secrets-kv"
+	kv "github.com/X-Margin-Inc/vault-plugin-secrets-kv"
 	"github.com/mitchellh/copystructure"
 	"github.com/mitchellh/go-testing-interface"
 	"golang.org/x/crypto/ed25519"
