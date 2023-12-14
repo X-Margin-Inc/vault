@@ -12,7 +12,10 @@ import (
 	hclog "github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-retryablehttp"
 	"github.com/hashicorp/vault/api"
+<<<<<<< HEAD
 	"github.com/hashicorp/vault/helper/namespace"
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 	"github.com/hashicorp/vault/http"
 )
 
@@ -42,10 +45,13 @@ type APIProxy struct {
 	lastIndexStates         []string
 	userAgentString         string
 	userAgentStringFunction func(string) string
+<<<<<<< HEAD
 	// clientNamespace is a one-time set representation of the namespace of the client
 	// (i.e. client.Namespace()) to avoid repeated calls and lock usage.
 	clientNamespace            string
 	prependConfiguredNamespace bool
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 
 var _ Proxier = &APIProxy{}
@@ -61,9 +67,12 @@ type APIProxyConfig struct {
 	// UserAgentStringFunction is the function to transform the proxied client's
 	// user agent into one that includes Vault-specific information.
 	UserAgentStringFunction func(string) string
+<<<<<<< HEAD
 	// PrependConfiguredNamespace configures whether the client's namespace
 	// should be prepended to proxied requests
 	PrependConfiguredNamespace bool
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 
 func NewAPIProxy(config *APIProxyConfig) (Proxier, error) {
@@ -71,6 +80,7 @@ func NewAPIProxy(config *APIProxyConfig) (Proxier, error) {
 		return nil, fmt.Errorf("nil API client")
 	}
 	return &APIProxy{
+<<<<<<< HEAD
 		client:                     config.Client,
 		logger:                     config.Logger,
 		enforceConsistency:         config.EnforceConsistency,
@@ -79,6 +89,14 @@ func NewAPIProxy(config *APIProxyConfig) (Proxier, error) {
 		userAgentStringFunction:    config.UserAgentStringFunction,
 		prependConfiguredNamespace: config.PrependConfiguredNamespace,
 		clientNamespace:            namespace.Canonicalize(config.Client.Namespace()),
+=======
+		client:                  config.Client,
+		logger:                  config.Logger,
+		enforceConsistency:      config.EnforceConsistency,
+		whenInconsistentAction:  config.WhenInconsistentAction,
+		userAgentString:         config.UserAgentString,
+		userAgentStringFunction: config.UserAgentStringFunction,
+>>>>>>> 4cb759cfc9 (fixed log)
 	}, nil
 }
 
@@ -112,11 +130,14 @@ func (ap *APIProxy) Send(ctx context.Context, req *SendRequest) (*SendResponse, 
 	}
 
 	client.SetHeaders(req.Request.Header)
+<<<<<<< HEAD
 	if ap.prependConfiguredNamespace && ap.clientNamespace != "" {
 		currentNamespace := namespace.Canonicalize(client.Namespace())
 		newNamespace := namespace.Canonicalize(ap.clientNamespace + currentNamespace)
 		client.SetNamespace(newNamespace)
 	}
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 	fwReq := client.NewRequest(req.Request.Method, req.Request.URL.Path)
 	fwReq.BodyBytes = req.RequestBody

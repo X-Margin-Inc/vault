@@ -1,5 +1,9 @@
 // Copyright (c) HashiCorp, Inc.
+<<<<<<< HEAD
 // SPDX-License-Identifier: MPL-2.0
+=======
+// SPDX-License-Identifier: BUSL-1.1
+>>>>>>> 4cb759cfc9 (fixed log)
 
 package logical
 

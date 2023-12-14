@@ -23,11 +23,19 @@
       </div>
     {{/if}}
     <div class="field">
+<<<<<<< HEAD
       <Toolbar aria-label="toolbar for managing {{or @model.name 'new'}} policy">
         <label class="has-text-weight-bold has-right-margin-xxs">Policy</label>
         {{#if @renderPolicyExampleModal}}
           {{! only true in policy create and edit routes }}
           <ToolbarFilters aria-label="help tools for managing {{or @model.name 'new'}} policy">
+=======
+      <Toolbar>
+        <label class="has-text-weight-bold has-right-margin-xxs">Policy</label>
+        {{#if @renderPolicyExampleModal}}
+          {{! only true in policy create and edit routes }}
+          <ToolbarFilters>
+>>>>>>> 4cb759cfc9 (fixed log)
             <Hds::Button
               @text="How to write a policy"
               @icon="bulb"
@@ -38,7 +46,11 @@
             />
           </ToolbarFilters>
         {{/if}}
+<<<<<<< HEAD
         <ToolbarActions aria-label="actions for managing {{or @model.name 'new'}} policy">
+=======
+        <ToolbarActions>
+>>>>>>> 4cb759cfc9 (fixed log)
           <div class="toolbar-separator"></div>
           {{#if @model.isNew}}
             <div class="control is-flex">

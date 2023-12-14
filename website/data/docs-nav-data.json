@@ -522,10 +522,13 @@
         "path": "commands"
       },
       {
+<<<<<<< HEAD
         "title": "Web REPL",
         "path": "commands/web"
       },
       {
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
         "title": "<code>agent</code>",
         "path": "commands/agent"
       },
@@ -1358,18 +1361,30 @@
         ]
       },
       {
+<<<<<<< HEAD
         "title": "Key Value",
+=======
+        "title": "Key/Value",
+>>>>>>> 4cb759cfc9 (fixed log)
         "routes": [
           {
             "title": "Overview",
             "path": "secrets/kv"
           },
           {
+<<<<<<< HEAD
             "title": "KV version  1",
             "path": "secrets/kv/kv-v1"
           },
           {
             "title": "KV version  2",
+=======
+            "title": "K/V Version 1",
+            "path": "secrets/kv/kv-v1"
+          },
+          {
+            "title": "K/V Version 2",
+>>>>>>> 4cb759cfc9 (fixed log)
             "path": "secrets/kv/kv-v2"
           }
         ]
@@ -1758,6 +1773,7 @@
         "path": "plugins/plugin-management"
       },
       {
+<<<<<<< HEAD
         "title": "Containerized plugins",
         "routes": [
           {
@@ -1779,6 +1795,15 @@
             }
           }
         ]
+=======
+        "title": "Containerized Plugins",
+        "path": "plugins/containerized-plugins",
+        "badge": {
+          "text": "BETA",
+          "type": "outlined",
+          "color": "highlight"
+        }
+>>>>>>> 4cb759cfc9 (fixed log)
       },
       {
         "title": "Integrations Library",
@@ -2011,12 +2036,17 @@
                         "title": "Auth Methods",
                         "routes": [
                           {
+<<<<<<< HEAD
                             "title": "AWS",
                             "path": "platform/k8s/vso/sources/vault/auth/aws"
                           },
                           {
                             "title": "GCP",
                             "path": "platform/k8s/vso/sources/vault/auth/gcp"
+=======
+                            "title": "GCP",
+                            "path": "platform/k8s/vso/sources/vault/gcp-auth"
+>>>>>>> 4cb759cfc9 (fixed log)
                           }
                         ]
                       }

@@ -5,9 +5,12 @@
 
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
+<<<<<<< HEAD
 import { tracked } from '@glimmer/tracking';
 import { stringify } from 'core/helpers/stringify';
 import { obfuscateData } from 'core/utils/advanced-secret';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 /**
  * @module JsonEditor
@@ -37,11 +40,15 @@ import { obfuscateData } from 'core/utils/advanced-secret';
  */
 
 export default class JsonEditorComponent extends Component {
+<<<<<<< HEAD
   @tracked revealValues = false;
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   get getShowToolbar() {
     return this.args.showToolbar === false ? false : true;
   }
 
+<<<<<<< HEAD
   get showObfuscatedData() {
     return this.args.readOnly && this.args.obscure && !this.revealValues;
   }
@@ -49,6 +56,8 @@ export default class JsonEditorComponent extends Component {
     return stringify([obfuscateData(JSON.parse(this.args.value))], {});
   }
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   @action
   onSetup(editor) {
     // store reference to codemirror editor so that it can be passed to valueUpdated when restoring example

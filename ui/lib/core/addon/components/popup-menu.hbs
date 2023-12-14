@@ -8,10 +8,16 @@
     <d.Trigger
       @htmlTag="button"
       class={{concat "popup-menu-trigger button is-ghost" (if d.isOpen " is-active")}}
+<<<<<<< HEAD
       aria-label="More options"
       data-test-popup-menu-trigger
     >
       <Icon @name="more-horizontal" class="has-text-black auto-width" />
+=======
+      data-test-popup-menu-trigger
+    >
+      <Icon @name="more-horizontal" class="has-text-black auto-width" aria-label="More options" />
+>>>>>>> 4cb759cfc9 (fixed log)
     </d.Trigger>
     <d.Content @defaultClass={{concat "popup-menu-content " @contentClass}}>
       <div class="box">

@@ -13,7 +13,10 @@ import hbs from 'htmlbars-inline-precompile';
 import sinon from 'sinon';
 import { create } from 'ember-cli-page-object';
 import controlGroupSuccess from '../../pages/components/control-group-success';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 const component = create(controlGroupSuccess);
 
@@ -45,6 +48,7 @@ module('Integration | Component | control group success', function (hooks) {
       this.router.reopen({
         transitionTo: sinon.stub().returns(resolve()),
       });
+<<<<<<< HEAD
       setRunOptions({
         rules: {
           // TODO: swap out JsonEditor with Hds::CodeBlock for display
@@ -52,6 +56,8 @@ module('Integration | Component | control group success', function (hooks) {
           label: { enabled: false },
         },
       });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
     });
   });
 
@@ -70,7 +76,11 @@ module('Integration | Component | control group success', function (hooks) {
     };
     this.set('model', MODEL);
     this.set('response', response);
+<<<<<<< HEAD
     await render(hbs`<ControlGroupSuccess @model={{this.model}} @controlGroupResponse={{this.response}} />`);
+=======
+    await render(hbs`{{control-group-success model=this.model controlGroupResponse=this.response }}`);
+>>>>>>> 4cb759cfc9 (fixed log)
     assert.ok(component.showsNavigateMessage, 'shows unwrap message');
     await component.navigate();
     later(() => cancelTimers(), 50);
@@ -83,7 +93,11 @@ module('Integration | Component | control group success', function (hooks) {
   test('render without token', async function (assert) {
     assert.expect(2);
     this.set('model', MODEL);
+<<<<<<< HEAD
     await render(hbs`<ControlGroupSuccess @model={{this.model}} />`);
+=======
+    await render(hbs`{{control-group-success model=this.model}}`);
+>>>>>>> 4cb759cfc9 (fixed log)
     assert.ok(component.showsUnwrapForm, 'shows unwrap form');
     await component.token('token');
     component.unwrap();

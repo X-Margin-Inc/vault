@@ -13,12 +13,15 @@
     @text="Secrets Engines"
     data-test-sidebar-nav-link="Secrets Engines"
   />
+<<<<<<< HEAD
   <Nav.Link
     @route="vault.cluster.sync"
     @text="Secrets Sync"
     @badge={{unless this.version.isEnterprise "Enterprise"}}
     data-test-sidebar-nav-link="Secrets Sync"
   />
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   {{#if (has-permission "access")}}
     <Nav.Link
       @route={{get (route-params-for "access") "route"}}
@@ -50,7 +53,13 @@
 
   {{#if
     (or
+<<<<<<< HEAD
       (and this.isRootNamespace (has-permission "status" routeParams=(array "replication" "raft" "license" "seal")))
+=======
+      (and
+        this.namespace.inRootNamespace (has-permission "status" routeParams=(array "replication" "raft" "license" "seal"))
+      )
+>>>>>>> 4cb759cfc9 (fixed log)
       (has-permission "clients" routeParams="activity")
     )
   }}
@@ -59,7 +68,11 @@
   {{#if
     (and
       this.version.isEnterprise
+<<<<<<< HEAD
       this.isRootNamespace
+=======
+      this.namespace.inRootNamespace
+>>>>>>> 4cb759cfc9 (fixed log)
       (not this.cluster.replicationRedacted)
       (has-permission "status" routeParams="replication")
     )
@@ -71,7 +84,11 @@
       @hasSubItems={{true}}
     />
   {{/if}}
+<<<<<<< HEAD
   {{#if (and this.cluster.usingRaft this.isRootNamespace (has-permission "status" routeParams="raft"))}}
+=======
+  {{#if (and this.cluster.usingRaft this.namespace.inRootNamespace (has-permission "status" routeParams="raft"))}}
+>>>>>>> 4cb759cfc9 (fixed log)
     <Nav.Link
       @route="vault.cluster.storage"
       @model={{this.cluster.name}}
@@ -85,7 +102,11 @@
   {{#if
     (and
       this.version.features
+<<<<<<< HEAD
       this.isRootNamespace
+=======
+      this.namespace.inRootNamespace
+>>>>>>> 4cb759cfc9 (fixed log)
       (has-permission "status" routeParams="license")
       (not this.cluster.dr.isSecondary)
     )
@@ -97,7 +118,11 @@
       data-test-sidebar-nav-link="License"
     />
   {{/if}}
+<<<<<<< HEAD
   {{#if (and this.isRootNamespace (has-permission "status" routeParams="seal") (not this.cluster.dr.isSecondary))}}
+=======
+  {{#if (and this.namespace.inRootNamespace (has-permission "status" routeParams="seal") (not this.cluster.dr.isSecondary))}}
+>>>>>>> 4cb759cfc9 (fixed log)
     <Nav.Link
       @route="vault.cluster.settings.seal"
       @model={{this.cluster.name}}

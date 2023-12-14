@@ -4,7 +4,11 @@
  */
 
 import { module, test } from 'qunit';
+<<<<<<< HEAD
 import { ensureTrailingSlash, getRelativePath, sanitizePath, sanitizeStart } from 'core/utils/sanitize-path';
+=======
+import { ensureTrailingSlash, getRelativePath, sanitizePath } from 'core/utils/sanitize-path';
+>>>>>>> 4cb759cfc9 (fixed log)
 
 module('Unit | Utility | sanitize-path', function () {
   test('it removes spaces and slashes from either side', function (assert) {
@@ -29,6 +33,7 @@ module('Unit | Utility | sanitize-path', function () {
     assert.strictEqual(getRelativePath('/recipes/cookies/choc-chip/', 'recipes/cookies'), 'choc-chip');
     assert.strictEqual(getRelativePath('/admin/bop/boop/admin_foo/baz/', 'admin'), 'bop/boop/admin_foo/baz');
   });
+<<<<<<< HEAD
 
   test('#sanitizeStart', function (assert) {
     assert.strictEqual(
@@ -43,4 +48,6 @@ module('Unit | Utility | sanitize-path', function () {
     );
     assert.strictEqual(sanitizeStart(undefined), '', 'handles falsey values');
   });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 });

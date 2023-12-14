@@ -4274,15 +4274,23 @@ func TestActivityLog_processNewClients_delete(t *testing.T) {
 	mount := "mount"
 	namespace := "namespace"
 	clientID := "client-id"
+<<<<<<< HEAD
 	run := func(t *testing.T, clientType string) {
 		t.Helper()
 		isNonEntity := clientType == nonEntityTokenActivityType || clientType == ACMEActivityType
+=======
+	run := func(t *testing.T, isNonEntity bool) {
+		t.Helper()
+>>>>>>> 4cb759cfc9 (fixed log)
 		record := &activity.EntityRecord{
 			MountAccessor: mount,
 			NamespaceID:   namespace,
 			ClientID:      clientID,
 			NonEntity:     isNonEntity,
+<<<<<<< HEAD
 			ClientType:    clientType,
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 		}
 		newClients := newProcessNewClients()
 		newClients.add(record)
@@ -4295,6 +4303,7 @@ func TestActivityLog_processNewClients_delete(t *testing.T) {
 
 		byNS := newClients.Namespaces
 		counts := newClients.Counts
+<<<<<<< HEAD
 		for _, typ := range []string{nonEntityTokenActivityType, secretSyncActivityType, entityActivityType, ACMEActivityType} {
 			require.NotContains(t, counts.clientsByType(typ), clientID)
 			require.NotContains(t, byNS[namespace].Mounts[mount].Counts.clientsByType(typ), clientID)
@@ -4312,6 +4321,25 @@ func TestActivityLog_processNewClients_delete(t *testing.T) {
 	})
 	t.Run("acme", func(t *testing.T) {
 		run(t, ACMEActivityType)
+=======
+		require.NotContains(t, counts.NonEntities, clientID)
+		require.NotContains(t, counts.Entities, clientID)
+
+		require.NotContains(t, counts.NonEntities, clientID)
+		require.NotContains(t, counts.Entities, clientID)
+
+		require.NotContains(t, byNS[namespace].Mounts[mount].Counts.NonEntities, clientID)
+		require.NotContains(t, byNS[namespace].Counts.NonEntities, clientID)
+
+		require.NotContains(t, byNS[namespace].Mounts[mount].Counts.Entities, clientID)
+		require.NotContains(t, byNS[namespace].Counts.Entities, clientID)
+	}
+	t.Run("entity", func(t *testing.T) {
+		run(t, false)
+	})
+	t.Run("non-entity", func(t *testing.T) {
+		run(t, true)
+>>>>>>> 4cb759cfc9 (fixed log)
 	})
 }
 
@@ -4322,15 +4350,23 @@ func TestActivityLog_processClientRecord(t *testing.T) {
 	mount := "mount"
 	namespace := "namespace"
 	clientID := "client-id"
+<<<<<<< HEAD
 	run := func(t *testing.T, clientType string) {
 		t.Helper()
 		isNonEntity := clientType == nonEntityTokenActivityType || clientType == ACMEActivityType
+=======
+	run := func(t *testing.T, isNonEntity bool) {
+		t.Helper()
+>>>>>>> 4cb759cfc9 (fixed log)
 		record := &activity.EntityRecord{
 			MountAccessor: mount,
 			NamespaceID:   namespace,
 			ClientID:      clientID,
 			NonEntity:     isNonEntity,
+<<<<<<< HEAD
 			ClientType:    clientType,
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 		}
 		byNS := make(summaryByNamespace)
 		byMonth := make(summaryByMonth)
@@ -4342,6 +4378,7 @@ func TestActivityLog_processClientRecord(t *testing.T) {
 		require.Equal(t, byMonth[monthIndex].Namespaces, byNS)
 		require.Equal(t, byMonth[monthIndex].NewClients.Namespaces, byNS)
 
+<<<<<<< HEAD
 		for _, typ := range []string{nonEntityTokenActivityType, secretSyncActivityType, entityActivityType} {
 			if clientType == typ || (clientType == ACMEActivityType && typ == nonEntityTokenActivityType) {
 				require.Contains(t, byMonth[monthIndex].Counts.clientsByType(typ), clientID)
@@ -4368,6 +4405,39 @@ func TestActivityLog_processClientRecord(t *testing.T) {
 	})
 	t.Run("acme", func(t *testing.T) {
 		run(t, ACMEActivityType)
+=======
+		if isNonEntity {
+			require.Contains(t, byMonth[monthIndex].Counts.NonEntities, clientID)
+			require.NotContains(t, byMonth[monthIndex].Counts.Entities, clientID)
+
+			require.Contains(t, byMonth[monthIndex].NewClients.Counts.NonEntities, clientID)
+			require.NotContains(t, byMonth[monthIndex].NewClients.Counts.Entities, clientID)
+
+			require.Contains(t, byNS[namespace].Mounts[mount].Counts.NonEntities, clientID)
+			require.Contains(t, byNS[namespace].Counts.NonEntities, clientID)
+
+			require.NotContains(t, byNS[namespace].Mounts[mount].Counts.Entities, clientID)
+			require.NotContains(t, byNS[namespace].Counts.Entities, clientID)
+		} else {
+			require.Contains(t, byMonth[monthIndex].Counts.Entities, clientID)
+			require.NotContains(t, byMonth[monthIndex].Counts.NonEntities, clientID)
+
+			require.Contains(t, byMonth[monthIndex].NewClients.Counts.Entities, clientID)
+			require.NotContains(t, byMonth[monthIndex].NewClients.Counts.NonEntities, clientID)
+
+			require.Contains(t, byNS[namespace].Mounts[mount].Counts.Entities, clientID)
+			require.Contains(t, byNS[namespace].Counts.Entities, clientID)
+
+			require.NotContains(t, byNS[namespace].Mounts[mount].Counts.NonEntities, clientID)
+			require.NotContains(t, byNS[namespace].Counts.NonEntities, clientID)
+		}
+	}
+	t.Run("non entity", func(t *testing.T) {
+		run(t, true)
+	})
+	t.Run("entity", func(t *testing.T) {
+		run(t, false)
+>>>>>>> 4cb759cfc9 (fixed log)
 	})
 }
 
@@ -4623,11 +4693,17 @@ func TestActivityLog_breakdownTokenSegment(t *testing.T) {
 	}
 }
 
+<<<<<<< HEAD
 // TestActivityLog_writePrecomputedQuery calls writePrecomputedQuery for a
 // segment with 1 non entity, 1 entity, and 1 secret sync assoc client,
 // which have different namespaces and mounts. The precomputed query is then
 // retrieved from storage and we verify that the data structure is filled
 // correctly
+=======
+// TestActivityLog_writePrecomputedQuery calls writePrecomputedQuery for a segment with 1 non entity and 1 entity client,
+// which have different namespaces and mounts. The precomputed query is then retrieved from storage and we verify that
+// the data structure is filled correctly
+>>>>>>> 4cb759cfc9 (fixed log)
 func TestActivityLog_writePrecomputedQuery(t *testing.T) {
 	core, _, _ := TestCoreUnsealed(t)
 
@@ -4647,6 +4723,7 @@ func TestActivityLog_writePrecomputedQuery(t *testing.T) {
 		MountAccessor: "mnt-2",
 		NonEntity:     true,
 	}
+<<<<<<< HEAD
 	secretSync := &activity.EntityRecord{
 		ClientID:      "id-3",
 		NamespaceID:   "ns-3",
@@ -4654,12 +4731,17 @@ func TestActivityLog_writePrecomputedQuery(t *testing.T) {
 		ClientType:    secretSyncActivityType,
 	}
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 	now := time.Now()
 
 	// add the 2 clients to the namespace and month summaries
 	processClientRecord(clientEntity, byNS, byMonth, now)
 	processClientRecord(clientNonEntity, byNS, byMonth, now)
+<<<<<<< HEAD
 	processClientRecord(secretSync, byNS, byMonth, now)
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 	endTime := timeutil.EndOfMonth(now)
 	opts := pqOptions{
@@ -4677,8 +4759,13 @@ func TestActivityLog_writePrecomputedQuery(t *testing.T) {
 	require.Equal(t, now.UTC().Unix(), val.StartTime.UTC().Unix())
 	require.Equal(t, endTime.UTC().Unix(), val.EndTime.UTC().Unix())
 
+<<<<<<< HEAD
 	// ns-1, ns-2, and ns-3 should both be present in the results
 	require.Len(t, val.Namespaces, 3)
+=======
+	// ns-1 and ns-2 should both be present in the results
+	require.Len(t, val.Namespaces, 2)
+>>>>>>> 4cb759cfc9 (fixed log)
 	require.Len(t, val.Months, 1)
 	resultByNS := make(map[string]*activity.NamespaceRecord)
 	for _, ns := range val.Namespaces {
@@ -4686,6 +4773,7 @@ func TestActivityLog_writePrecomputedQuery(t *testing.T) {
 	}
 	ns1 := resultByNS["ns-1"]
 	ns2 := resultByNS["ns-2"]
+<<<<<<< HEAD
 	ns3 := resultByNS["ns-3"]
 
 	require.Equal(t, ns1.Entities, uint64(1))
@@ -4701,10 +4789,21 @@ func TestActivityLog_writePrecomputedQuery(t *testing.T) {
 	require.Len(t, ns1.Mounts, 1)
 	require.Len(t, ns2.Mounts, 1)
 	require.Len(t, ns3.Mounts, 1)
+=======
+
+	require.Equal(t, ns1.Entities, uint64(1))
+	require.Equal(t, ns1.NonEntityTokens, uint64(0))
+	require.Equal(t, ns2.Entities, uint64(0))
+	require.Equal(t, ns2.NonEntityTokens, uint64(1))
+
+	require.Len(t, ns1.Mounts, 1)
+	require.Len(t, ns2.Mounts, 1)
+>>>>>>> 4cb759cfc9 (fixed log)
 	// ns-1 needs to have mnt-1
 	require.Contains(t, ns1.Mounts[0].MountPath, "mnt-1")
 	// ns-2 needs to have mnt-2
 	require.Contains(t, ns2.Mounts[0].MountPath, "mnt-2")
+<<<<<<< HEAD
 	// ns-3 needs to have mnt-3
 	require.Contains(t, ns3.Mounts[0].MountPath, "mnt-3")
 
@@ -4722,18 +4821,32 @@ func TestActivityLog_writePrecomputedQuery(t *testing.T) {
 	require.Equal(t, 0, ns3.Mounts[0].Counts.EntityClients)
 	require.Equal(t, 0, ns3.Mounts[0].Counts.NonEntityClients)
 	require.Equal(t, 1, ns3.Mounts[0].Counts.SecretSyncs)
+=======
+
+	require.Equal(t, 1, ns1.Mounts[0].Counts.EntityClients)
+	require.Equal(t, 0, ns1.Mounts[0].Counts.NonEntityClients)
+	require.Equal(t, 0, ns2.Mounts[0].Counts.EntityClients)
+	require.Equal(t, 1, ns2.Mounts[0].Counts.NonEntityClients)
+>>>>>>> 4cb759cfc9 (fixed log)
 
 	monthRecord := val.Months[0]
 	// there should only be one month present, since the clients were added with the same timestamp
 	require.Equal(t, monthRecord.Timestamp, timeutil.StartOfMonth(now).UTC().Unix())
 	require.Equal(t, 1, monthRecord.Counts.NonEntityClients)
 	require.Equal(t, 1, monthRecord.Counts.EntityClients)
+<<<<<<< HEAD
 	require.Equal(t, 1, monthRecord.Counts.SecretSyncs)
 	require.Len(t, monthRecord.Namespaces, 3)
 	require.Len(t, monthRecord.NewClients.Namespaces, 3)
 	require.Equal(t, 1, monthRecord.NewClients.Counts.EntityClients)
 	require.Equal(t, 1, monthRecord.NewClients.Counts.NonEntityClients)
 	require.Equal(t, 1, monthRecord.NewClients.Counts.SecretSyncs)
+=======
+	require.Len(t, monthRecord.Namespaces, 2)
+	require.Len(t, monthRecord.NewClients.Namespaces, 2)
+	require.Equal(t, 1, monthRecord.NewClients.Counts.EntityClients)
+	require.Equal(t, 1, monthRecord.NewClients.Counts.NonEntityClients)
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 
 type mockTimeNowClock struct {

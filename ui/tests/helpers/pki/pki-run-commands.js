@@ -34,6 +34,7 @@ export const runCommands = async function (commands) {
     throw error;
   }
 };
+<<<<<<< HEAD
 
 // Clears pki-related data and capabilities so that admin
 // capabilities from setup don't rollover
@@ -52,3 +53,5 @@ export function clearRecords(store) {
   store.unloadAll('pki/certificate/sign');
   store.unloadAll('capabilities');
 }
+=======
+>>>>>>> 4cb759cfc9 (fixed log)

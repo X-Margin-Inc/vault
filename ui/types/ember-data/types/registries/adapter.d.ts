@@ -12,8 +12,11 @@ import LdapRoleAdapter from 'vault/adapters/ldap/role';
 import LdapLibraryAdapter from 'vault/adapters/ldap/library';
 import KvDataAdapter from 'vault/adapters/kv/data';
 import KvMetadataAdapter from 'vault/adapters/kv/metadata';
+<<<<<<< HEAD
 import SyncDestinationAdapter from 'vault/adapters/sync/destination';
 import SyncAssociationAdapter from 'vault/adapters/sync/association';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 /**
  * Catch-all for ember-data.
@@ -25,8 +28,11 @@ export default interface AdapterRegistry {
   'pki/tidy': PkiTidyAdapter;
   'kv/data': KvDataAdapterAdapter;
   'kv/metadata': KvMetadataAdapter;
+<<<<<<< HEAD
   'sync/destination': SyncDestinationAdapter;
   'sync/association': SyncAssociationAdapter;
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   application: Application;
   [key: keyof ModelRegistry]: Adapter;
 }

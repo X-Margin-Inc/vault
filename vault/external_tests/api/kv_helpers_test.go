@@ -10,7 +10,11 @@ import (
 	"testing"
 	"time"
 
+<<<<<<< HEAD
 	logicalKv "github.com/hashicorp/vault-plugin-secrets-kv"
+=======
+	logicalKv "github.com/X-Margin-Inc/vault-plugin-secrets-kv"
+>>>>>>> 4cb759cfc9 (fixed log)
 	"github.com/hashicorp/vault/api"
 	vaulthttp "github.com/hashicorp/vault/http"
 	"github.com/hashicorp/vault/sdk/logical"

@@ -14,7 +14,10 @@ import sinon from 'sinon';
 import { Promise } from 'rsvp';
 import { create } from 'ember-cli-page-object';
 import ss from 'vault/tests/pages/components/search-select';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 const searchSelect = create(ss);
 
@@ -63,6 +66,7 @@ module('Integration | Component | path filter config list', function (hooks) {
     });
     this.engine.register('service:namespace', namespaceServiceStub);
     this.engine.register('service:store', storeServiceStub);
+<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO: Fix SearchSelect component
@@ -72,6 +76,8 @@ module('Integration | Component | path filter config list', function (hooks) {
         'aria-required-parent': { enabled: false },
       },
     });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it renders', async function (assert) {

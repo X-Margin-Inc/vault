@@ -38,10 +38,16 @@
         class="textarea"
         oninput={{action "updateData"}}
         data-test-pgp-file-textarea={{true}}
+<<<<<<< HEAD
         aria-labelledby={{concat "pgpFileTextarea-" this.elementId}}
       >{{this.key.value}}</textarea>
     </div>
     <p class="help has-text-grey" id={{concat "pgpFileTextarea-" this.elementId}}>
+=======
+      >{{this.key.value}}</textarea>
+    </div>
+    <p class="help has-text-grey">
+>>>>>>> 4cb759cfc9 (fixed log)
       {{#if this.textareaHelpText}}
         {{this.textareaHelpText}}
       {{else}}

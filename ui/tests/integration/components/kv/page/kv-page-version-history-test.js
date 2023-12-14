@@ -1,6 +1,10 @@
 /**
  * Copyright (c) HashiCorp, Inc.
+<<<<<<< HEAD
  * SPDX-License-Identifier: BUSL-1.1
+=======
+ * SPDX-License-Identifier: MPL-2.0
+>>>>>>> 4cb759cfc9 (fixed log)
  */
 
 import { module, test } from 'qunit';
@@ -69,7 +73,11 @@ module('Integration | Component | kv | Page::Secret::Metadata::Version-History',
       if (data.isSecretDeleted) {
         assert
           .dom(`${PAGE.versions.icon(version)} [data-test-icon="x-square-fill"]`)
+<<<<<<< HEAD
           .hasStyle({ color: 'rgb(101, 106, 118)' });
+=======
+          .hasStyle({ color: 'rgb(111, 118, 130)' });
+>>>>>>> 4cb759cfc9 (fixed log)
       }
     }
   });

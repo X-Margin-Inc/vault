@@ -26,7 +26,11 @@
       <div class="column has-text-right">
         {{#if (or @item.updatePath.canRead @item.updatePath.canUpdate)}}
           <PopupMenu name="secret-menu">
+<<<<<<< HEAD
             <nav class="menu" aria-label="navigation for managing transformation item {{@itemPath}}">
+=======
+            <nav class="menu">
+>>>>>>> 4cb759cfc9 (fixed log)
               <ul class="menu-list">
                 {{#if @item.updatePath.canRead}}
                   <li class="action">

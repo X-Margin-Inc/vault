@@ -13,7 +13,11 @@
               @icon="vault"
               @route="vault.cluster.dashboard"
               @model={{this.currentCluster.cluster.name}}
+<<<<<<< HEAD
               @ariaLabel="Vault home"
+=======
+              @ariaLabel="home link"
+>>>>>>> 4cb759cfc9 (fixed log)
               data-test-sidebar-logo
             />
           </:logo>
@@ -31,7 +35,11 @@
 
       {{! this block is where the Hds::SideNav::Portal components render into }}
       <:body>
+<<<<<<< HEAD
         <Hds::SideNav::Portal::Target />
+=======
+        <Hds::SideNav::Portal::Target aria-label="sidebar navigation links" />
+>>>>>>> 4cb759cfc9 (fixed log)
       </:body>
 
       <:footer>

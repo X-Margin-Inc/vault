@@ -8,7 +8,10 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, click, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import sinon from 'sinon';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 const SELECTORS = {
   modalToggle: '[data-test-confirm-action-trigger]',
@@ -58,12 +61,15 @@ module('Integration | Component | confirm-action', function (hooks) {
   });
 
   test('it renders isInDropdown defaults and calls onConfirmAction', async function (assert) {
+<<<<<<< HEAD
     setRunOptions({
       rules: {
         // this component breaks this rule because it expects to be rendered within <ul>
         listitem: { enabled: false },
       },
     });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
     await render(hbs`
       <ConfirmAction
         @buttonText="DELETE"

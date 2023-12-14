@@ -8,8 +8,12 @@
     "ember-cli-htmlbars": "*",
     "ember-cli-babel": "*",
     "ember-concurrency": "*",
+<<<<<<< HEAD
     "@ember/test-waiters": "*",
     "ember-inflector": "*"
+=======
+    "@ember/test-waiters": "*"
+>>>>>>> 4cb759cfc9 (fixed log)
   },
   "ember-addon": {
     "paths": [

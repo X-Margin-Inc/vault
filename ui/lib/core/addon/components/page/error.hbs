@@ -3,22 +3,36 @@
   SPDX-License-Identifier: BUSL-1.1
 ~}}
 
+<<<<<<< HEAD
 <div
   class="box is-sideless has-background-white-bis has-text-grey-light has-text-centered has-tall-padding"
   data-test-page-error
 >
   {{#if (eq @error.httpStatus 404)}}
     <h1 class="title is-3 has-text-grey-light">
+=======
+<div class="box is-sideless has-background-white-bis has-text-grey has-text-centered has-tall-padding" data-test-page-error>
+  {{#if (eq @error.httpStatus 404)}}
+    <h1 class="title is-3 has-text-grey">
+>>>>>>> 4cb759cfc9 (fixed log)
       404 Not Found
     </h1>
     <p>Sorry, we were unable to find any content at <code>{{@error.path}}</code>.</p>
   {{else if (eq @error.httpStatus 403)}}
+<<<<<<< HEAD
     <h1 class="title is-3 has-text-grey-light">
+=======
+    <h1 class="title is-3 has-text-grey">
+>>>>>>> 4cb759cfc9 (fixed log)
       Not authorized
     </h1>
     <p>You are not authorized to access content at <code>{{@error.path}}</code>.</p>
   {{else}}
+<<<<<<< HEAD
     <h1 class="title is-3 has-text-grey-light">
+=======
+    <h1 class="title is-3 has-text-grey">
+>>>>>>> 4cb759cfc9 (fixed log)
       Error
     </h1>
     <p>

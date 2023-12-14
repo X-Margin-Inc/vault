@@ -1,6 +1,10 @@
 /**
  * Copyright (c) HashiCorp, Inc.
+<<<<<<< HEAD
  * SPDX-License-Identifier: BUSL-1.1
+=======
+ * SPDX-License-Identifier: MPL-2.0
+>>>>>>> 4cb759cfc9 (fixed log)
  */
 
 import Component from '@glimmer/component';
@@ -11,7 +15,10 @@ import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 import { waitFor } from '@ember/test-waiters';
 import { isDeleted } from 'kv/utils/kv-deleted';
+<<<<<<< HEAD
 import { isAdvancedSecret } from 'core/utils/advanced-secret';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 /**
  * @module KvSecretDetails renders the key/value data of a KV secret.
@@ -36,14 +43,25 @@ export default class KvSecretDetails extends Component {
 
   @tracked showJsonView = false;
   @tracked wrappedData = null;
+<<<<<<< HEAD
   @tracked syncStatus = null; // array of association sync status info by destination
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   secretDataIsAdvanced;
 
   constructor() {
     super(...arguments);
+<<<<<<< HEAD
     this.fetchSyncStatus.perform();
     this.originalSecret = JSON.stringify(this.args.secret.secretData || {});
     this.secretDataIsAdvanced = isAdvancedSecret(this.originalSecret);
+=======
+    this.originalSecret = JSON.stringify(this.args.secret.secretData || {});
+    if (this.originalSecret.lastIndexOf('{') > 0) {
+      // Dumb way to check if there's a nested object in the secret
+      this.secretDataIsAdvanced = true;
+    }
+>>>>>>> 4cb759cfc9 (fixed log)
   }
 
   @action
@@ -73,6 +91,7 @@ export default class KvSecretDetails extends Component {
     }
   }
 
+<<<<<<< HEAD
   @task
   @waitFor
   *fetchSyncStatus() {
@@ -85,6 +104,8 @@ export default class KvSecretDetails extends Component {
     }
   }
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   @action
   async undelete() {
     const { secret } = this.args;

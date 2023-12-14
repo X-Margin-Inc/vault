@@ -247,6 +247,11 @@ func testServerWithAudit(t *testing.T, records **[][]byte) (net.Listener, string
 }
 
 func TestSysGenerateRoot_badKey(t *testing.T) {
+<<<<<<< HEAD
+=======
+	t.Setenv("VAULT_AUDIT_DISABLE_EVENTLOGGER", "true")
+
+>>>>>>> 4cb759cfc9 (fixed log)
 	var records *[][]byte
 	ln, addr, token, _ := testServerWithAudit(t, &records)
 	defer ln.Close()

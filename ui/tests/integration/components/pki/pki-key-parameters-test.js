@@ -9,7 +9,10 @@ import { render, fillIn } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { setupEngine } from 'ember-engines/test-support';
 import { SELECTORS } from 'vault/tests/helpers/pki/pki-role-form';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 module('Integration | Component | pki key parameters', function (hooks) {
   setupRenderingTest(hooks);
@@ -19,12 +22,15 @@ module('Integration | Component | pki key parameters', function (hooks) {
     this.store = this.owner.lookup('service:store');
     this.model = this.store.createRecord('pki/role', { backend: 'pki' });
     [this.fields] = Object.values(this.model.formFieldGroups.find((g) => g['Key parameters']));
+<<<<<<< HEAD
     // TODO: remove Tooltip/ember-basic-dropdown
     setRunOptions({
       rules: {
         'nested-interactive': { enabled: false },
       },
     });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it should render the component and display the correct defaults', async function (assert) {

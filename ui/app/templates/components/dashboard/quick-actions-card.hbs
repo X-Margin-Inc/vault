@@ -28,7 +28,11 @@
     </div>
 
     {{#if this.selectedEngine}}
+<<<<<<< HEAD
       <h4 id="action-select-title" class="title is-6" data-test-card-subtitle="secrets-engines">Action</h4>
+=======
+      <h4 class="title is-6" data-test-card-subtitle="secrets-engines">Action</h4>
+>>>>>>> 4cb759cfc9 (fixed log)
       <Select
         @name="action-select"
         @options={{this.actionOptions}}
@@ -36,7 +40,10 @@
         @selectedValue={{this.selectedAction}}
         @onChange={{this.setSelectedAction}}
         @noDefault={{true}}
+<<<<<<< HEAD
         @ariaLabel="Action"
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
       />
 
       {{#if this.searchSelectParams.model}}

@@ -15,12 +15,19 @@ import (
 )
 
 // ProcessManual will attempt to create an (audit) event with the specified data
+<<<<<<< HEAD
 // and manually iterate over the supplied nodes calling Process on each until the
 // event is nil (which indicates the pipeline has completed).
 // Order of IDs in the NodeID slice determines the order they are processed.
 // (Audit) Event will be of RequestType (as opposed to ResponseType).
 // The last node must be a filter node (eventlogger.NodeTypeFilter) or
 // sink node (eventlogger.NodeTypeSink).
+=======
+// and manually iterate over the supplied nodes calling Process on each.
+// Order of IDs in the NodeID slice determines the order they are processed.
+// (Audit) Event will be of RequestType (as opposed to ResponseType).
+// The last node must be a sink node (eventlogger.NodeTypeSink).
+>>>>>>> 4cb759cfc9 (fixed log)
 func ProcessManual(ctx context.Context, data *logical.LogInput, ids []eventlogger.NodeID, nodes map[eventlogger.NodeID]eventlogger.Node) error {
 	switch {
 	case data == nil:
@@ -54,6 +61,7 @@ func ProcessManual(ctx context.Context, data *logical.LogInput, ids []eventlogge
 
 	// Process nodes in order, updating the event with the result.
 	// This means we *should* do:
+<<<<<<< HEAD
 	// 1. filter (optional if configured)
 	// 2. formatter (temporary)
 	// 3. sink
@@ -63,6 +71,11 @@ func ProcessManual(ctx context.Context, data *logical.LogInput, ids []eventlogge
 		if e == nil {
 			break
 		}
+=======
+	// 1. formatter (temporary)
+	// 2. sink
+	for _, id := range ids {
+>>>>>>> 4cb759cfc9 (fixed log)
 		node, ok := nodes[id]
 		if !ok {
 			return fmt.Errorf("node not found: %v", id)
@@ -82,6 +95,7 @@ func ProcessManual(ctx context.Context, data *logical.LogInput, ids []eventlogge
 			return err
 		}
 
+<<<<<<< HEAD
 		// Track the last node we have processed, as we should end with a filter or sink.
 		lastSeen = node.Type()
 	}
@@ -90,6 +104,14 @@ func ProcessManual(ctx context.Context, data *logical.LogInput, ids []eventlogge
 	case eventlogger.NodeTypeSink, eventlogger.NodeTypeFilter:
 	default:
 		return errors.New("last node must be a filter or sink")
+=======
+		// Track the last node we have processed, as we should end with a sink.
+		lastSeen = node.Type()
+	}
+
+	if lastSeen != eventlogger.NodeTypeSink {
+		return errors.New("last node must be a sink")
+>>>>>>> 4cb759cfc9 (fixed log)
 	}
 
 	return nil

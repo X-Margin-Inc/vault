@@ -1,6 +1,10 @@
 /**
  * Copyright (c) HashiCorp, Inc.
+<<<<<<< HEAD
  * SPDX-License-Identifier: BUSL-1.1
+=======
+ * SPDX-License-Identifier: MPL-2.0
+>>>>>>> 4cb759cfc9 (fixed log)
  */
 
 // used in KV version diff view. https://github.com/benjamine/jsondiffpatch/tree/master
@@ -9,18 +13,27 @@
 .jsondiffpatch-deleted pre,
 .jsondiffpatch-modified .jsondiffpatch-left-value pre,
 .jsondiffpatch-textdiff-deleted {
+<<<<<<< HEAD
   background: var(--token-color-foreground-critical-high-contrast);
+=======
+  background: $red-500;
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 .jsondiffpatch-added .jsondiffpatch-property-name,
 .jsondiffpatch-added .jsondiffpatch-value pre,
 .jsondiffpatch-modified .jsondiffpatch-right-value pre,
 .jsondiffpatch-textdiff-added {
+<<<<<<< HEAD
   background: var(--token-color-foreground-success-high-contrast);
+=======
+  background: $green-500;
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 
 .jsondiffpatch-property-name {
   color: $ui-gray-300;
 }
+<<<<<<< HEAD
 
 .jsondiffpatch-added > .jsondiffpatch-property-name {
   color: var(--token-color-surface-success);
@@ -29,3 +42,5 @@
 .jsondiffpatch-deleted > .jsondiffpatch-property-name {
   color: var(--token-color-surface-critical);
 }
+=======
+>>>>>>> 4cb759cfc9 (fixed log)

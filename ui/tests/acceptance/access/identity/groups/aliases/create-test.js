@@ -8,18 +8,24 @@ import { settled } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
 import { testAliasCRUD, testAliasDeleteFromForm } from '../../_shared-alias-tests';
 import authPage from 'vault/tests/pages/auth';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 module('Acceptance | /access/identity/groups/aliases/add', function (hooks) {
   setupApplicationTest(hooks);
 
   hooks.beforeEach(async function () {
+<<<<<<< HEAD
     // Popup menu causes flakiness
     setRunOptions({
       rules: {
         'color-contrast': { enabled: false },
       },
     });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
     await authPage.login();
     return;
   });

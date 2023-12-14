@@ -14,6 +14,10 @@ import (
 	"net/http"
 	"strings"
 	"sync"
+<<<<<<< HEAD
+=======
+	"sync/atomic"
+>>>>>>> 4cb759cfc9 (fixed log)
 	"testing"
 	"time"
 
@@ -49,6 +53,7 @@ type RaftClusterOpts struct {
 	VersionMap                     map[int]string
 	RedundancyZoneMap              map[int]string
 	EffectiveSDKVersionMap         map[int]string
+<<<<<<< HEAD
 	PerNodePhysicalFactoryConfig   map[int]map[string]interface{}
 }
 
@@ -57,6 +62,13 @@ func raftClusterBuilder(t testing.TB, ropts *RaftClusterOpts) (*vault.CoreConfig
 		ropts = &RaftClusterOpts{
 			InmemCluster: true,
 		}
+=======
+}
+
+func raftCluster(t testing.TB, ropts *RaftClusterOpts) (*vault.TestCluster, *vault.TestClusterOptions) {
+	if ropts == nil {
+		ropts = &RaftClusterOpts{}
+>>>>>>> 4cb759cfc9 (fixed log)
 	}
 
 	conf := &vault.CoreConfig{
@@ -75,6 +87,7 @@ func raftClusterBuilder(t testing.TB, ropts *RaftClusterOpts) (*vault.CoreConfig
 	opts.PhysicalFactoryConfig = ropts.PhysicalFactoryConfig
 	conf.DisablePerformanceStandby = ropts.DisablePerfStandby
 	opts.NumCores = ropts.NumCores
+<<<<<<< HEAD
 	opts.EffectiveSDKVersionMap = ropts.EffectiveSDKVersionMap
 	opts.PerNodePhysicalFactoryConfig = ropts.PerNodePhysicalFactoryConfig
 	if len(ropts.VersionMap) > 0 || len(ropts.RedundancyZoneMap) > 0 {
@@ -94,24 +107,36 @@ func raftClusterBuilder(t testing.TB, ropts *RaftClusterOpts) (*vault.CoreConfig
 			opts.PerNodePhysicalFactoryConfig[idx]["autopilot_redundancy_zone"] = zone
 		}
 	}
+=======
+	opts.VersionMap = ropts.VersionMap
+	opts.RedundancyZoneMap = ropts.RedundancyZoneMap
+	opts.EffectiveSDKVersionMap = ropts.EffectiveSDKVersionMap
+>>>>>>> 4cb759cfc9 (fixed log)
 
 	teststorage.RaftBackendSetup(conf, &opts)
 
 	if ropts.DisableFollowerJoins {
 		opts.SetupFunc = nil
 	}
+<<<<<<< HEAD
 	return conf, opts
 }
 
 func raftCluster(t testing.TB, ropts *RaftClusterOpts) (*vault.TestCluster, *vault.TestClusterOptions) {
 	conf, opts := raftClusterBuilder(t, ropts)
 	cluster := vault.NewTestCluster(benchhelpers.TBtoT(t), conf, &opts)
+=======
+
+	cluster := vault.NewTestCluster(benchhelpers.TBtoT(t), conf, &opts)
+	cluster.Start()
+>>>>>>> 4cb759cfc9 (fixed log)
 	vault.TestWaitActive(benchhelpers.TBtoT(t), cluster.Cores[0].Core)
 	return cluster, &opts
 }
 
 func TestRaft_BoltDBMetrics(t *testing.T) {
 	t.Parallel()
+<<<<<<< HEAD
 	conf, opts := raftClusterBuilder(t, &RaftClusterOpts{
 		InmemCluster: true,
 		NumCores:     1,
@@ -125,6 +150,25 @@ func TestRaft_BoltDBMetrics(t *testing.T) {
 		},
 	}
 	cluster := vault.NewTestCluster(t, conf, &opts)
+=======
+	conf := vault.CoreConfig{}
+	opts := vault.TestClusterOptions{
+		HandlerFunc:            vaulthttp.Handler,
+		NumCores:               1,
+		CoreMetricSinkProvider: testhelpers.TestMetricSinkProvider(time.Minute),
+		DefaultHandlerProperties: vault.HandlerProperties{
+			ListenerConfig: &configutil.Listener{
+				Telemetry: configutil.ListenerTelemetry{
+					UnauthenticatedMetricsAccess: true,
+				},
+			},
+		},
+	}
+
+	teststorage.RaftBackendSetup(&conf, &opts)
+	cluster := vault.NewTestCluster(t, &conf, &opts)
+	cluster.Start()
+>>>>>>> 4cb759cfc9 (fixed log)
 	defer cluster.Cleanup()
 
 	vault.TestWaitActive(t, cluster.Cores[0].Core)
@@ -165,6 +209,7 @@ func TestRaft_BoltDBMetrics(t *testing.T) {
 func TestRaft_RetryAutoJoin(t *testing.T) {
 	t.Parallel()
 
+<<<<<<< HEAD
 	cluster, _ := raftCluster(t, &RaftClusterOpts{
 		InmemCluster:         true,
 		DisableFollowerJoins: true,
@@ -172,6 +217,32 @@ func TestRaft_RetryAutoJoin(t *testing.T) {
 	defer cluster.Cleanup()
 
 	leaderCore := cluster.Cores[0]
+=======
+	var (
+		conf vault.CoreConfig
+
+		opts = vault.TestClusterOptions{HandlerFunc: vaulthttp.Handler}
+	)
+
+	teststorage.RaftBackendSetup(&conf, &opts)
+
+	opts.SetupFunc = nil
+	cluster := vault.NewTestCluster(t, &conf, &opts)
+
+	cluster.Start()
+	defer cluster.Cleanup()
+
+	addressProvider := &testhelpers.TestRaftServerAddressProvider{Cluster: cluster}
+	leaderCore := cluster.Cores[0]
+	atomic.StoreUint32(&vault.TestingUpdateClusterAddr, 1)
+
+	{
+		testhelpers.EnsureCoreSealed(t, leaderCore)
+		leaderCore.UnderlyingRawStorage.(*raft.RaftBackend).SetServerAddressProvider(addressProvider)
+		cluster.UnsealCore(t, leaderCore)
+		vault.TestWaitActive(t, leaderCore.Core)
+	}
+>>>>>>> 4cb759cfc9 (fixed log)
 
 	leaderInfos := []*raft.LeaderJoinInfo{
 		{
@@ -184,6 +255,10 @@ func TestRaft_RetryAutoJoin(t *testing.T) {
 	{
 		// expected to pass but not join as we're not actually discovering leader addresses
 		core := cluster.Cores[1]
+<<<<<<< HEAD
+=======
+		core.UnderlyingRawStorage.(*raft.RaftBackend).SetServerAddressProvider(addressProvider)
+>>>>>>> 4cb759cfc9 (fixed log)
 
 		_, err := core.JoinRaftCluster(namespace.RootContext(context.Background()), leaderInfos, false)
 		require.NoError(t, err)
@@ -199,6 +274,7 @@ func TestRaft_RetryAutoJoin(t *testing.T) {
 
 func TestRaft_Retry_Join(t *testing.T) {
 	t.Parallel()
+<<<<<<< HEAD
 	cluster, _ := raftCluster(t, &RaftClusterOpts{
 		InmemCluster:         true,
 		DisableFollowerJoins: true,
@@ -207,6 +283,26 @@ func TestRaft_Retry_Join(t *testing.T) {
 
 	leaderCore := cluster.Cores[0]
 	leaderAPI := leaderCore.Client.Address()
+=======
+	var conf vault.CoreConfig
+	opts := vault.TestClusterOptions{HandlerFunc: vaulthttp.Handler}
+	teststorage.RaftBackendSetup(&conf, &opts)
+	opts.SetupFunc = nil
+	cluster := vault.NewTestCluster(t, &conf, &opts)
+	cluster.Start()
+	defer cluster.Cleanup()
+
+	addressProvider := &testhelpers.TestRaftServerAddressProvider{Cluster: cluster}
+
+	leaderCore := cluster.Cores[0]
+	leaderAPI := leaderCore.Client.Address()
+	atomic.StoreUint32(&vault.TestingUpdateClusterAddr, 1)
+
+	{
+		testhelpers.EnsureCoreSealed(t, leaderCore)
+		leaderCore.UnderlyingRawStorage.(*raft.RaftBackend).SetServerAddressProvider(addressProvider)
+	}
+>>>>>>> 4cb759cfc9 (fixed log)
 
 	leaderInfos := []*raft.LeaderJoinInfo{
 		{
@@ -222,6 +318,10 @@ func TestRaft_Retry_Join(t *testing.T) {
 		go func(t *testing.T, core *vault.TestClusterCore) {
 			t.Helper()
 			defer wg.Done()
+<<<<<<< HEAD
+=======
+			core.UnderlyingRawStorage.(*raft.RaftBackend).SetServerAddressProvider(addressProvider)
+>>>>>>> 4cb759cfc9 (fixed log)
 			_, err := core.JoinRaftCluster(namespace.RootContext(context.Background()), leaderInfos, false)
 			if err != nil {
 				t.Error(err)
@@ -251,6 +351,7 @@ func TestRaft_Retry_Join(t *testing.T) {
 
 func TestRaft_Join(t *testing.T) {
 	t.Parallel()
+<<<<<<< HEAD
 	cluster, _ := raftCluster(t, &RaftClusterOpts{
 		DisableFollowerJoins: true,
 	})
@@ -258,6 +359,29 @@ func TestRaft_Join(t *testing.T) {
 
 	leaderCore := cluster.Cores[0]
 	leaderAPI := leaderCore.Client.Address()
+=======
+	var conf vault.CoreConfig
+	opts := vault.TestClusterOptions{HandlerFunc: vaulthttp.Handler}
+	teststorage.RaftBackendSetup(&conf, &opts)
+	opts.SetupFunc = nil
+	cluster := vault.NewTestCluster(t, &conf, &opts)
+	cluster.Start()
+	defer cluster.Cleanup()
+
+	addressProvider := &testhelpers.TestRaftServerAddressProvider{Cluster: cluster}
+
+	leaderCore := cluster.Cores[0]
+	leaderAPI := leaderCore.Client.Address()
+	atomic.StoreUint32(&vault.TestingUpdateClusterAddr, 1)
+
+	// Seal the leader so we can install an address provider
+	{
+		testhelpers.EnsureCoreSealed(t, leaderCore)
+		leaderCore.UnderlyingRawStorage.(*raft.RaftBackend).SetServerAddressProvider(addressProvider)
+		cluster.UnsealCore(t, leaderCore)
+		vault.TestWaitActive(t, leaderCore.Core)
+	}
+>>>>>>> 4cb759cfc9 (fixed log)
 
 	joinFunc := func(client *api.Client, addClientCerts bool) {
 		req := &api.RaftJoinRequest{
@@ -366,7 +490,10 @@ func TestRaft_NodeIDHeader(t *testing.T) {
 			description: "with header configured",
 			ropts: &RaftClusterOpts{
 				EnableResponseHeaderRaftNodeID: true,
+<<<<<<< HEAD
 				InmemCluster:                   true,
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 			},
 			headerPresent: true,
 		},
@@ -597,10 +724,14 @@ func TestRaft_SnapshotAPI_RekeyRotate_Backward(t *testing.T) {
 			tCaseLocal := tCase
 			t.Parallel()
 
+<<<<<<< HEAD
 			cluster, _ := raftCluster(t, &RaftClusterOpts{
 				DisablePerfStandby: tCaseLocal.DisablePerfStandby,
 				InmemCluster:       true,
 			})
+=======
+			cluster, _ := raftCluster(t, &RaftClusterOpts{DisablePerfStandby: tCaseLocal.DisablePerfStandby})
+>>>>>>> 4cb759cfc9 (fixed log)
 			defer cluster.Cleanup()
 
 			leaderClient := cluster.Cores[0].Client
@@ -802,10 +933,14 @@ func TestRaft_SnapshotAPI_RekeyRotate_Forward(t *testing.T) {
 			tCaseLocal := tCase
 			t.Parallel()
 
+<<<<<<< HEAD
 			cluster, _ := raftCluster(t, &RaftClusterOpts{
 				DisablePerfStandby: tCaseLocal.DisablePerfStandby,
 				InmemCluster:       true,
 			})
+=======
+			cluster, _ := raftCluster(t, &RaftClusterOpts{DisablePerfStandby: tCaseLocal.DisablePerfStandby})
+>>>>>>> 4cb759cfc9 (fixed log)
 			defer cluster.Cleanup()
 
 			leaderClient := cluster.Cores[0].Client
@@ -1115,6 +1250,7 @@ func BenchmarkRaft_SingleNode(b *testing.B) {
 
 func TestRaft_Join_InitStatus(t *testing.T) {
 	t.Parallel()
+<<<<<<< HEAD
 
 	cluster, _ := raftCluster(t, &RaftClusterOpts{
 		InmemCluster:         true,
@@ -1124,6 +1260,29 @@ func TestRaft_Join_InitStatus(t *testing.T) {
 
 	leaderCore := cluster.Cores[0]
 	leaderAPI := leaderCore.Client.Address()
+=======
+	var conf vault.CoreConfig
+	opts := vault.TestClusterOptions{HandlerFunc: vaulthttp.Handler}
+	teststorage.RaftBackendSetup(&conf, &opts)
+	opts.SetupFunc = nil
+	cluster := vault.NewTestCluster(t, &conf, &opts)
+	cluster.Start()
+	defer cluster.Cleanup()
+
+	addressProvider := &testhelpers.TestRaftServerAddressProvider{Cluster: cluster}
+
+	leaderCore := cluster.Cores[0]
+	leaderAPI := leaderCore.Client.Address()
+	atomic.StoreUint32(&vault.TestingUpdateClusterAddr, 1)
+
+	// Seal the leader so we can install an address provider
+	{
+		testhelpers.EnsureCoreSealed(t, leaderCore)
+		leaderCore.UnderlyingRawStorage.(*raft.RaftBackend).SetServerAddressProvider(addressProvider)
+		cluster.UnsealCore(t, leaderCore)
+		vault.TestWaitActive(t, leaderCore.Core)
+	}
+>>>>>>> 4cb759cfc9 (fixed log)
 
 	joinFunc := func(client *api.Client) {
 		req := &api.RaftJoinRequest{

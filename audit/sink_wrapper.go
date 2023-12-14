@@ -11,10 +11,15 @@ import (
 	"github.com/hashicorp/eventlogger"
 )
 
+<<<<<<< HEAD
 var _ eventlogger.Node = (*SinkWrapper)(nil)
 
 // SinkWrapper is a wrapper for any kind of Sink Node that processes events
 // containing an AuditEvent payload.
+=======
+// SinkWrapper is a wrapper for any kind of Sink Node that processes events
+// containing an auditEvent payload.
+>>>>>>> 4cb759cfc9 (fixed log)
 type SinkWrapper struct {
 	Name string
 	Sink eventlogger.Node
@@ -25,7 +30,11 @@ type SinkWrapper struct {
 // once this method returns.
 func (s *SinkWrapper) Process(ctx context.Context, e *eventlogger.Event) (*eventlogger.Event, error) {
 	defer func() {
+<<<<<<< HEAD
 		auditEvent, ok := e.Payload.(*AuditEvent)
+=======
+		auditEvent, ok := e.Payload.(*auditEvent)
+>>>>>>> 4cb759cfc9 (fixed log)
 		if ok {
 			metrics.MeasureSince([]string{"audit", s.Name, auditEvent.Subtype.MetricTag()}, e.CreatedAt)
 		}

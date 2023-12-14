@@ -45,9 +45,15 @@
         />
       </div>
       <div class="control">
+<<<<<<< HEAD
         <label for="select-ttl-unit" class="sr-only">Unit for TTL</label>
         {{! Select automatically gets id based on name }}
         <Select
+=======
+        <label for="unit-{{this.elementId}}" class="sr-only">Unit for TTL</label>
+        <Select
+          id="unit-{{this.elementId}}"
+>>>>>>> 4cb759cfc9 (fixed log)
           @name="ttl-unit"
           @options={{this.unitOptions}}
           @onChange={{this.updateUnit}}

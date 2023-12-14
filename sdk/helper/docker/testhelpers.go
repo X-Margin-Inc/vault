@@ -229,6 +229,22 @@ func (d *Runner) StartNewService(ctx context.Context, addSuffix, forceLocalAddr 
 		return nil, "", err
 	}
 
+<<<<<<< HEAD
+=======
+	var wg sync.WaitGroup
+	consumeLogs := false
+	var logStdout, logStderr io.Writer
+	if d.RunOptions.LogStdout != nil && d.RunOptions.LogStderr != nil {
+		consumeLogs = true
+		logStdout = d.RunOptions.LogStdout
+		logStderr = d.RunOptions.LogStderr
+	} else if d.RunOptions.LogConsumer != nil {
+		consumeLogs = true
+		logStdout = &LogConsumerWriter{d.RunOptions.LogConsumer}
+		logStderr = &LogConsumerWriter{d.RunOptions.LogConsumer}
+	}
+
+>>>>>>> 4cb759cfc9 (fixed log)
 	// The waitgroup wg is used here to support some stuff in NewDockerCluster.
 	// We can't generate the PKI cert for the https listener until we know the
 	// container's address, meaning we must first start the container, then
@@ -239,12 +255,37 @@ func (d *Runner) StartNewService(ctx context.Context, addSuffix, forceLocalAddr 
 	// passes in (which does all that PKI cert stuff) waits to see output from
 	// Vault on stdout/stderr before it sends the signal, and we don't want to
 	// run the PostStart until we've hooked into the docker logs.
+<<<<<<< HEAD
 	var wg sync.WaitGroup
 	logConsumer := d.createLogConsumer(result.Container.ID, &wg)
 
 	if logConsumer != nil {
 		wg.Add(1)
 		go logConsumer()
+=======
+	if consumeLogs {
+		wg.Add(1)
+		go func() {
+			// We must run inside a goroutine because we're using Follow:true,
+			// and StdCopy will block until the log stream is closed.
+			stream, err := d.DockerAPI.ContainerLogs(context.Background(), result.Container.ID, types.ContainerLogsOptions{
+				ShowStdout: true,
+				ShowStderr: true,
+				Timestamps: !d.RunOptions.OmitLogTimestamps,
+				Details:    true,
+				Follow:     true,
+			})
+			wg.Done()
+			if err != nil {
+				d.RunOptions.LogConsumer(fmt.Sprintf("error reading container logs: %v", err))
+			} else {
+				_, err := stdcopy.StdCopy(logStdout, logStderr, stream)
+				if err != nil {
+					d.RunOptions.LogConsumer(fmt.Sprintf("error demultiplexing docker logs: %v", err))
+				}
+			}
+		}()
+>>>>>>> 4cb759cfc9 (fixed log)
 	}
 	wg.Wait()
 
@@ -307,6 +348,7 @@ func (d *Runner) StartNewService(ctx context.Context, addSuffix, forceLocalAddr 
 	}, result.Container.ID, nil
 }
 
+<<<<<<< HEAD
 // createLogConsumer returns a function to consume the logs of the container with the given ID.
 // If a wait group is given, `WaitGroup.Done()` will be called as soon as the call to the
 // ContainerLogs Docker API call is done.
@@ -347,6 +389,8 @@ func (d *Runner) consumeLogs(containerId string, wg *sync.WaitGroup, logStdout, 
 	}
 }
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 type Service struct {
 	Config      ServiceConfig
 	Cleanup     func()
@@ -519,6 +563,7 @@ func (d *Runner) Stop(ctx context.Context, containerID string) error {
 	return nil
 }
 
+<<<<<<< HEAD
 func (d *Runner) RestartContainerWithTimeout(ctx context.Context, containerID string, timeout int) error {
 	err := d.DockerAPI.ContainerRestart(ctx, containerID, container.StopOptions{Timeout: &timeout})
 	if err != nil {
@@ -534,6 +579,8 @@ func (d *Runner) RestartContainerWithTimeout(ctx context.Context, containerID st
 	return nil
 }
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 func (d *Runner) Restart(ctx context.Context, containerID string) error {
 	if err := d.DockerAPI.ContainerStart(ctx, containerID, types.ContainerStartOptions{}); err != nil {
 		return err

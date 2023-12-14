@@ -205,7 +205,11 @@ func TestOptions_WithFacility(t *testing.T) {
 		},
 		"whitespace": {
 			Value:         "    ",
+<<<<<<< HEAD
 			ExpectedValue: "",
+=======
+			ExpectedValue: "    ",
+>>>>>>> 4cb759cfc9 (fixed log)
 		},
 		"value": {
 			Value:         "juan",
@@ -213,7 +217,11 @@ func TestOptions_WithFacility(t *testing.T) {
 		},
 		"spacey-value": {
 			Value:         "   juan   ",
+<<<<<<< HEAD
 			ExpectedValue: "juan",
+=======
+			ExpectedValue: "   juan   ",
+>>>>>>> 4cb759cfc9 (fixed log)
 		},
 	}
 
@@ -243,7 +251,11 @@ func TestOptions_WithTag(t *testing.T) {
 		},
 		"whitespace": {
 			Value:         "    ",
+<<<<<<< HEAD
 			ExpectedValue: "",
+=======
+			ExpectedValue: "    ",
+>>>>>>> 4cb759cfc9 (fixed log)
 		},
 		"value": {
 			Value:         "juan",
@@ -251,7 +263,11 @@ func TestOptions_WithTag(t *testing.T) {
 		},
 		"spacey-value": {
 			Value:         "   juan   ",
+<<<<<<< HEAD
 			ExpectedValue: "juan",
+=======
+			ExpectedValue: "   juan   ",
+>>>>>>> 4cb759cfc9 (fixed log)
 		},
 	}
 

@@ -11,6 +11,7 @@ import (
 	"strings"
 	"time"
 
+<<<<<<< HEAD
 	"github.com/go-jose/go-jose/v3/jwt"
 	"github.com/hashicorp/eventlogger"
 	"github.com/hashicorp/vault/helper/namespace"
@@ -18,6 +19,18 @@ import (
 	"github.com/hashicorp/vault/sdk/helper/jsonutil"
 	"github.com/hashicorp/vault/sdk/logical"
 	"github.com/jefferai/jsonx"
+=======
+	"github.com/jefferai/jsonx"
+
+	"github.com/hashicorp/vault/helper/namespace"
+	"github.com/hashicorp/vault/sdk/logical"
+
+	"github.com/go-jose/go-jose/v3/jwt"
+	"github.com/hashicorp/vault/internal/observability/event"
+	"github.com/hashicorp/vault/sdk/helper/jsonutil"
+
+	"github.com/hashicorp/eventlogger"
+>>>>>>> 4cb759cfc9 (fixed log)
 )
 
 var (
@@ -26,7 +39,11 @@ var (
 )
 
 // NewEntryFormatter should be used to create an EntryFormatter.
+<<<<<<< HEAD
 // Accepted options: WithHeaderFormatter, WithPrefix.
+=======
+// Accepted options: WithPrefix.
+>>>>>>> 4cb759cfc9 (fixed log)
 func NewEntryFormatter(config FormatterConfig, salter Salter, opt ...Option) (*EntryFormatter, error) {
 	const op = "audit.NewEntryFormatter"
 
@@ -77,7 +94,11 @@ func (f *EntryFormatter) Process(ctx context.Context, e *eventlogger.Event) (*ev
 		return nil, fmt.Errorf("%s: event is nil: %w", op, event.ErrInvalidParameter)
 	}
 
+<<<<<<< HEAD
 	a, ok := e.Payload.(*AuditEvent)
+=======
+	a, ok := e.Payload.(*auditEvent)
+>>>>>>> 4cb759cfc9 (fixed log)
 	if !ok {
 		return nil, fmt.Errorf("%s: cannot parse event payload: %w", op, event.ErrInvalidParameter)
 	}

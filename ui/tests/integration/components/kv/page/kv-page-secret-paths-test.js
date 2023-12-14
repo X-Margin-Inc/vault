@@ -1,6 +1,10 @@
 /**
  * Copyright (c) HashiCorp, Inc.
+<<<<<<< HEAD
  * SPDX-License-Identifier: BUSL-1.1
+=======
+ * SPDX-License-Identifier: MPL-2.0
+>>>>>>> 4cb759cfc9 (fixed log)
  */
 
 import { module, test } from 'qunit';
@@ -91,10 +95,19 @@ module('Integration | Component | kv-v2 | Page::Secret::Paths', function (hooks)
   });
 
   test('it renders copyable commands', async function (assert) {
+<<<<<<< HEAD
     const url = `https://127.0.0.1:8200/v1/${this.backend}/data/${this.path}`;
     const expected = {
       cli: `vault kv get -mount="${this.backend}" "${this.path}"`,
       api: `curl \\ --header \"X-Vault-Token: ...\" \\ --request GET \\ ${url}`,
+=======
+    assert.expect(4);
+    const url = `https://127.0.0.1:8200/v1/${this.backend}/data/${this.path}`;
+    const expected = {
+      cli: `vault kv get -mount="${this.backend}" "${this.path}"`,
+      apiDisplay: `curl \\ --header \"X-Vault-Token: ...\" \\ --request GET \\ ${url}`,
+      apiCopy: `curl  --header \"X-Vault-Token: ...\"  --request GET \ ${url}`,
+>>>>>>> 4cb759cfc9 (fixed log)
     };
     await render(
       hbs`
@@ -108,10 +121,20 @@ module('Integration | Component | kv-v2 | Page::Secret::Paths', function (hooks)
     );
 
     assert.dom(PAGE.paths.codeSnippet('cli')).hasText(expected.cli);
+<<<<<<< HEAD
     assert.dom(PAGE.paths.codeSnippet('api')).hasText(expected.api);
   });
 
   test('it renders copyable encoded mount and path commands', async function (assert) {
+=======
+    assert.dom(PAGE.paths.snippetCopy('cli')).hasAttribute('data-test-copy-button', expected.cli);
+    assert.dom(PAGE.paths.codeSnippet('api')).hasText(expected.apiDisplay);
+    assert.dom(PAGE.paths.snippetCopy('api')).hasAttribute('data-test-copy-button', expected.apiCopy);
+  });
+
+  test('it renders copyable encoded mount and path commands', async function (assert) {
+    assert.expect(4);
+>>>>>>> 4cb759cfc9 (fixed log)
     this.path = `my spacey!"secret`;
     this.backend = `my fancy!"backend`;
 
@@ -121,7 +144,12 @@ module('Integration | Component | kv-v2 | Page::Secret::Paths', function (hooks)
 
     const expected = {
       cli: `vault kv get -mount="${this.backend}" "${this.path}"`,
+<<<<<<< HEAD
       api: `curl \\ --header \"X-Vault-Token: ...\" \\ --request GET \\ ${url}`,
+=======
+      apiDisplay: `curl \\ --header \"X-Vault-Token: ...\" \\ --request GET \\ ${url}`,
+      apiCopy: `curl  --header \"X-Vault-Token: ...\"  --request GET \ ${url}`,
+>>>>>>> 4cb759cfc9 (fixed log)
     };
     await render(
       hbs`
@@ -135,6 +163,12 @@ module('Integration | Component | kv-v2 | Page::Secret::Paths', function (hooks)
     );
 
     assert.dom(PAGE.paths.codeSnippet('cli')).hasText(expected.cli);
+<<<<<<< HEAD
     assert.dom(PAGE.paths.codeSnippet('api')).hasText(expected.api);
+=======
+    assert.dom(PAGE.paths.snippetCopy('cli')).hasAttribute('data-test-copy-button', expected.cli);
+    assert.dom(PAGE.paths.codeSnippet('api')).hasText(expected.apiDisplay);
+    assert.dom(PAGE.paths.snippetCopy('api')).hasAttribute('data-test-copy-button', expected.apiCopy);
+>>>>>>> 4cb759cfc9 (fixed log)
   });
 });

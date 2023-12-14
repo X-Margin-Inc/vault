@@ -185,6 +185,7 @@ func TestProcessManual_LastNodeNotSink(t *testing.T) {
 
 	err = ProcessManual(namespace.RootContext(context.Background()), data, ids, nodes)
 	require.Error(t, err)
+<<<<<<< HEAD
 	require.EqualError(t, err, "last node must be a filter or sink")
 }
 
@@ -192,6 +193,14 @@ func TestProcessManual_LastNodeNotSink(t *testing.T) {
 // message works as expected with proper inputs, which mean processing ends with
 // sink node.
 func TestProcessManualEndWithSink(t *testing.T) {
+=======
+	require.EqualError(t, err, "last node must be a sink")
+}
+
+// TestProcessManual ensures that the manual processing of a test message works
+// as expected with proper inputs.
+func TestProcessManual(t *testing.T) {
+>>>>>>> 4cb759cfc9 (fixed log)
 	t.Parallel()
 
 	var ids []eventlogger.NodeID
@@ -216,6 +225,7 @@ func TestProcessManualEndWithSink(t *testing.T) {
 	require.NoError(t, err)
 }
 
+<<<<<<< HEAD
 // TestProcessManual_EndWithFilter ensures that the manual processing of a test
 // message works as expected with proper inputs, which mean processing ends with
 // sink node.
@@ -249,6 +259,8 @@ func TestProcessManual_EndWithFilter(t *testing.T) {
 	require.NoError(t, err)
 }
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 // newSinkNode creates a new UUID and NoopSink (sink node).
 func newSinkNode(t *testing.T) (eventlogger.NodeID, *event.NoopSink) {
 	t.Helper()
@@ -260,6 +272,7 @@ func newSinkNode(t *testing.T) (eventlogger.NodeID, *event.NoopSink) {
 	return sinkId, sinkNode
 }
 
+<<<<<<< HEAD
 // TestFilter is a trivial implementation of eventlogger.Node used as a placeholder
 // for Filter nodes in tests.
 type TestFilter struct{}
@@ -279,6 +292,8 @@ func (f *TestFilter) Type() eventlogger.NodeType {
 	return eventlogger.NodeTypeFilter
 }
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 // TestFormatter is a trivial implementation of the eventlogger.Node interface
 // used as a place-holder for Formatter nodes in tests.
 type TestFormatter struct{}
@@ -301,6 +316,7 @@ func (f *TestFormatter) Type() eventlogger.NodeType {
 	return eventlogger.NodeTypeFormatter
 }
 
+<<<<<<< HEAD
 // newFilterNode creates a new TestFormatter (filter node).
 func newFilterNode(t *testing.T) (eventlogger.NodeID, *TestFilter) {
 	nodeId, err := event.GenerateNodeID()
@@ -310,6 +326,8 @@ func newFilterNode(t *testing.T) (eventlogger.NodeID, *TestFilter) {
 	return nodeId, node
 }
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 // newFormatterNode creates a new TestFormatter (formatter node).
 func newFormatterNode(t *testing.T) (eventlogger.NodeID, *TestFormatter) {
 	nodeId, err := event.GenerateNodeID()

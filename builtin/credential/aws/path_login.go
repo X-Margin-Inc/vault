@@ -26,14 +26,24 @@ import (
 	"github.com/aws/aws-sdk-go/service/iam"
 	"github.com/aws/aws-sdk-go/service/sts"
 	"github.com/hashicorp/errwrap"
+<<<<<<< HEAD
 	"github.com/hashicorp/go-cleanhttp"
+=======
+	cleanhttp "github.com/hashicorp/go-cleanhttp"
+>>>>>>> 4cb759cfc9 (fixed log)
 	"github.com/hashicorp/go-retryablehttp"
 	"github.com/hashicorp/go-secure-stdlib/awsutil"
 	"github.com/hashicorp/go-secure-stdlib/parseutil"
 	"github.com/hashicorp/go-secure-stdlib/strutil"
+<<<<<<< HEAD
 	"github.com/hashicorp/go-uuid"
 
 	"github.com/hashicorp/vault/helper/pkcs7"
+=======
+	uuid "github.com/hashicorp/go-uuid"
+
+	"github.com/hashicorp/vault/builtin/credential/aws/pkcs7"
+>>>>>>> 4cb759cfc9 (fixed log)
 	"github.com/hashicorp/vault/sdk/framework"
 	"github.com/hashicorp/vault/sdk/helper/cidrutil"
 	"github.com/hashicorp/vault/sdk/helper/jsonutil"

@@ -28,17 +28,28 @@
   </div>
   {{#unless this.isOIDC}}
     <div class="field">
+<<<<<<< HEAD
       <label for="jwt-token" class="is-label">JWT Token</label>
+=======
+      <label for="token" class="is-label">JWT Token</label>
+>>>>>>> 4cb759cfc9 (fixed log)
       <div class="control">
         <Input
           @type="password"
           @value={{this.jwt}}
+<<<<<<< HEAD
           id="jwt-token"
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
           name="jwt"
           class="input"
           autocomplete="off"
           spellcheck="false"
+<<<<<<< HEAD
           data-test-jwt
+=======
+          data-test-jwt={{true}}
+>>>>>>> 4cb759cfc9 (fixed log)
         />
       </div>
     </div>

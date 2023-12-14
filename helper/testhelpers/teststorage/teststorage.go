@@ -10,8 +10,15 @@ import (
 	"os"
 	"time"
 
+<<<<<<< HEAD
 	"github.com/hashicorp/go-hclog"
 	logicalKv "github.com/hashicorp/vault-plugin-secrets-kv"
+=======
+	"github.com/hashicorp/vault/internalshared/configutil"
+
+	logicalKv "github.com/X-Margin-Inc/vault-plugin-secrets-kv"
+	"github.com/hashicorp/go-hclog"
+>>>>>>> 4cb759cfc9 (fixed log)
 	"github.com/hashicorp/vault/audit"
 	auditFile "github.com/hashicorp/vault/builtin/audit/file"
 	auditSocket "github.com/hashicorp/vault/builtin/audit/socket"
@@ -21,7 +28,10 @@ import (
 	"github.com/hashicorp/vault/helper/testhelpers"
 	"github.com/hashicorp/vault/helper/testhelpers/corehelpers"
 	vaulthttp "github.com/hashicorp/vault/http"
+<<<<<<< HEAD
 	"github.com/hashicorp/vault/internalshared/configutil"
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 	"github.com/hashicorp/vault/physical/raft"
 	"github.com/hashicorp/vault/sdk/logical"
 	"github.com/hashicorp/vault/sdk/physical"
@@ -104,7 +114,11 @@ func MakeFileBackend(t testing.T, logger hclog.Logger) *vault.PhysicalBackendBun
 	}
 }
 
+<<<<<<< HEAD
 func MakeRaftBackend(t testing.T, coreIdx int, logger hclog.Logger, extraConf map[string]interface{}, bridge *raft.ClusterAddrBridge) *vault.PhysicalBackendBundle {
+=======
+func MakeRaftBackend(t testing.T, coreIdx int, logger hclog.Logger, extraConf map[string]interface{}) *vault.PhysicalBackendBundle {
+>>>>>>> 4cb759cfc9 (fixed log)
 	nodeID := fmt.Sprintf("core-%d", coreIdx)
 	raftDir, err := ioutil.TempDir("", "vault-raft-")
 	if err != nil {
@@ -117,6 +131,7 @@ func MakeRaftBackend(t testing.T, coreIdx int, logger hclog.Logger, extraConf ma
 
 	logger.Info("raft dir", "dir", raftDir)
 
+<<<<<<< HEAD
 	backend, err := makeRaftBackend(logger, nodeID, raftDir, extraConf, bridge)
 	if err != nil {
 		cleanupFunc()
@@ -136,6 +151,12 @@ func makeRaftBackend(logger hclog.Logger, nodeID, raftDir string, extraConf map[
 		"performance_multiplier":       "8",
 		"autopilot_reconcile_interval": "300ms",
 		"autopilot_update_interval":    "100ms",
+=======
+	conf := map[string]string{
+		"path":                   raftDir,
+		"node_id":                nodeID,
+		"performance_multiplier": "8",
+>>>>>>> 4cb759cfc9 (fixed log)
 	}
 	for k, v := range extraConf {
 		val, ok := v.(string)
@@ -146,6 +167,7 @@ func makeRaftBackend(logger hclog.Logger, nodeID, raftDir string, extraConf map[
 
 	backend, err := raft.NewRaftBackend(conf, logger.Named("raft"))
 	if err != nil {
+<<<<<<< HEAD
 		return nil, err
 	}
 	if bridge != nil {
@@ -153,6 +175,16 @@ func makeRaftBackend(logger hclog.Logger, nodeID, raftDir string, extraConf map[
 	}
 
 	return backend, nil
+=======
+		cleanupFunc()
+		t.Fatal(err)
+	}
+
+	return &vault.PhysicalBackendBundle{
+		Backend: backend,
+		Cleanup: cleanupFunc,
+	}
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 
 // RaftHAFactory returns a PhysicalBackendBundle with raft set as the HABackend
@@ -235,6 +267,7 @@ func FileBackendSetup(conf *vault.CoreConfig, opts *vault.TestClusterOptions) {
 
 func RaftBackendSetup(conf *vault.CoreConfig, opts *vault.TestClusterOptions) {
 	opts.KeepStandbysSealed = true
+<<<<<<< HEAD
 	var bridge *raft.ClusterAddrBridge
 	if !opts.InmemClusterLayers && opts.ClusterLayers == nil {
 		bridge = raft.NewClusterAddrBridge()
@@ -243,6 +276,9 @@ func RaftBackendSetup(conf *vault.CoreConfig, opts *vault.TestClusterOptions) {
 	opts.PhysicalFactory = func(t testing.T, coreIdx int, logger hclog.Logger, conf map[string]interface{}) *vault.PhysicalBackendBundle {
 		return MakeRaftBackend(t, coreIdx, logger, conf, bridge)
 	}
+=======
+	opts.PhysicalFactory = MakeRaftBackend
+>>>>>>> 4cb759cfc9 (fixed log)
 	opts.SetupFunc = func(t testing.T, c *vault.TestCluster) {
 		if opts.NumCores != 1 {
 			testhelpers.RaftClusterJoinNodes(t, c)
@@ -252,7 +288,11 @@ func RaftBackendSetup(conf *vault.CoreConfig, opts *vault.TestClusterOptions) {
 }
 
 func RaftHASetup(conf *vault.CoreConfig, opts *vault.TestClusterOptions, bundler PhysicalBackendBundler) {
+<<<<<<< HEAD
 	opts.InmemClusterLayers = true
+=======
+	opts.KeepStandbysSealed = true
+>>>>>>> 4cb759cfc9 (fixed log)
 	opts.PhysicalFactory = RaftHAFactory(bundler)
 }
 

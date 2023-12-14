@@ -6,6 +6,10 @@ package builtinplugins
 import (
 	"context"
 
+<<<<<<< HEAD
+=======
+	logicalKv "github.com/X-Margin-Inc/vault-plugin-secrets-kv"
+>>>>>>> 4cb759cfc9 (fixed log)
 	credAliCloud "github.com/hashicorp/vault-plugin-auth-alicloud"
 	credAzure "github.com/hashicorp/vault-plugin-auth-azure"
 	credCentrify "github.com/hashicorp/vault-plugin-auth-centrify"
@@ -27,7 +31,10 @@ import (
 	logicalGcp "github.com/hashicorp/vault-plugin-secrets-gcp/plugin"
 	logicalGcpKms "github.com/hashicorp/vault-plugin-secrets-gcpkms"
 	logicalKube "github.com/hashicorp/vault-plugin-secrets-kubernetes"
+<<<<<<< HEAD
 	logicalKv "github.com/hashicorp/vault-plugin-secrets-kv"
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 	logicalMongoAtlas "github.com/hashicorp/vault-plugin-secrets-mongodbatlas"
 	logicalLDAP "github.com/hashicorp/vault-plugin-secrets-openldap"
 	logicalTerraform "github.com/hashicorp/vault-plugin-secrets-terraform"

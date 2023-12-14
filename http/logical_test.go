@@ -20,7 +20,11 @@ import (
 
 	"github.com/go-test/deep"
 	log "github.com/hashicorp/go-hclog"
+<<<<<<< HEAD
 	kv "github.com/hashicorp/vault-plugin-secrets-kv"
+=======
+	kv "github.com/X-Margin-Inc/vault-plugin-secrets-kv"
+>>>>>>> 4cb759cfc9 (fixed log)
 	"github.com/hashicorp/vault/api"
 	auditFile "github.com/hashicorp/vault/builtin/audit/file"
 	credUserpass "github.com/hashicorp/vault/builtin/credential/userpass"
@@ -569,8 +573,15 @@ func TestLogical_RespondWithStatusCode(t *testing.T) {
 }
 
 func TestLogical_Audit_invalidWrappingToken(t *testing.T) {
+<<<<<<< HEAD
 	// Create a noop audit backend
 	noop := corehelpers.TestNoopAudit(t, "noop/", nil)
+=======
+	t.Setenv("VAULT_AUDIT_DISABLE_EVENTLOGGER", "true")
+
+	// Create a noop audit backend
+	noop := corehelpers.TestNoopAudit(t, nil)
+>>>>>>> 4cb759cfc9 (fixed log)
 	c, _, root := vault.TestCoreUnsealedWithConfig(t, &vault.CoreConfig{
 		AuditBackends: map[string]audit.Factory{
 			"noop": func(ctx context.Context, config *audit.BackendConfig, _ bool, _ audit.HeaderFormatter) (audit.Backend, error) {
@@ -582,6 +593,10 @@ func TestLogical_Audit_invalidWrappingToken(t *testing.T) {
 	defer ln.Close()
 
 	// Enable the audit backend
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cb759cfc9 (fixed log)
 	resp := testHttpPost(t, root, addr+"/v1/sys/audit/noop", map[string]interface{}{
 		"type": "noop",
 	})

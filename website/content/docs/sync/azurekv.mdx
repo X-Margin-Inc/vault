@@ -34,7 +34,11 @@ Prerequisites:
 1. Configure a sync destination with the service principal credentials and Key Vault URI created in the previous steps.
 
   ```shell-session
+<<<<<<< HEAD
   $ vault write sys/sync/destinations/azure-kv/my-azure-1 \
+=======
+  $ vault write sys/sync/stores/azure-kv/my-azure-1 \
+>>>>>>> 4cb759cfc9 (fixed log)
       key_vault_uri="$KEY_VAULT_URI" \
       client_id="$CLIENT_ID" \
       client_secret="$CLIENT_SECRET" \

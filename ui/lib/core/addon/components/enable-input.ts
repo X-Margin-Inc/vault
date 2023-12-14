@@ -8,7 +8,10 @@ import { tracked } from '@glimmer/tracking';
 
 interface Args {
   attr?: AttrData;
+<<<<<<< HEAD
   label?: string;
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 interface AttrData {
   name: string; // required if @attr is passed
@@ -30,6 +33,7 @@ interface AttrData {
  <EnableInput class="field" @attr={{attr}}>
   <FormField @attr={{attr}} @model={{@destination}} @modelValidations={{this.modelValidations}} />
  </EnableInput>
+<<<<<<< HEAD
 
 // without passing @attr
  <EnableInput @label="AWS password">
@@ -38,6 +42,15 @@ interface AttrData {
 
  * @param {object} [attr] - used to generate label for `ReadonlyFormField`, `name` key is required. Can be an attribute from a model exported with expandAttributeMeta.
  * @param {string} [label] - required if no attr passed. Used to ensure a11y conformance for the readonly input.
+=======
+ 
+// without passing @attr
+ <EnableInput>
+  <Input @type="text" />
+ </EnableInput>
+ 
+ * @param {object} [attr] - used to generate label for `ReadonlyFormField`, `name` key is required. Can be an attribute from a model exported with expandAttributeMeta.
+>>>>>>> 4cb759cfc9 (fixed log)
  */
 
 export default class EnableInputComponent extends Component<Args> {

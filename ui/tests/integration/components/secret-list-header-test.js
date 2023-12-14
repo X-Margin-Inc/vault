@@ -35,7 +35,11 @@ module('Integration | Component | secret-list-header', function (hooks) {
         assert
           .dom(selector)
           .hasText(
+<<<<<<< HEAD
             `version ${this.model.version || 1}`,
+=======
+            `Version ${this.model.version || 1}`,
+>>>>>>> 4cb759cfc9 (fixed log)
             `Badge renders with correct version for ${type} engine type`
           );
       } else {

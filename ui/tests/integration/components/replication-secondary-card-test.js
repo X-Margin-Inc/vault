@@ -7,7 +7,10 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 const TITLE = 'Status';
 
@@ -29,6 +32,7 @@ module('Integration | Component | replication-secondary-card', function (hooks) 
   hooks.beforeEach(function () {
     this.set('replicationDetails', REPLICATION_DETAILS);
     this.set('title', TITLE);
+<<<<<<< HEAD
     // TODO: remove Tooltip/ember-basic-dropdown
     setRunOptions({
       rules: {
@@ -36,6 +40,8 @@ module('Integration | Component | replication-secondary-card', function (hooks) 
         'nested-interactive': { enabled: false },
       },
     });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it renders', async function (assert) {

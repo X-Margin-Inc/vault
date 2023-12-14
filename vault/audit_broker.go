@@ -5,6 +5,7 @@ package vault
 
 import (
 	"context"
+<<<<<<< HEAD
 	"errors"
 	"fmt"
 	"runtime/debug"
@@ -16,6 +17,17 @@ import (
 	"github.com/hashicorp/eventlogger"
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-multierror"
+=======
+	"fmt"
+	"runtime/debug"
+	"sync"
+	"time"
+
+	metrics "github.com/armon/go-metrics"
+	"github.com/hashicorp/eventlogger"
+	log "github.com/hashicorp/go-hclog"
+	multierror "github.com/hashicorp/go-multierror"
+>>>>>>> 4cb759cfc9 (fixed log)
 	"github.com/hashicorp/vault/audit"
 	"github.com/hashicorp/vault/helper/namespace"
 	"github.com/hashicorp/vault/internal/observability/event"
@@ -32,12 +44,17 @@ type backendEntry struct {
 type AuditBroker struct {
 	sync.RWMutex
 	backends map[string]backendEntry
+<<<<<<< HEAD
 	logger   hclog.Logger
+=======
+	logger   log.Logger
+>>>>>>> 4cb759cfc9 (fixed log)
 
 	broker *eventlogger.Broker
 }
 
 // NewAuditBroker creates a new audit broker
+<<<<<<< HEAD
 func NewAuditBroker(log hclog.Logger, useEventLogger bool) (*AuditBroker, error) {
 	var eventBroker *eventlogger.Broker
 	var err error
@@ -49,6 +66,14 @@ func NewAuditBroker(log hclog.Logger, useEventLogger bool) (*AuditBroker, error)
 	// In 1.16.x this check should go away and the env var removed.
 	if useEventLogger {
 		eventBroker, err = eventlogger.NewBroker()
+=======
+func NewAuditBroker(log log.Logger, useEventLogger bool) (*AuditBroker, error) {
+	var eventBroker *eventlogger.Broker
+	var err error
+
+	if useEventLogger {
+		eventBroker, err = eventlogger.NewBroker(eventlogger.WithNodeRegistrationPolicy(eventlogger.DenyOverwrite), eventlogger.WithPipelineRegistrationPolicy(eventlogger.DenyOverwrite))
+>>>>>>> 4cb759cfc9 (fixed log)
 		if err != nil {
 			return nil, fmt.Errorf("error creating event broker for audit events: %w", err)
 		}
@@ -64,6 +89,7 @@ func NewAuditBroker(log hclog.Logger, useEventLogger bool) (*AuditBroker, error)
 
 // Register is used to add new audit backend to the broker
 func (a *AuditBroker) Register(name string, b audit.Backend, local bool) error {
+<<<<<<< HEAD
 	const op = "vault.(AuditBroker).Register"
 
 	a.Lock()
@@ -90,16 +116,39 @@ func (a *AuditBroker) Register(name string, b audit.Backend, local bool) error {
 		}
 	}
 
+=======
+	a.Lock()
+	defer a.Unlock()
+
+>>>>>>> 4cb759cfc9 (fixed log)
 	a.backends[name] = backendEntry{
 		backend: b,
 		local:   local,
 	}
 
+<<<<<<< HEAD
+=======
+	if a.broker != nil {
+		// Attempt to register the pipeline before enabling 'broker level' enforcement
+		// of how many successful sinks we expect.
+		err := b.RegisterNodesAndPipeline(a.broker, name)
+		if err != nil {
+			return err
+		}
+		// Update the success threshold now that the pipeline is registered.
+		err = a.broker.SetSuccessThresholdSinks(eventlogger.EventType(event.AuditType.String()), 1)
+		if err != nil {
+			return err
+		}
+	}
+
+>>>>>>> 4cb759cfc9 (fixed log)
 	return nil
 }
 
 // Deregister is used to remove an audit backend from the broker
 func (a *AuditBroker) Deregister(ctx context.Context, name string) error {
+<<<<<<< HEAD
 	const op = "vault.(AuditBroker).Deregister"
 
 	a.Lock()
@@ -110,11 +159,17 @@ func (a *AuditBroker) Deregister(ctx context.Context, name string) error {
 		return fmt.Errorf("%s: name is required: %w", op, event.ErrInvalidParameter)
 	}
 
+=======
+	a.Lock()
+	defer a.Unlock()
+
+>>>>>>> 4cb759cfc9 (fixed log)
 	// Remove the Backend from the map first, so that if an error occurs while
 	// removing the pipeline and nodes, we can quickly exit this method with
 	// the error.
 	delete(a.backends, name)
 
+<<<<<<< HEAD
 	// The reason for this check is due to 1.15.x supporting the env var:
 	// 'VAULT_AUDIT_DISABLE_EVENTLOGGER'
 	// When NewAuditBroker is called, it is supplied a bool to determine whether
@@ -124,6 +179,23 @@ func (a *AuditBroker) Deregister(ctx context.Context, name string) error {
 		err := a.deregister(ctx, name)
 		if err != nil {
 			return fmt.Errorf("%s: deregistration failed for audit device %q: %w", op, name, err)
+=======
+	if a.broker != nil {
+		if len(a.backends) == 0 {
+			err := a.broker.SetSuccessThresholdSinks(eventlogger.EventType(event.AuditType.String()), 0)
+			if err != nil {
+				return err
+			}
+		}
+
+		// The first return value, a bool, indicates whether
+		// RemovePipelineAndNodes encountered the error while evaluating
+		// pre-conditions (false) or once it started removing the pipeline and
+		// the nodes (true). This code doesn't care either way.
+		_, err := a.broker.RemovePipelineAndNodes(ctx, eventlogger.EventType(event.AuditType.String()), eventlogger.PipelineID(name))
+		if err != nil {
+			return err
+>>>>>>> 4cb759cfc9 (fixed log)
 		}
 	}
 
@@ -231,11 +303,15 @@ func (a *AuditBroker) LogRequest(ctx context.Context, in *logical.LogInput, head
 			e, err := audit.NewEvent(audit.RequestType)
 			if err != nil {
 				retErr = multierror.Append(retErr, err)
+<<<<<<< HEAD
 				return retErr.ErrorOrNil()
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 			}
 
 			e.Data = in
 
+<<<<<<< HEAD
 			var status eventlogger.Status
 			if a.broker.IsAnyPipelineRegistered(eventlogger.EventType(event.AuditType.String())) {
 				status, err = a.broker.Send(ctx, eventlogger.EventType(event.AuditType.String()), e)
@@ -254,6 +330,11 @@ func (a *AuditBroker) LogRequest(ctx context.Context, in *logical.LogInput, head
 			if len(status.Warnings) > 0 {
 				retErr = multierror.Append(retErr, multierror.Append(errors.New("error during audit pipeline processing"), status.Warnings...))
 				return retErr.ErrorOrNil()
+=======
+			status, err := a.broker.Send(ctx, eventlogger.EventType(event.AuditType.String()), e)
+			if err != nil {
+				retErr = multierror.Append(retErr, multierror.Append(err, status.Warnings...))
+>>>>>>> 4cb759cfc9 (fixed log)
 			}
 		}
 	}
@@ -327,8 +408,12 @@ func (a *AuditBroker) LogResponse(ctx context.Context, in *logical.LogInput, hea
 		if len(a.backends) > 0 {
 			e, err := audit.NewEvent(audit.ResponseType)
 			if err != nil {
+<<<<<<< HEAD
 				retErr = multierror.Append(retErr, err)
 				return retErr.ErrorOrNil()
+=======
+				return multierror.Append(retErr, err)
+>>>>>>> 4cb759cfc9 (fixed log)
 			}
 
 			e.Data = in
@@ -348,6 +433,7 @@ func (a *AuditBroker) LogResponse(ctx context.Context, in *logical.LogInput, hea
 			auditContext, auditCancel := context.WithTimeout(context.Background(), 5*time.Second)
 			defer auditCancel()
 			auditContext = namespace.ContextWithNamespace(auditContext, ns)
+<<<<<<< HEAD
 
 			var status eventlogger.Status
 			if a.broker.IsAnyPipelineRegistered(eventlogger.EventType(event.AuditType.String())) {
@@ -367,6 +453,11 @@ func (a *AuditBroker) LogResponse(ctx context.Context, in *logical.LogInput, hea
 			if len(status.Warnings) > 0 {
 				retErr = multierror.Append(retErr, multierror.Append(errors.New("error during audit pipeline processing"), status.Warnings...))
 				return retErr.ErrorOrNil()
+=======
+			status, err := a.broker.Send(auditContext, eventlogger.EventType(event.AuditType.String()), e)
+			if err != nil {
+				retErr = multierror.Append(retErr, multierror.Append(err, status.Warnings...))
+>>>>>>> 4cb759cfc9 (fixed log)
 			}
 		}
 	}
@@ -383,6 +474,7 @@ func (a *AuditBroker) Invalidate(ctx context.Context, key string) {
 		be.backend.Invalidate(ctx)
 	}
 }
+<<<<<<< HEAD
 
 // requiredSuccessThresholdSinks examines backends that have already been registered,
 // and returns the value that should be used for configuring success threshold sinks
@@ -487,3 +579,5 @@ func (a *AuditBroker) deregister(ctx context.Context, name string) error {
 
 	return nil
 }
+=======
+>>>>>>> 4cb759cfc9 (fixed log)

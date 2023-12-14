@@ -22,14 +22,20 @@ type NamespaceRecord struct {
 	NamespaceID     string         `json:"namespace_id"`
 	Entities        uint64         `json:"entities"`
 	NonEntityTokens uint64         `json:"non_entity_tokens"`
+<<<<<<< HEAD
 	SecretSyncs     uint64         `json:"secret_syncs"`
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 	Mounts          []*MountRecord `json:"mounts"`
 }
 
 type CountsRecord struct {
 	EntityClients    int `json:"entity_clients"`
 	NonEntityClients int `json:"non_entity_clients"`
+<<<<<<< HEAD
 	SecretSyncs      int `json:"secret_syncs"`
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 
 type NewClientRecord struct {

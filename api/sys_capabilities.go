@@ -78,6 +78,7 @@ func (c *Sys) CapabilitiesWithContext(ctx context.Context, token, path string) (
 
 	return res, nil
 }
+<<<<<<< HEAD
 
 func (c *Sys) CapabilitiesAccessor(accessor, path string) ([]string, error) {
 	return c.CapabilitiesAccessorWithContext(context.Background(), accessor, path)
@@ -131,3 +132,5 @@ func (c *Sys) CapabilitiesAccessorWithContext(ctx context.Context, accessor, pat
 
 	return res, nil
 }
+=======
+>>>>>>> 4cb759cfc9 (fixed log)

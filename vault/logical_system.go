@@ -50,7 +50,10 @@ import (
 	"github.com/hashicorp/vault/sdk/helper/wrapping"
 	"github.com/hashicorp/vault/sdk/logical"
 	"github.com/hashicorp/vault/vault/plugincatalog"
+<<<<<<< HEAD
 	uicustommessages "github.com/hashicorp/vault/vault/ui_custom_messages"
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 	"github.com/hashicorp/vault/version"
 	"github.com/mitchellh/mapstructure"
 	"golang.org/x/crypto/sha3"
@@ -143,8 +146,11 @@ func NewSystemBackend(core *Core, logger log.Logger, config *logical.BackendConf
 				"wrapping/pubkey",
 				"replication/status",
 				"internal/specs/openapi",
+<<<<<<< HEAD
 				"internal/ui/authenticated-messages",
 				"internal/ui/unauthenticated-messages",
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 				"internal/ui/mounts",
 				"internal/ui/mounts/*",
 				"internal/ui/namespaces",
@@ -192,7 +198,10 @@ func NewSystemBackend(core *Core, logger log.Logger, config *logical.BackendConf
 
 	b.Backend.Paths = append(b.Backend.Paths, entPaths(b)...)
 	b.Backend.Paths = append(b.Backend.Paths, b.configPaths()...)
+<<<<<<< HEAD
 	b.Backend.Paths = append(b.Backend.Paths, b.uiCustomMessagePaths()...)
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 	b.Backend.Paths = append(b.Backend.Paths, b.rekeyPaths()...)
 	b.Backend.Paths = append(b.Backend.Paths, b.sealPaths()...)
 	b.Backend.Paths = append(b.Backend.Paths, b.statusPaths()...)
@@ -4429,6 +4438,7 @@ func hasMountAccess(ctx context.Context, acl *ACL, path string) bool {
 	return aclCapabilitiesGiven
 }
 
+<<<<<<< HEAD
 // pathInternalUIAuthenticatedMessages finds all of the active messages whose
 // Authenticated property is set to true in the current namespace (based on the
 // provided context.Context) or in any ancestor namespace all the way up to the
@@ -4510,6 +4520,8 @@ func (b *SystemBackend) pathInternalUICustomMessagesCommon(ctx context.Context, 
 	return logical.ListResponseWithInfo(keys, keyInfo), nil
 }
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 func (b *SystemBackend) pathInternalUIMountsRead(ctx context.Context, req *logical.Request, d *framework.FieldData) (*logical.Response, error) {
 	ns, err := namespace.FromContext(ctx)
 	if err != nil {

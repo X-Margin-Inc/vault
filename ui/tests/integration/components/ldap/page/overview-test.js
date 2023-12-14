@@ -1,6 +1,10 @@
 /**
  * Copyright (c) HashiCorp, Inc.
+<<<<<<< HEAD
  * SPDX-License-Identifier: BUSL-1.1
+=======
+ * SPDX-License-Identifier: MPL-2.0
+>>>>>>> 4cb759cfc9 (fixed log)
  */
 
 import { module, test } from 'qunit';
@@ -11,7 +15,10 @@ import { render, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import { createSecretsEngine, generateBreadcrumbs } from 'vault/tests/helpers/ldap';
 import sinon from 'sinon';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 module('Integration | Component | ldap | Page::Overview', function (hooks) {
   setupRenderingTest(hooks);
@@ -56,6 +63,7 @@ module('Integration | Component | ldap | Page::Overview', function (hooks) {
         }
       );
     };
+<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO: Fix SearchSelect component
@@ -63,6 +71,8 @@ module('Integration | Component | ldap | Page::Overview', function (hooks) {
         label: { enabled: false },
       },
     });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it should render tab page header and config cta', async function (assert) {

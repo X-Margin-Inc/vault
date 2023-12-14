@@ -180,7 +180,10 @@ auto_auth \{
 template_config \{
   static_secret_render_interval = "5m"
   exit_on_retry_failure         = true
+<<<<<<< HEAD
   max_connections_per_host      = 10
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 
 vault \{
@@ -223,7 +226,10 @@ auto_auth \{
 template_config \{
   static_secret_render_interval = "5m"
   exit_on_retry_failure         = true
+<<<<<<< HEAD
   max_connections_per_host      = 10
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 
 vault \{

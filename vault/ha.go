@@ -663,7 +663,10 @@ func (c *Core) waitForLeadership(newLeaderCh chan func(), manualStepDownCh, stop
 		err = c.postUnseal(activeCtx, activeCtxCancel, standardUnsealStrategy{})
 		if err == nil {
 			c.standby = false
+<<<<<<< HEAD
 			c.activeTime = time.Now()
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 			c.leaderUUID = uuid
 			c.metricSink.SetGaugeWithLabels([]string{"core", "active"}, 1, nil)
 		}
@@ -716,7 +719,10 @@ func (c *Core) waitForLeadership(newLeaderCh chan func(), manualStepDownCh, stop
 
 			// Mark as standby
 			c.standby = true
+<<<<<<< HEAD
 			c.activeTime = time.Time{}
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 			c.leaderUUID = ""
 			c.metricSink.SetGaugeWithLabels([]string{"core", "active"}, 0, nil)
 

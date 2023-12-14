@@ -1,6 +1,10 @@
 /**
  * Copyright (c) HashiCorp, Inc.
+<<<<<<< HEAD
  * SPDX-License-Identifier: BUSL-1.1
+=======
+ * SPDX-License-Identifier: MPL-2.0
+>>>>>>> 4cb759cfc9 (fixed log)
  */
 
 import Engine from '@ember/engine';
@@ -25,7 +29,11 @@ export default class KvEngine extends Engine {
       'flash-messages',
       'control-group',
     ],
+<<<<<<< HEAD
     externalRoutes: ['secrets', 'syncDestination'],
+=======
+    externalRoutes: ['secrets'],
+>>>>>>> 4cb759cfc9 (fixed log)
   };
 }
 

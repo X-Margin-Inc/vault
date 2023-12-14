@@ -88,7 +88,11 @@ secondaries to have a different configuration than their primary.  Tokens and le
 @include 'alerts/enterprise-and-hcp.mdx'
 
 In Performance Replication, secondaries keep track of their own tokens and leases
+<<<<<<< HEAD
 but share the underlying configuration, policies, and supporting secrets (KV values,
+=======
+but share the underlying configuration, policies, and supporting secrets (K/V values,
+>>>>>>> 4cb759cfc9 (fixed log)
 encryption keys for `transit`, etc).
 
 If a user action would modify underlying shared state, the secondary forwards the request
@@ -98,6 +102,7 @@ in `transit`, etc.) can be satisfied by the local secondary, allowing Vault to s
 relatively horizontally with the number of secondaries rather than vertically as
 in the past.
 
+<<<<<<< HEAD
 <Note title="Performance replication does not include automated integrated storage snapshots">
 
 Vault does not replicate automated integrated storage snapshots as a part of
@@ -108,6 +113,8 @@ clusters to create individual automated snapshots replicas.
 
 </Note>
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 ### Paths filter
 
 The primary cluster's mount configuration gets replicated across its secondary
@@ -151,7 +158,11 @@ step-by-step instructions.
 ## Disaster recovery (DR) replication
 
 In disaster recovery (or DR) replication, secondaries share the same underlying configuration,
+<<<<<<< HEAD
 policy, and supporting secrets (KV values, encryption keys for `transit`, etc) infrastructure
+=======
+policy, and supporting secrets (K/V values, encryption keys for `transit`, etc) infrastructure
+>>>>>>> 4cb759cfc9 (fixed log)
 as the primary. They also share the same token and lease infrastructure as the primary, as
 they are designed to allow for continuous operations with applications connecting to the
 original primary on the election of the DR secondary.

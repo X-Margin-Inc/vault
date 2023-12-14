@@ -10,7 +10,11 @@
     </h3>
 
     {{#if (or @replication.dr.clusterId @replication.performance.clusterId)}}
+<<<<<<< HEAD
       <LinkTo @route="vault.cluster.replication.index">
+=======
+      <LinkTo class="is-no-underline" @route="vault.cluster.replication.index">
+>>>>>>> 4cb759cfc9 (fixed log)
         Details
       </LinkTo>
     {{/if}}

@@ -1,6 +1,10 @@
 /**
  * Copyright (c) HashiCorp, Inc.
+<<<<<<< HEAD
  * SPDX-License-Identifier: BUSL-1.1
+=======
+ * SPDX-License-Identifier: MPL-2.0
+>>>>>>> 4cb759cfc9 (fixed log)
  */
 
 import Component from '@glimmer/component';
@@ -24,7 +28,10 @@ import { stringify } from 'core/helpers/stringify';
  * @param {object} [modelValidations] - object of errors.  If attr.name is in object and has error message display in AlertInline.
  * @param {callback} [pathValidations] - callback function fired for the path input on key up
  * @param {boolean} [type=null] - can be edit, create, or details. Used to change text for some form labels
+<<<<<<< HEAD
  * @param {boolean} [obscureJson=false] - used to obfuscate json values in JsonEditor
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
  */
 
 export default class KvDataFields extends Component {

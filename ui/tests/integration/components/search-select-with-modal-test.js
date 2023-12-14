@@ -13,7 +13,10 @@ import { render, fillIn, click, findAll } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import ss from 'vault/tests/pages/components/search-select';
 import sinon from 'sinon';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 const component = create(ss);
 
@@ -59,6 +62,7 @@ module('Integration | Component | search select with modal', function (hooks) {
         },
       };
     });
+<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO: Fix this component
@@ -69,6 +73,8 @@ module('Integration | Component | search select with modal', function (hooks) {
         'aria-valid-attr-value': { enabled: false },
       },
     });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it renders passed in models', async function (assert) {

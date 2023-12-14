@@ -33,7 +33,11 @@
         </div>
         <div class="column has-text-right">
           <PopupMenu @name="identity-item" @onOpen={{action "reloadRecord" item}}>
+<<<<<<< HEAD
             <nav class="menu" aria-label="navigation for managing identity">
+=======
+            <nav class="menu">
+>>>>>>> 4cb759cfc9 (fixed log)
               <ul class="menu-list">
                 <li class="action">
                   <LinkTo @route="vault.cluster.access.identity.show" @models={{array item.id "details"}}>
@@ -110,6 +114,7 @@
       this.identityType
     }} in this namespace will be listed here. Create your first {{this.identityType}} to get started."
   >
+<<<<<<< HEAD
     <Hds::Link::Standalone
       @text="Create {{this.identityType}}"
       @icon="plus"
@@ -122,5 +127,14 @@
       @icon="learn-link"
       @iconPosition="trailing"
     />
+=======
+    <LinkTo @route="vault.cluster.access.identity.create" @model={{pluralize this.identityType}} class="link">
+      Create
+      {{this.identityType}}
+    </LinkTo>
+    <DocLink @path="/vault/tutorials/auth-methods/identity">
+      Learn more
+    </DocLink>
+>>>>>>> 4cb759cfc9 (fixed log)
   </EmptyState>
 {{/if}}

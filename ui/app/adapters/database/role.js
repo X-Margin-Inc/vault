@@ -164,7 +164,11 @@ export default ApplicationAdapter.extend({
         db: db[0],
       });
     } catch (e) {
+<<<<<<< HEAD
       this.checkError(e);
+=======
+      throw new Error('Could not update allowed roles for selected database. Check Vault logs for details');
+>>>>>>> 4cb759cfc9 (fixed log)
     }
 
     return this.ajax(this.urlFor(backend, id, roleType), 'POST', { data }).then(() => {
@@ -180,6 +184,7 @@ export default ApplicationAdapter.extend({
     const backend = snapshot.attr('backend');
     const id = snapshot.attr('name');
     const db = snapshot.attr('database');
+<<<<<<< HEAD
     try {
       await this._updateAllowedRoles(store, {
         role: id,
@@ -190,6 +195,14 @@ export default ApplicationAdapter.extend({
     } catch (e) {
       this.checkError(e);
     }
+=======
+    await this._updateAllowedRoles(store, {
+      role: id,
+      backend,
+      db: db[0],
+      type: 'remove',
+    });
+>>>>>>> 4cb759cfc9 (fixed log)
 
     return this.ajax(this.urlFor(backend, id, roleType), 'DELETE');
   },
@@ -203,6 +216,7 @@ export default ApplicationAdapter.extend({
 
     return this.ajax(this.urlFor(backend, id, roleType), 'POST', { data }).then(() => data);
   },
+<<<<<<< HEAD
 
   checkError(e) {
     if (e.httpStatus === 403) {
@@ -213,4 +227,6 @@ export default ApplicationAdapter.extend({
     }
     throw new Error(`Could not update allowed roles for selected database: ${e.errors.join(', ')}`);
   },
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 });

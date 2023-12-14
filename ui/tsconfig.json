@@ -69,8 +69,11 @@
       "service-worker-authenticated-download/test-support/*": [
         "lib/service-worker-authenticated-download/addon-test-support/*"
       ],
+<<<<<<< HEAD
       "sync": ["lib/sync/addon"],
       "sync/*": ["lib/sync/addon/*"],
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
       "*": ["types/*"]
     }
   },
@@ -86,7 +89,10 @@
     "lib/pki/**/*",
     "lib/replication/**/*",
     "lib/service-worker-authenticated-download/**/*",
+<<<<<<< HEAD
     "lib/sync/**/*",
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
     "mirage/**/*"
   ],
   "exclude": ["node_modules"]

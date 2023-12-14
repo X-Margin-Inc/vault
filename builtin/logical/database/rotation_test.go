@@ -28,7 +28,10 @@ import (
 	_ "github.com/jackc/pgx/v4/stdlib"
 	"github.com/robfig/cron/v3"
 	"github.com/stretchr/testify/mock"
+<<<<<<< HEAD
 	"github.com/stretchr/testify/require"
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 	mongodbatlasapi "go.mongodb.org/atlas/mongodbatlas"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -999,6 +1002,7 @@ func TestBackend_StaticRole_Rotation_MongoDBAtlas(t *testing.T) {
 	})
 }
 
+<<<<<<< HEAD
 // TestQueueTickIntervalKeyConfig tests the configuration of queueTickIntervalKey
 // does not break on invalid values.
 func TestQueueTickIntervalKeyConfig(t *testing.T) {
@@ -1027,6 +1031,8 @@ func TestQueueTickIntervalKeyConfig(t *testing.T) {
 	b.Cleanup(context.Background())
 }
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 func testBackend_StaticRole_Rotations(t *testing.T, createUser userCreator, opts map[string]interface{}) {
 	// We need to set this value for the plugin to run, but it doesn't matter what we set it to.
 	oldToken := os.Getenv(pluginutil.PluginUnwrapTokenEnv)

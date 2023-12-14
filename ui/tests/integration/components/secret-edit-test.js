@@ -10,7 +10,10 @@ import { resolve } from 'rsvp';
 import { run } from '@ember/runloop';
 import Service from '@ember/service';
 import hbs from 'htmlbars-inline-precompile';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 let capabilities;
 const storeService = Service.extend({
@@ -24,17 +27,23 @@ module('Integration | Component | secret edit', function (hooks) {
   hooks.beforeEach(function () {
     capabilities = null;
     this.codeMirror = this.owner.lookup('service:code-mirror');
+<<<<<<< HEAD
     this.set('key', { id: 'Foobar' });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
     run(() => {
       this.owner.unregister('service:store');
       this.owner.register('service:store', storeService);
     });
+<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO: Fix JSONEditor/CodeMirror
         label: { enabled: false },
       },
     });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it disables JSON toggle in show mode when is an advanced format', async function (assert) {
@@ -47,7 +56,11 @@ module('Integration | Component | secret edit', function (hooks) {
       },
     });
 
+<<<<<<< HEAD
     await render(hbs`{{secret-edit mode=this.mode model=this.model key=this.key }}`);
+=======
+    await render(hbs`{{secret-edit mode=this.mode model=this.model }}`);
+>>>>>>> 4cb759cfc9 (fixed log)
     assert.dom('[data-test-toggle-input="json"]').isDisabled();
   });
 
@@ -61,7 +74,11 @@ module('Integration | Component | secret edit', function (hooks) {
       },
     });
 
+<<<<<<< HEAD
     await render(hbs`{{secret-edit mode=this.mode model=this.model key=this.key }}`);
+=======
+    await render(hbs`{{secret-edit mode=this.mode model=this.model }}`);
+>>>>>>> 4cb759cfc9 (fixed log)
     assert.dom('[data-test-toggle-input="json"]').isNotDisabled();
   });
 
@@ -71,7 +88,11 @@ module('Integration | Component | secret edit', function (hooks) {
       secretData: null,
     });
 
+<<<<<<< HEAD
     await render(hbs`{{secret-edit mode=this.mode model=this.model preferAdvancedEdit=true key=this.key }}`);
+=======
+    await render(hbs`{{secret-edit mode=this.mode model=this.model preferAdvancedEdit=true }}`);
+>>>>>>> 4cb759cfc9 (fixed log)
 
     const instance = document.querySelector('.CodeMirror').CodeMirror;
     instance.setValue(JSON.stringify([{ foo: 'bar' }]));
@@ -91,7 +112,11 @@ module('Integration | Component | secret edit', function (hooks) {
         float: '1.234',
       },
     });
+<<<<<<< HEAD
     await render(hbs`<SecretEdit @mode={{this.mode}} @model={{this.model}} key="this.key" />`);
+=======
+    await render(hbs`<SecretEdit @mode={{this.mode}} @model={{this.model}} />`);
+>>>>>>> 4cb759cfc9 (fixed log)
     assert.dom('[data-test-secret-save]').isNotDisabled();
   });
 
@@ -109,7 +134,11 @@ module('Integration | Component | secret edit', function (hooks) {
       canReadSecretData: true,
     });
 
+<<<<<<< HEAD
     await render(hbs`{{secret-edit mode=this.mode model=this.model preferAdvancedEdit=true key=this.key }}`);
+=======
+    await render(hbs`{{secret-edit mode=this.mode model=this.model preferAdvancedEdit=true }}`);
+>>>>>>> 4cb759cfc9 (fixed log)
 
     const instance = document.querySelector('.CodeMirror').CodeMirror;
     instance.setValue(JSON.stringify([{ foo: 'bar' }]));

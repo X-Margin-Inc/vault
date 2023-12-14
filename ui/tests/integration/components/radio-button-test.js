@@ -14,7 +14,10 @@ module('Integration | Component | radio-button', function (hooks) {
   test('it should spread attributes on input element', async function (assert) {
     await render(
       hbs(`
+<<<<<<< HEAD
       <label for="foo">No A11y violations</label>
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
       <RadioButton
         id="foo"
         name="bar"
@@ -31,9 +34,13 @@ module('Integration | Component | radio-button', function (hooks) {
   test('it should be checked when value and groupValue are equal', async function (assert) {
     await render(
       hbs(`
+<<<<<<< HEAD
       <label for="foo">Must pass ID on RadioButton</label>
       <RadioButton
         id="foo"
+=======
+      <RadioButton
+>>>>>>> 4cb759cfc9 (fixed log)
         @value="foo"
         @groupValue="foo"
         @onChange={{fn (mut this.groupValue)}}
@@ -54,15 +61,23 @@ module('Integration | Component | radio-button', function (hooks) {
         @groupValue={{this.groupValue}}
         @onChange={{fn (mut this.groupValue)}}
         data-test-radio-1
+<<<<<<< HEAD
         id="opt1"
       /><label for="opt1">Option 1</label>
+=======
+      />
+>>>>>>> 4cb759cfc9 (fixed log)
       <RadioButton
         @value="bar"
         @groupValue={{this.groupValue}}
         @onChange={{fn (mut this.groupValue)}}
         data-test-radio-2
+<<<<<<< HEAD
         id="opt2"
       /><label for="opt2">Option 2</label>
+=======
+      />
+>>>>>>> 4cb759cfc9 (fixed log)
     `)
     );
     const radio1 = this.element.querySelector('[data-test-radio-1]');

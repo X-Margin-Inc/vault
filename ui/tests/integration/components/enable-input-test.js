@@ -14,6 +14,7 @@ module('Integration | Component | EnableInput', function (hooks) {
   test('it renders and enables yielded input', async function (assert) {
     assert.expect(4);
     await render(hbs`
+<<<<<<< HEAD
     <EnableInput @label="my-attr-name">
       <label for="foo">Foo</label>
       <Input data-test-yielded-input @type='text' id="foo" />
@@ -25,6 +26,17 @@ module('Integration | Component | EnableInput', function (hooks) {
     assert
       .dom('[data-test-yielded-input]')
       .doesNotHaveAttribute('readonly', 'toggles to enabled, yielded input');
+=======
+    <EnableInput>
+      <Input data-test-yielded-input @type='text' />
+    </EnableInput>
+      `);
+
+    assert.dom('input').isDisabled('input is disabled');
+    assert.dom('input').hasValue('**********', 'disabled input renders asterisks');
+    await click('button');
+    assert.dom('[data-test-yielded-input]').isNotDisabled('toggles to enabled, yielded input');
+>>>>>>> 4cb759cfc9 (fixed log)
     assert.dom('button').doesNotExist('button disappears when input is enabled');
   });
 
@@ -44,18 +56,29 @@ module('Integration | Component | EnableInput', function (hooks) {
     </EnableInput>
       `);
 
+<<<<<<< HEAD
     assert
       .dom(`[data-test-input="${this.attr.name}"]`)
       .hasAttribute('readonly', '', 'renders readonly ReadonlyFormField');
     assert
       .dom(`[data-test-input="${this.attr.name}"]`)
       .hasValue('**********', 'readonly input renders asterisks');
+=======
+    assert.dom(`[data-test-input="${this.attr.name}"]`).isDisabled('renders disabled ReadonlyFormField');
+    assert
+      .dom(`[data-test-input="${this.attr.name}"]`)
+      .hasValue('**********', 'disabled input renders asterisks');
+>>>>>>> 4cb759cfc9 (fixed log)
     assert.dom('[data-test-readonly-label]').hasText('Special client credentials');
     assert.dom('p.sub-text').hasText(this.attr.options.subText);
     await click('button');
     assert
       .dom(`[data-test-field="${this.attr.name}"] input`)
+<<<<<<< HEAD
       .doesNotHaveAttribute('readonly', 'toggles to enabled, yielded form field component');
+=======
+      .isNotDisabled('toggles to enabled, yielded form field component');
+>>>>>>> 4cb759cfc9 (fixed log)
     assert.dom('button').doesNotExist('button disappears when input is enabled');
   });
 });

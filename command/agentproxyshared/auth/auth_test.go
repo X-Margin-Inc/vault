@@ -113,6 +113,7 @@ func TestAgentBackoff(t *testing.T) {
 	backoff := newAutoAuthBackoff(defaultMinBackoff, max, false)
 
 	// Test initial value
+<<<<<<< HEAD
 	if backoff.backoff.Current() > defaultMinBackoff || backoff.backoff.Current() < defaultMinBackoff*3/4 {
 		t.Fatalf("expected 1s initial backoff, got: %v", backoff.backoff.Current())
 	}
@@ -122,10 +123,21 @@ func TestAgentBackoff(t *testing.T) {
 	for i := 0; i < 9; i++ {
 		old := next
 		next, _ = backoff.backoff.Next()
+=======
+	if backoff.current != defaultMinBackoff {
+		t.Fatalf("expected 1s initial backoff, got: %v", backoff.current)
+	}
+
+	// Test that backoff values are in expected range (75-100% of 2*previous)
+	for i := 0; i < 9; i++ {
+		old := backoff.current
+		backoff.next()
+>>>>>>> 4cb759cfc9 (fixed log)
 
 		expMax := 2 * old
 		expMin := 3 * expMax / 4
 
+<<<<<<< HEAD
 		if next < expMin || next > expMax {
 			t.Fatalf("expected backoffSleep in range %v to %v, got: %v", expMin, expMax, backoff)
 		}
@@ -135,14 +147,31 @@ func TestAgentBackoff(t *testing.T) {
 	for i := 0; i < 100; i++ {
 		_, _ = backoff.backoff.Next()
 		if backoff.backoff.Current() > max {
+=======
+		if backoff.current < expMin || backoff.current > expMax {
+			t.Fatalf("expected backoff in range %v to %v, got: %v", expMin, expMax, backoff)
+		}
+	}
+
+	// Test that backoff is capped
+	for i := 0; i < 100; i++ {
+		backoff.next()
+		if backoff.current > max {
+>>>>>>> 4cb759cfc9 (fixed log)
 			t.Fatalf("backoff exceeded max of 100s: %v", backoff)
 		}
 	}
 
 	// Test reset
+<<<<<<< HEAD
 	backoff.backoff.Reset()
 	if backoff.backoff.Current() > defaultMinBackoff || backoff.backoff.Current() < defaultMinBackoff*3/4 {
 		t.Fatalf("expected 1s backoff after reset, got: %v", backoff.backoff.Current())
+=======
+	backoff.reset()
+	if backoff.current != defaultMinBackoff {
+		t.Fatalf("expected 1s backoff after reset, got: %v", backoff.current)
+>>>>>>> 4cb759cfc9 (fixed log)
 	}
 }
 
@@ -164,6 +193,7 @@ func TestAgentMinBackoffCustom(t *testing.T) {
 		backoff := newAutoAuthBackoff(test.minBackoff, max, false)
 
 		// Test initial value
+<<<<<<< HEAD
 		if backoff.backoff.Current() > test.want || backoff.backoff.Current() < test.want*3/4 {
 			t.Fatalf("expected %d initial backoffSleep, got: %v", test.want, backoff.backoff.Current())
 		}
@@ -173,10 +203,21 @@ func TestAgentMinBackoffCustom(t *testing.T) {
 		for i := 0; i < 5; i++ {
 			old := next
 			next, _ = backoff.backoff.Next()
+=======
+		if backoff.current != test.want {
+			t.Fatalf("expected %d initial backoff, got: %v", test.want, backoff.current)
+		}
+
+		// Test that backoff values are in expected range (75-100% of 2*previous)
+		for i := 0; i < 5; i++ {
+			old := backoff.current
+			backoff.next()
+>>>>>>> 4cb759cfc9 (fixed log)
 
 			expMax := 2 * old
 			expMin := 3 * expMax / 4
 
+<<<<<<< HEAD
 			if next < expMin || next > expMax {
 				t.Fatalf("expected backoffSleep in range %v to %v, got: %v", expMin, expMax, backoff)
 			}
@@ -187,13 +228,31 @@ func TestAgentMinBackoffCustom(t *testing.T) {
 			next, _ = backoff.backoff.Next()
 			if next > max {
 				t.Fatalf("backoffSleep exceeded max of 100s: %v", backoff)
+=======
+			if backoff.current < expMin || backoff.current > expMax {
+				t.Fatalf("expected backoff in range %v to %v, got: %v", expMin, expMax, backoff)
+			}
+		}
+
+		// Test that backoff is capped
+		for i := 0; i < 100; i++ {
+			backoff.next()
+			if backoff.current > max {
+				t.Fatalf("backoff exceeded max of 100s: %v", backoff)
+>>>>>>> 4cb759cfc9 (fixed log)
 			}
 		}
 
 		// Test reset
+<<<<<<< HEAD
 		backoff.backoff.Reset()
 		if backoff.backoff.Current() > test.want || backoff.backoff.Current() < test.want*3/4 {
 			t.Fatalf("expected %d backoffSleep after reset, got: %v", test.want, backoff.backoff.Current())
+=======
+		backoff.reset()
+		if backoff.current != test.want {
+			t.Fatalf("expected %d backoff after reset, got: %v", test.want, backoff.current)
+>>>>>>> 4cb759cfc9 (fixed log)
 		}
 	}
 }

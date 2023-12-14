@@ -138,8 +138,11 @@ func RespondErrorCommon(req *Request, resp *Response, err error) (int, error) {
 			statusCode = http.StatusBadRequest
 		case errwrap.Contains(err, ErrInvalidCredentials.Error()):
 			statusCode = http.StatusBadRequest
+<<<<<<< HEAD
 		case errors.Is(err, ErrNotFound):
 			statusCode = http.StatusNotFound
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 		}
 	}
 

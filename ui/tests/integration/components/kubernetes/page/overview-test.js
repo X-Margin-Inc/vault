@@ -11,7 +11,10 @@ import { render } from '@ember/test-helpers';
 import { typeInSearch, clickTrigger, selectChoose } from 'ember-power-select/test-support/helpers';
 import { SELECTORS } from 'vault/tests/helpers/kubernetes/overview';
 import hbs from 'htmlbars-inline-precompile';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 module('Integration | Component | kubernetes | Page::Overview', function (hooks) {
   setupRenderingTest(hooks);
@@ -51,6 +54,7 @@ module('Integration | Component | kubernetes | Page::Overview', function (hooks)
         { owner: this.engine }
       );
     };
+<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO: Fix SearchSelect component
@@ -58,6 +62,8 @@ module('Integration | Component | kubernetes | Page::Overview', function (hooks)
         label: { enabled: false },
       },
     });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it should display role card', async function (assert) {

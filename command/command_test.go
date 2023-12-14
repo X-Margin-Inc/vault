@@ -14,7 +14,11 @@ import (
 
 	"github.com/hashicorp/cli"
 	log "github.com/hashicorp/go-hclog"
+<<<<<<< HEAD
 	kv "github.com/hashicorp/vault-plugin-secrets-kv"
+=======
+	kv "github.com/X-Margin-Inc/vault-plugin-secrets-kv"
+>>>>>>> 4cb759cfc9 (fixed log)
 	"github.com/hashicorp/vault/api"
 	"github.com/hashicorp/vault/audit"
 	"github.com/hashicorp/vault/builtin/logical/pki"

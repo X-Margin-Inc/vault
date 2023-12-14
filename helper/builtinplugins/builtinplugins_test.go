@@ -6,11 +6,17 @@ package builtinplugins
 import (
 	"testing"
 
+<<<<<<< HEAD
 	logicalKv "github.com/hashicorp/vault-plugin-secrets-kv"
 	"github.com/hashicorp/vault/api"
 	"github.com/hashicorp/vault/audit"
 	logicalDb "github.com/hashicorp/vault/builtin/logical/database"
 	"github.com/hashicorp/vault/helper/testhelpers/corehelpers"
+=======
+	logicalKv "github.com/X-Margin-Inc/vault-plugin-secrets-kv"
+	"github.com/hashicorp/vault/api"
+	logicalDb "github.com/hashicorp/vault/builtin/logical/database"
+>>>>>>> 4cb759cfc9 (fixed log)
 	vaulthttp "github.com/hashicorp/vault/http"
 	"github.com/hashicorp/vault/sdk/helper/consts"
 	"github.com/hashicorp/vault/sdk/logical"
@@ -45,11 +51,14 @@ func TestBuiltinPluginsWork(t *testing.T) {
 				"database": logicalDb.Factory,
 			},
 			PendingRemovalMountsAllowed: true,
+<<<<<<< HEAD
 			// Specifying at least one audit backend factory will prevent NewTestCluster
 			// from attempting to enable a noop audit, and audit isn't required for this test.
 			AuditBackends: map[string]audit.Factory{
 				"noop": corehelpers.NoopAuditFactory(nil),
 			},
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 		},
 		&vault.TestClusterOptions{
 			HandlerFunc: vaulthttp.Handler,

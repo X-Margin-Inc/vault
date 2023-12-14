@@ -6,10 +6,17 @@
 import { module, test } from 'qunit';
 import sinon from 'sinon';
 import { setupRenderingTest } from 'ember-qunit';
+<<<<<<< HEAD
 import { find, render, findAll } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { format, formatRFC3339, subMonths } from 'date-fns';
 // import { formatChartDate } from 'core/utils/date-formatters';
+=======
+import { find, render, findAll, triggerEvent } from '@ember/test-helpers';
+import { hbs } from 'ember-cli-htmlbars';
+import { format, formatRFC3339, subMonths } from 'date-fns';
+import { formatChartDate } from 'core/utils/date-formatters';
+>>>>>>> 4cb759cfc9 (fixed log)
 import timestamp from 'core/utils/timestamp';
 
 module('Integration | Component | clients/line-chart', function (hooks) {
@@ -110,7 +117,10 @@ module('Integration | Component | clients/line-chart', function (hooks) {
   });
 
   test('it renders tooltip', async function (assert) {
+<<<<<<< HEAD
     assert.expect(1);
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
     const now = timestamp.now();
     const tooltipData = [
       {
@@ -160,6 +170,7 @@ module('Integration | Component | clients/line-chart', function (hooks) {
     `);
 
     const tooltipHoverCircles = findAll('[data-test-line-chart] circle.hover-circle');
+<<<<<<< HEAD
     assert.strictEqual(tooltipHoverCircles.length, tooltipData.length, 'all data circles are rendered');
 
     // FLAKY after adding a11y testing, skip for now
@@ -174,6 +185,19 @@ module('Integration | Component | clients/line-chart', function (hooks) {
     //       `tooltip text is correct for ${month}`
     //     );
     // }
+=======
+    for (const [i, bar] of tooltipHoverCircles.entries()) {
+      await triggerEvent(bar, 'mouseover');
+      const tooltip = document.querySelector('.ember-modal-dialog');
+      const { month, clients, new_clients } = tooltipData[i];
+      assert
+        .dom(tooltip)
+        .includesText(
+          `${formatChartDate(month)} ${clients} total clients ${new_clients.clients} new clients`,
+          `tooltip text is correct for ${month}`
+        );
+    }
+>>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it fails gracefully when upgradeData is an object', async function (assert) {

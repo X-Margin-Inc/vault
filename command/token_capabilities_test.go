@@ -32,6 +32,7 @@ func TestTokenCapabilitiesCommand_Run(t *testing.T) {
 		code int
 	}{
 		{
+<<<<<<< HEAD
 			"accessor_no_args",
 			[]string{"-accessor"},
 			"Not enough arguments",
@@ -50,6 +51,8 @@ func TestTokenCapabilitiesCommand_Run(t *testing.T) {
 			1,
 		},
 		{
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 			"too_many_args",
 			[]string{"foo", "bar", "zip"},
 			"Too many arguments",
@@ -121,6 +124,7 @@ func TestTokenCapabilitiesCommand_Run(t *testing.T) {
 		}
 	})
 
+<<<<<<< HEAD
 	t.Run("accessor", func(t *testing.T) {
 		t.Parallel()
 
@@ -163,6 +167,8 @@ func TestTokenCapabilitiesCommand_Run(t *testing.T) {
 		}
 	})
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 	t.Run("local", func(t *testing.T) {
 		t.Parallel()
 

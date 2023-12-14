@@ -174,7 +174,11 @@ func LeaderNode(ctx context.Context, cluster VaultCluster) (int, error) {
 	leaderActiveTimes := make(map[int]time.Time)
 	for i, node := range cluster.Nodes() {
 		client := node.APIClient()
+<<<<<<< HEAD
 		ctx, cancel := context.WithTimeout(ctx, 500*time.Millisecond)
+=======
+		ctx, cancel := context.WithTimeout(ctx, 100*time.Millisecond)
+>>>>>>> 4cb759cfc9 (fixed log)
 		resp, err := client.Sys().LeaderWithContext(ctx)
 		cancel()
 		if err != nil || resp == nil || !resp.IsSelf {

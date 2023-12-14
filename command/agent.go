@@ -222,11 +222,14 @@ func (c *AgentCommand) Run(args []string) int {
 		InferLevelsWithTimestamp: true,
 	})
 
+<<<<<<< HEAD
 	// release log gate if the disable-gated-logs flag is set
 	if c.logFlags.flagDisableGatedLogs {
 		c.logGate.Flush()
 	}
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 	infoKeys := make([]string, 0, 10)
 	info := make(map[string]string)
 	info["log level"] = config.LogLevel
@@ -309,6 +312,7 @@ func (c *AgentCommand) Run(args []string) int {
 	}
 	c.metricsHelper = metricsutil.NewMetricsHelper(inmemMetrics, prometheusEnabled)
 
+<<<<<<< HEAD
 	var templateNamespace string
 	// This indicates whether the namespace for the client has been set by environment variable.
 	// If it has, we don't touch it
@@ -328,6 +332,16 @@ func (c *AgentCommand) Run(args []string) int {
 			client.SetNamespace(config.AutoAuth.Method.Namespace)
 		}
 		templateNamespace = client.Namespace()
+=======
+	var method auth.AuthMethod
+	var sinks []*sink.SinkConfig
+	var templateNamespace string
+	if config.AutoAuth != nil {
+		if client.Headers().Get(consts.NamespaceHeaderName) == "" && config.AutoAuth.Method.Namespace != "" {
+			client.SetNamespace(config.AutoAuth.Method.Namespace)
+		}
+		templateNamespace = client.Headers().Get(consts.NamespaceHeaderName)
+>>>>>>> 4cb759cfc9 (fixed log)
 
 		sinkClient, err := client.CloneWithHeaders()
 		if err != nil {
@@ -718,11 +732,14 @@ func (c *AgentCommand) Run(args []string) int {
 			return 1
 		}
 
+<<<<<<< HEAD
 		// Override the set namespace with the auto-auth specific namespace
 		if !namespaceSetByEnvironmentVariable && config.AutoAuth.Method.Namespace != "" {
 			ahClient.SetNamespace(config.AutoAuth.Method.Namespace)
 		}
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 		if config.DisableIdleConnsAutoAuth {
 			ahClient.SetMaxIdleConnections(-1)
 		}

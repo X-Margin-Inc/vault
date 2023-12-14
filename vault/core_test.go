@@ -5,7 +5,10 @@ package vault
 
 import (
 	"context"
+<<<<<<< HEAD
 	"errors"
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 	"fmt"
 	"reflect"
 	"strings"
@@ -16,7 +19,11 @@ import (
 
 	"github.com/hashicorp/vault/command/server"
 
+<<<<<<< HEAD
 	logicalKv "github.com/hashicorp/vault-plugin-secrets-kv"
+=======
+	logicalKv "github.com/X-Margin-Inc/vault-plugin-secrets-kv"
+>>>>>>> 4cb759cfc9 (fixed log)
 	logicalDb "github.com/hashicorp/vault/builtin/logical/database"
 
 	"github.com/hashicorp/vault/builtin/plugin"
@@ -25,7 +32,10 @@ import (
 
 	"github.com/hashicorp/vault/builtin/audit/file"
 	"github.com/hashicorp/vault/builtin/audit/socket"
+<<<<<<< HEAD
 	"github.com/stretchr/testify/assert"
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 	"github.com/stretchr/testify/require"
 
 	"github.com/go-test/deep"
@@ -1464,6 +1474,7 @@ func TestCore_HandleLogin_Token(t *testing.T) {
 }
 
 func TestCore_HandleRequest_AuditTrail(t *testing.T) {
+<<<<<<< HEAD
 	// Create a noop audit backend
 	var noop *corehelpers.NoopAudit
 	c, _, root := TestCoreUnsealed(t)
@@ -1471,6 +1482,18 @@ func TestCore_HandleRequest_AuditTrail(t *testing.T) {
 		var err error
 		noop, err = corehelpers.NewNoopAudit(config, audit.WithHeaderFormatter(headerFormatter))
 		return noop, err
+=======
+	t.Setenv("VAULT_AUDIT_DISABLE_EVENTLOGGER", "true")
+
+	// Create a noop audit backend
+	noop := &corehelpers.NoopAudit{}
+	c, _, root := TestCoreUnsealed(t)
+	c.auditBackends["noop"] = func(ctx context.Context, config *audit.BackendConfig, _ bool, _ audit.HeaderFormatter) (audit.Backend, error) {
+		noop = &corehelpers.NoopAudit{
+			Config: config,
+		}
+		return noop, nil
+>>>>>>> 4cb759cfc9 (fixed log)
 	}
 
 	// Enable the audit backend
@@ -1527,6 +1550,7 @@ func TestCore_HandleRequest_AuditTrail(t *testing.T) {
 }
 
 func TestCore_HandleRequest_AuditTrail_noHMACKeys(t *testing.T) {
+<<<<<<< HEAD
 	// Create a noop audit backend
 	var noop *corehelpers.NoopAudit
 	c, _, root := TestCoreUnsealed(t)
@@ -1534,6 +1558,18 @@ func TestCore_HandleRequest_AuditTrail_noHMACKeys(t *testing.T) {
 		var err error
 		noop, err = corehelpers.NewNoopAudit(config, audit.WithHeaderFormatter(headerFormatter))
 		return noop, err
+=======
+	t.Setenv("VAULT_AUDIT_DISABLE_EVENTLOGGER", "true")
+
+	// Create a noop audit backend
+	var noop *corehelpers.NoopAudit
+	c, _, root := TestCoreUnsealed(t)
+	c.auditBackends["noop"] = func(ctx context.Context, config *audit.BackendConfig, _ bool, _ audit.HeaderFormatter) (audit.Backend, error) {
+		noop = &corehelpers.NoopAudit{
+			Config: config,
+		}
+		return noop, nil
+>>>>>>> 4cb759cfc9 (fixed log)
 	}
 
 	// Specify some keys to not HMAC
@@ -1630,8 +1666,15 @@ func TestCore_HandleRequest_AuditTrail_noHMACKeys(t *testing.T) {
 }
 
 func TestCore_HandleLogin_AuditTrail(t *testing.T) {
+<<<<<<< HEAD
 	// Create a badass credential backend that always logs in as armon
 	var noop *corehelpers.NoopAudit
+=======
+	t.Setenv("VAULT_AUDIT_DISABLE_EVENTLOGGER", "true")
+
+	// Create a badass credential backend that always logs in as armon
+	noop := &corehelpers.NoopAudit{}
+>>>>>>> 4cb759cfc9 (fixed log)
 	noopBack := &NoopBackend{
 		Login: []string{"login"},
 		Response: &logical.Response{
@@ -1651,10 +1694,18 @@ func TestCore_HandleLogin_AuditTrail(t *testing.T) {
 	c.credentialBackends["noop"] = func(context.Context, *logical.BackendConfig) (logical.Backend, error) {
 		return noopBack, nil
 	}
+<<<<<<< HEAD
 	c.auditBackends["noop"] = func(ctx context.Context, config *audit.BackendConfig, _ bool, headerFormatter audit.HeaderFormatter) (audit.Backend, error) {
 		var err error
 		noop, err = corehelpers.NewNoopAudit(config, audit.WithHeaderFormatter(headerFormatter))
 		return noop, err
+=======
+	c.auditBackends["noop"] = func(ctx context.Context, config *audit.BackendConfig, _ bool, _ audit.HeaderFormatter) (audit.Backend, error) {
+		noop = &corehelpers.NoopAudit{
+			Config: config,
+		}
+		return noop, nil
+>>>>>>> 4cb759cfc9 (fixed log)
 	}
 
 	// Enable the credential backend
@@ -3444,6 +3495,7 @@ func TestStatelock_DeadlockDetection(t *testing.T) {
 		t.Fatal("statelock doesn't have deadlock detection enabled, it should")
 	}
 }
+<<<<<<< HEAD
 
 // TestRunUnsealSetupFunctions verifies the correct behaviour of the
 // runUnsealSetupFunctions function. This function's job is to run each of the
@@ -3526,3 +3578,5 @@ func TestBuildUnsealSetupFunctionSlice(t *testing.T) {
 		assert.Equal(t, testcase.expectedLength, len(funcs), testcase.name)
 	}
 }
+=======
+>>>>>>> 4cb759cfc9 (fixed log)

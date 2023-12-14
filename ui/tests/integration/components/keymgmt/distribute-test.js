@@ -11,7 +11,10 @@ import { create } from 'ember-cli-page-object';
 import { hbs } from 'ember-cli-htmlbars';
 import { typeInSearch, clickTrigger } from 'ember-power-select/test-support/helpers';
 import searchSelect from '../../../pages/components/search-select';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 const SELECTORS = {
   form: '[data-test-keymgmt-distribution-form]',
@@ -96,6 +99,7 @@ module('Integration | Component | keymgmt/distribute', function (hooks) {
         ];
       });
     });
+<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO: Fix SearchSelect component
@@ -104,6 +108,8 @@ module('Integration | Component | keymgmt/distribute', function (hooks) {
         'color-contrast': { enabled: false },
       },
     });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   });
 
   hooks.afterEach(function () {

@@ -19,8 +19,11 @@ var (
 
 type TokenCapabilitiesCommand struct {
 	*BaseCommand
+<<<<<<< HEAD
 
 	flagAccessor bool
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 
 func (c *TokenCapabilitiesCommand) Synopsis() string {
@@ -29,6 +32,7 @@ func (c *TokenCapabilitiesCommand) Synopsis() string {
 
 func (c *TokenCapabilitiesCommand) Help() string {
 	helpText := `
+<<<<<<< HEAD
 Usage: vault token capabilities [options] [TOKEN | ACCESSOR] PATH
 
   Fetches the capabilities of a token or accessor for a given path. If a TOKEN
@@ -38,6 +42,14 @@ Usage: vault token capabilities [options] [TOKEN | ACCESSOR] PATH
   endpoint is used, which returns the capabilities of the token referenced by
   ACCESSOR. If no TOKEN is provided, the "/sys/capabilities-self" endpoint
   is used, which returns the capabilities of the locally authenticated token.
+=======
+Usage: vault token capabilities [options] [TOKEN] PATH
+
+  Fetches the capabilities of a token for a given path. If a TOKEN is provided
+  as an argument, the "/sys/capabilities" endpoint and permission is used. If
+  no TOKEN is provided, the "/sys/capabilities-self" endpoint and permission
+  is used with the locally authenticated token.
+>>>>>>> 4cb759cfc9 (fixed log)
 
   List capabilities for the local token on the "secret/foo" path:
 
@@ -47,10 +59,13 @@ Usage: vault token capabilities [options] [TOKEN | ACCESSOR] PATH
 
       $ vault token capabilities 96ddf4bc-d217-f3ba-f9bd-017055595017 cubbyhole/foo
 
+<<<<<<< HEAD
   List capabilities for a token on the "cubbyhole/foo" path via its accessor:
 
       $ vault token capabilities -accessor 9793c9b3-e04a-46f3-e7b8-748d7da248da cubbyhole/foo
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   For a full list of examples, please see the documentation.
 
 ` + c.Flags().Help()
@@ -59,6 +74,7 @@ Usage: vault token capabilities [options] [TOKEN | ACCESSOR] PATH
 }
 
 func (c *TokenCapabilitiesCommand) Flags() *FlagSets {
+<<<<<<< HEAD
 	set := c.flagSet(FlagSetHTTP | FlagSetOutputFormat)
 
 	f := set.NewFlagSet("Command Options")
@@ -73,6 +89,9 @@ func (c *TokenCapabilitiesCommand) Flags() *FlagSets {
 	})
 
 	return set
+=======
+	return c.flagSet(FlagSetHTTP | FlagSetOutputFormat)
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 
 func (c *TokenCapabilitiesCommand) AutocompleteArgs() complete.Predictor {
@@ -94,6 +113,7 @@ func (c *TokenCapabilitiesCommand) Run(args []string) int {
 	token := ""
 	path := ""
 	args = f.Args()
+<<<<<<< HEAD
 	switch {
 	case c.flagAccessor && len(args) < 2:
 		c.UI.Error(fmt.Sprintf("Not enough arguments with -accessor (expected 2, got %d)", len(args)))
@@ -107,6 +127,15 @@ func (c *TokenCapabilitiesCommand) Run(args []string) int {
 	case len(args) == 1:
 		path = args[0]
 	case len(args) == 2:
+=======
+	switch len(args) {
+	case 0:
+		c.UI.Error("Not enough arguments (expected 1-2, got 0)")
+		return 1
+	case 1:
+		path = args[0]
+	case 2:
+>>>>>>> 4cb759cfc9 (fixed log)
 		token, path = args[0], args[1]
 	default:
 		c.UI.Error(fmt.Sprintf("Too many arguments (expected 1-2, got %d)", len(args)))
@@ -120,6 +149,7 @@ func (c *TokenCapabilitiesCommand) Run(args []string) int {
 	}
 
 	var capabilities []string
+<<<<<<< HEAD
 	switch {
 	case token == "":
 		capabilities, err = client.Sys().CapabilitiesSelf(path)
@@ -129,6 +159,13 @@ func (c *TokenCapabilitiesCommand) Run(args []string) int {
 		capabilities, err = client.Sys().Capabilities(token, path)
 	}
 
+=======
+	if token == "" {
+		capabilities, err = client.Sys().CapabilitiesSelf(path)
+	} else {
+		capabilities, err = client.Sys().Capabilities(token, path)
+	}
+>>>>>>> 4cb759cfc9 (fixed log)
 	if err != nil {
 		c.UI.Error(fmt.Sprintf("Error listing capabilities: %s", err))
 		return 2

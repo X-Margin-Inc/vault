@@ -107,17 +107,23 @@ failures.
   This setting will not change how often Vault Agent Templating renders leased
   secrets. Uses [duration format strings](/vault/docs/concepts/duration-format).
 
+<<<<<<< HEAD
 - `max_connections_per_host` `(int: 10)` - Limits the total number of connections
   that the Vault Agent templating engine can use for a particular Vault host. This limit
   includes connections in the dialing, active, and idle states.
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 ### `template_config` stanza example
 
 ```hcl
 template_config {
   exit_on_retry_failure = true
   static_secret_render_interval = "10m"
+<<<<<<< HEAD
   max_connections_per_host = 20
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 ```
 
@@ -129,7 +135,10 @@ as well as `exit_on_retry_failure` result in the agent exiting in case of no key
 template_config {
   exit_on_retry_failure = true
   static_secret_render_interval = "10m"
+<<<<<<< HEAD
   max_connections_per_host = 20
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 
 template {
@@ -317,7 +326,10 @@ The following demonstrates Vault Agent Templates configuration blocks.
 template_config {
   static_secret_render_interval = "10m"
   exit_on_retry_failure = true
+<<<<<<< HEAD
   max_connections_per_host = 20
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 
 template {
@@ -342,7 +354,10 @@ And the following demonstrates how the templates look when using `env_template` 
 template_config {
   static_secret_render_interval = "10m"
   exit_on_retry_failure = true
+<<<<<<< HEAD
   max_connections_per_host = 20
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 
 env_template "MY_ENV_VAR" {

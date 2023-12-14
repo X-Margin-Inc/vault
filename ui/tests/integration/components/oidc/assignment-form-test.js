@@ -10,7 +10,10 @@ import { hbs } from 'ember-cli-htmlbars';
 import { setupMirage } from 'ember-cli-mirage/test-support';
 import ENV from 'vault/config/environment';
 import { overrideMirageResponse } from 'vault/tests/helpers/oidc-config';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 module('Integration | Component | oidc/assignment-form', function (hooks) {
   setupRenderingTest(hooks);
@@ -27,6 +30,7 @@ module('Integration | Component | oidc/assignment-form', function (hooks) {
   hooks.beforeEach(function () {
     this.store = this.owner.lookup('service:store');
     this.server.post('/sys/capabilities-self', () => {});
+<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO: Fix SearchSelect component
@@ -34,6 +38,8 @@ module('Integration | Component | oidc/assignment-form', function (hooks) {
         label: { enabled: false },
       },
     });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it should save new assignment', async function (assert) {

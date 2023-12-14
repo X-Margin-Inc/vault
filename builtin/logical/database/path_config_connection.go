@@ -9,7 +9,10 @@ import (
 	"fmt"
 	"net/url"
 	"sort"
+<<<<<<< HEAD
 	"strings"
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 	"github.com/fatih/structs"
 	"github.com/hashicorp/go-uuid"
@@ -95,7 +98,17 @@ func (b *databaseBackend) pathConnectionReset() framework.OperationFunc {
 			return logical.ErrorResponse(respErrEmptyName), nil
 		}
 
+<<<<<<< HEAD
 		if err := b.reloadConnection(ctx, req.Storage, name); err != nil {
+=======
+		// Close plugin and delete the entry in the connections cache.
+		if err := b.ClearConnection(name); err != nil {
+			return nil, err
+		}
+
+		// Execute plugin again, we don't need the object so throw away.
+		if _, err := b.GetConnection(ctx, req.Storage, name); err != nil {
+>>>>>>> 4cb759cfc9 (fixed log)
 			return nil, err
 		}
 
@@ -103,6 +116,7 @@ func (b *databaseBackend) pathConnectionReset() framework.OperationFunc {
 	}
 }
 
+<<<<<<< HEAD
 func (b *databaseBackend) reloadConnection(ctx context.Context, storage logical.Storage, name string) error {
 	// Close plugin and delete the entry in the connections cache.
 	if err := b.ClearConnection(name); err != nil {
@@ -200,6 +214,8 @@ func (b *databaseBackend) reloadPlugin() framework.OperationFunc {
 	}
 }
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 // pathConfigurePluginConnection returns a configured framework.Path setup to
 // operate on plugins.
 func pathConfigurePluginConnection(b *databaseBackend) *framework.Path {
@@ -643,6 +659,7 @@ const pathResetConnectionHelpDesc = `
 This path resets the database connection by closing the existing database plugin
 instance and running a new one.
 `
+<<<<<<< HEAD
 
 const pathReloadPluginHelpSyn = `
 Reloads all connections using a named database plugin.
@@ -652,3 +669,5 @@ const pathReloadPluginHelpDesc = `
 This path resets each database connection using a named plugin by closing each
 existing database plugin instance and running a new one.
 `
+=======
+>>>>>>> 4cb759cfc9 (fixed log)

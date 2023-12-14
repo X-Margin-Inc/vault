@@ -17,7 +17,10 @@ import {
   overrideCapabilities,
 } from 'vault/tests/helpers/oidc-config';
 import parseURL from 'core/utils/parse-url';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 const ISSUER_URL = 'http://127.0.0.1:8200/v1/identity/oidc/provider/test-provider';
 
@@ -50,6 +53,7 @@ module('Integration | Component | oidc/provider-form', function (hooks) {
       };
     });
     this.server.get('/identity/oidc/client', () => overrideMirageResponse(null, CLIENT_LIST_RESPONSE));
+<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO: Fix SearchSelect component
@@ -60,6 +64,8 @@ module('Integration | Component | oidc/provider-form', function (hooks) {
         'nested-interactive': { enabled: false },
       },
     });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it should save new provider', async function (assert) {

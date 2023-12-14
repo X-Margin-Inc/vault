@@ -11,14 +11,25 @@
     <Chevron @direction="down" @isButton={{true}} />
   </D.Trigger>
   <D.Content @defaultClass={{concat "popup-menu-content calendar-content" (if this.showCalendar " calendar-open")}}>
+<<<<<<< HEAD
     <nav class="box menu" aria-label="calendar date selector navigation">
       <Hds::Text::Body class="calendar-title" @color="faint">DATE OPTIONS</Hds::Text::Body>
+=======
+    <nav class="box menu">
+      <div class="calendar-title is-subtitle-gray">
+        DATE OPTIONS
+      </div>
+>>>>>>> 4cb759cfc9 (fixed log)
       {{! TODO Hds::Dropdown swapout }}
       <ul class="menu-list">
         <li class="action">
           <button
             data-test-current-month
+<<<<<<< HEAD
             class="link is-no-underline has-text-weight-semibold is-ghost"
+=======
+            class="link link-plain has-text-weight-semibold is-ghost"
+>>>>>>> 4cb759cfc9 (fixed log)
             type="button"
             name="currentMonth"
             {{on "click" (fn this.handleDateShortcut D.actions)}}
@@ -29,7 +40,11 @@
         <li class="action">
           <button
             data-test-current-billing-period
+<<<<<<< HEAD
             class="link is-no-underline has-text-weight-semibold is-ghost"
+=======
+            class="link link-plain has-text-weight-semibold is-ghost"
+>>>>>>> 4cb759cfc9 (fixed log)
             type="button"
             name="reset"
             {{on "click" (fn this.handleDateShortcut D.actions)}}
@@ -40,7 +55,11 @@
         <li class="action">
           <button
             data-test-show-calendar
+<<<<<<< HEAD
             class={{concat "link is-no-underline has-text-weight-semibold is-ghost" (if this.showCalendar " is-active")}}
+=======
+            class={{concat "link link-plain has-text-weight-semibold is-ghost" (if this.showCalendar " is-active")}}
+>>>>>>> 4cb759cfc9 (fixed log)
             type="button"
             {{on "click" this.toggleShowCalendar}}
           >
@@ -57,6 +76,7 @@
     {{#if this.showCalendar}}
       <div class="calendar-widget-container" data-test-calendar-widget-container>
         <div class="select-year">
+<<<<<<< HEAD
           {{#if this.disablePastYear}}
             <Hds::TooltipButton
               @text={{concat
@@ -123,6 +143,48 @@
               @icon="chevron-right"
               @isIconOnly={{true}}
             />
+=======
+          <Hds::Button
+            data-test-previous-year
+            id="previous-year"
+            disabled={{this.disablePastYear}}
+            {{on "click" this.subYear}}
+            @color="secondary"
+            @text="previous year"
+            @icon="chevron-left"
+            @isIconOnly={{true}}
+          />
+          <p data-test-display-year>
+            {{this.displayYear}}
+          </p>
+          <Hds::Button
+            data-test-next-year
+            id="next-year"
+            disabled={{this.disableFutureYear}}
+            {{on "click" this.addYear}}
+            @color="secondary"
+            @text="next year"
+            @icon="chevron-right"
+            @isIconOnly={{true}}
+          />
+          {{#if this.tooltipTarget}}
+            {{! Component must be in curly bracket notation }}
+            {{! template-lint-disable no-curly-component-invocation }}
+            {{#modal-dialog
+              tagName="div"
+              tetherTarget=this.tooltipTarget
+              targetAttachment="top right"
+              attachment="top middle"
+              offset="150px 0"
+            }}
+              <div class={{"calendar-tooltip"}}>
+                <p>
+                  {{this.tooltipText}}
+                </p>
+              </div>
+              <div class="chart-tooltip-arrow"></div>
+            {{/modal-dialog}}
+>>>>>>> 4cb759cfc9 (fixed log)
           {{/if}}
         </div>
         <div class="calendar-widget-grid calendar-widget">
@@ -131,7 +193,11 @@
               @text={{month.name}}
               @color="secondary"
               @size="small"
+<<<<<<< HEAD
               disabled={{month.readonly}}
+=======
+              class="is-month-list {{if month.readonly 'is-readOnly'}}"
+>>>>>>> 4cb759cfc9 (fixed log)
               data-test-calendar-month={{month.name}}
               id={{month.index}}
               {{on "click" (fn this.selectMonth month D.actions)}}

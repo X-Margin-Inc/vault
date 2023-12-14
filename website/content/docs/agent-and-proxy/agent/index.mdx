@@ -214,12 +214,15 @@ configuration entries:
   connecting via TLS. This value can be overridden by setting the
   `VAULT_TLS_SERVER_NAME` environment variable.
 
+<<<<<<< HEAD
 - `namespace` `(string: <optional>)` - Namespace to use for all of Vault Agent's
   requests to Vault. This can also be specified by command line or environment variable.
   The order of precedence is: this setting lowest, followed by the environment variable
   `VAULT_NAMESPACE`, and then the highest precedence command-line option `-namespace`.
   If none of these are specified, defaults to the root namespace.
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 #### retry stanza
 
 The `vault` stanza may contain a `retry` stanza that controls how failing Vault

@@ -14,10 +14,15 @@ import (
 )
 
 // Error prefix; see RFC 8555 Section 6.7. Errors.
+<<<<<<< HEAD
 const (
 	ErrorPrefix      = "urn:ietf:params:acme:error:"
 	ErrorContentType = "application/problem+json"
 )
+=======
+const ErrorPrefix = "urn:ietf:params:acme:error:"
+const ErrorContentType = "application/problem+json"
+>>>>>>> 4cb759cfc9 (fixed log)
 
 // See RFC 8555 Section 6.7. Errors.
 var ErrAccountDoesNotExist = errors.New("The request specified an account that does not exist")

@@ -1,6 +1,10 @@
 /**
  * Copyright (c) HashiCorp, Inc.
+<<<<<<< HEAD
  * SPDX-License-Identifier: BUSL-1.1
+=======
+ * SPDX-License-Identifier: MPL-2.0
+>>>>>>> 4cb759cfc9 (fixed log)
  */
 
 import { module, test } from 'qunit';
@@ -11,7 +15,10 @@ import { hbs } from 'ember-cli-htmlbars';
 import { fillIn, render, click } from '@ember/test-helpers';
 import codemirror from 'vault/tests/helpers/codemirror';
 import { PAGE, FORM } from 'vault/tests/helpers/kv/kv-selectors';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 module('Integration | Component | kv-v2 | KvDataFields', function (hooks) {
   setupRenderingTest(hooks);
@@ -23,12 +30,15 @@ module('Integration | Component | kv-v2 | KvDataFields', function (hooks) {
     this.backend = 'my-kv-engine';
     this.path = 'my-secret';
     this.secret = this.store.createRecord('kv/data', { backend: this.backend });
+<<<<<<< HEAD
     // TODO: Fix JSONEditor/CodeMirror
     setRunOptions({
       rules: {
         label: { enabled: false },
       },
     });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it updates the secret model', async function (assert) {

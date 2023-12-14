@@ -9,12 +9,16 @@ import { render, click } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { setupMirage } from 'ember-cli-mirage/test-support';
 import { clickTrigger } from 'ember-power-select/test-support/helpers';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 module('Integration | Component | mfa-login-enforcement-header', function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
 
+<<<<<<< HEAD
   hooks.beforeEach(function () {
     setRunOptions({
       rules: {
@@ -28,6 +32,8 @@ module('Integration | Component | mfa-login-enforcement-header', function (hooks
     });
   });
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   test('it renders heading', async function (assert) {
     await render(hbs`<Mfa::MfaLoginEnforcementHeader @heading="New enforcement" />`);
 

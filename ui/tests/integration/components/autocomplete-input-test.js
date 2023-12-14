@@ -7,18 +7,24 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { click, fillIn, triggerEvent, typeIn, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 module('Integration | Component | autocomplete-input', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it should render label', async function (assert) {
+<<<<<<< HEAD
     // TODO: make the input accessible when no label provided
     setRunOptions({
       rules: {
         label: { enabled: false },
       },
     });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
     await render(
       hbs`
       <AutocompleteInput
@@ -58,12 +64,15 @@ module('Integration | Component | autocomplete-input', function (hooks) {
   });
 
   test('it should trigger dropdown', async function (assert) {
+<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO fix this component
         label: { enabled: false },
       },
     });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
     await render(
       hbs`
       <AutocompleteInput

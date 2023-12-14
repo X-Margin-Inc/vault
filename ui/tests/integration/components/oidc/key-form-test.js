@@ -16,7 +16,10 @@ import {
   overrideMirageResponse,
   overrideCapabilities,
 } from 'vault/tests/helpers/oidc-config';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 module('Integration | Component | oidc/key-form', function (hooks) {
   setupRenderingTest(hooks);
@@ -33,6 +36,7 @@ module('Integration | Component | oidc/key-form', function (hooks) {
   hooks.beforeEach(function () {
     this.store = this.owner.lookup('service:store');
     this.server.get('/identity/oidc/client', () => overrideMirageResponse(null, CLIENT_LIST_RESPONSE));
+<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO: fix RadioCard component (replace with HDS)
@@ -43,6 +47,8 @@ module('Integration | Component | oidc/key-form', function (hooks) {
         label: { enabled: false },
       },
     });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it should save new key', async function (assert) {

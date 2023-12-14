@@ -1,6 +1,10 @@
 /**
  * Copyright (c) HashiCorp, Inc.
+<<<<<<< HEAD
  * SPDX-License-Identifier: BUSL-1.1
+=======
+ * SPDX-License-Identifier: MPL-2.0
+>>>>>>> 4cb759cfc9 (fixed log)
  */
 
 import { module, test } from 'qunit';
@@ -11,7 +15,10 @@ import { fillIn } from '@ember/test-helpers';
 import { selectChoose } from 'ember-power-select/test-support/helpers';
 
 import { SELECTORS } from 'vault/tests/helpers/components/dashboard/dashboard-selectors';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 module('Integration | Component | dashboard/quick-actions-card', function (hooks) {
   setupRenderingTest(hooks);
@@ -92,6 +99,7 @@ module('Integration | Component | dashboard/quick-actions-card', function (hooks
     this.renderComponent = () => {
       return render(hbs`<Dashboard::QuickActionsCard @secretsEngines={{this.secretsEngines}} />`);
     };
+<<<<<<< HEAD
 
     setRunOptions({
       rules: {
@@ -100,6 +108,8 @@ module('Integration | Component | dashboard/quick-actions-card', function (hooks
         label: { enabled: false },
       },
     });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it should show quick action empty state if no engine is selected', async function (assert) {

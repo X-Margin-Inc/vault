@@ -50,6 +50,12 @@ var (
 
 	raftAutopilotConfigurationStoragePath = "core/raft/autopilot/configuration"
 
+<<<<<<< HEAD
+=======
+	// TestingUpdateClusterAddr is used in tests to override the cluster address
+	TestingUpdateClusterAddr uint32
+
+>>>>>>> 4cb759cfc9 (fixed log)
 	ErrJoinWithoutAutoloading = errors.New("attempt to join a cluster using autoloaded licenses while not using autoloading ourself")
 )
 
@@ -1300,7 +1306,11 @@ func (c *Core) joinRaftSendAnswer(ctx context.Context, sealAccess seal.Access, r
 		return fmt.Errorf("error parsing cluster address: %w", err)
 	}
 	clusterAddr := parsedClusterAddr.Host
+<<<<<<< HEAD
 	if c.clusterAddrBridge != nil && strings.HasSuffix(clusterAddr, ":0") {
+=======
+	if atomic.LoadUint32(&TestingUpdateClusterAddr) == 1 && strings.HasSuffix(clusterAddr, ":0") {
+>>>>>>> 4cb759cfc9 (fixed log)
 		// We are testing and have an address provider, so just create a random
 		// addr, it will be overwritten later.
 		var err error

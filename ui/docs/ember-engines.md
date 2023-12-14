@@ -160,6 +160,7 @@ loadInitializers(App, config.modulePrefix);
 
 If you used `ember g in-repo-engine <engine-name>` to generate the engine’s blueprint, it should have added `this.mount(<engine-name>)` to the main app’s `router.js` file (this adds your engine and its associated routes). \*Move `this.mount(<engine-name>)` to match your engine’s route structure. For more information about [Routable Engines](https://ember-engines.com/docs/quickstart#routable-engines).
 
+<<<<<<< HEAD
 ## Add engine path to ember-addon section of main app package.json
 
 ```json
@@ -171,6 +172,8 @@ If you used `ember g in-repo-engine <engine-name>` to generate the engine’s bl
   },
 ```
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 ### Important Notes:
 
 - Anytime a new engine is created, you will need to `yarn install` and **RESTART** ember server!

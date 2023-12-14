@@ -8,7 +8,10 @@ import { setupApplicationTest } from 'ember-qunit';
 
 import initPage from 'vault/tests/pages/init';
 import Pretender from 'pretender';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 const HEALTH_RESPONSE = {
   initialized: false,
@@ -107,12 +110,15 @@ module('Acceptance | init', function (hooks) {
   });
 
   test('cloud seal init', async function (assert) {
+<<<<<<< HEAD
     // continue button is disabled, violating color-contrast
     setRunOptions({
       rules: {
         'color-contrast': { enabled: false },
       },
     });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
     assert.expect(6);
 
     setInitResponse(this.server, CLOUD_SEAL_RESPONSE);

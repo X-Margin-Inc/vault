@@ -9,6 +9,10 @@ import (
 	"io/ioutil"
 	"math"
 	"sync"
+<<<<<<< HEAD
+=======
+	"sync/atomic"
+>>>>>>> 4cb759cfc9 (fixed log)
 	"time"
 
 	"github.com/armon/go-metrics"
@@ -46,6 +50,10 @@ type JobManager struct {
 	// track queues by index for round robin worker assignment
 	queuesIndex       []string
 	lastQueueAccessed int
+<<<<<<< HEAD
+=======
+	stopped           atomic.Bool
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 
 // NewJobManager creates a job manager, with an optional name
@@ -98,9 +106,20 @@ func (j *JobManager) Stop() {
 		j.logger.Trace("terminating job manager...")
 		close(j.quit)
 		j.workerPool.stop()
+<<<<<<< HEAD
 	})
 }
 
+=======
+		j.stopped.Store(true)
+	})
+}
+
+func (j *JobManager) Stopped() bool {
+	return j.stopped.Load()
+}
+
+>>>>>>> 4cb759cfc9 (fixed log)
 // AddJob adds a job to the given queue, creating the queue if it doesn't exist
 func (j *JobManager) AddJob(job Job, queueID string) {
 	j.l.Lock()
@@ -143,12 +162,16 @@ func (j *JobManager) GetPendingJobCount() int {
 func (j *JobManager) GetWorkerCounts() map[string]int {
 	j.l.RLock()
 	defer j.l.RUnlock()
+<<<<<<< HEAD
 	workerCounts := make(map[string]int, len(j.workerCount))
 	for k, v := range j.workerCount {
 		workerCounts[k] = v
 	}
 
 	return workerCounts
+=======
+	return j.workerCount
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 
 // GetWorkQueueLengths() returns a map of queue ID to number of jobs in the queue

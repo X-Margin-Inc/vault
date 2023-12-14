@@ -15,7 +15,11 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	"github.com/armon/go-metrics"
+<<<<<<< HEAD
 	logicalKv "github.com/hashicorp/vault-plugin-secrets-kv"
+=======
+	logicalKv "github.com/X-Margin-Inc/vault-plugin-secrets-kv"
+>>>>>>> 4cb759cfc9 (fixed log)
 	"github.com/hashicorp/vault/helper/namespace"
 	"github.com/hashicorp/vault/sdk/logical"
 )

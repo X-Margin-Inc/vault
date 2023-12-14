@@ -9,6 +9,11 @@ import (
 	"sync"
 	"testing"
 	"time"
+<<<<<<< HEAD
+=======
+
+	"github.com/stretchr/testify/assert"
+>>>>>>> 4cb759cfc9 (fixed log)
 )
 
 func TestJobManager_NewJobManager(t *testing.T) {
@@ -174,6 +179,10 @@ func TestJobManager_Stop(t *testing.T) {
 	j := NewJobManager("job-mgr-test", 5, newTestLogger("jobmanager-test"), nil)
 
 	j.Start()
+<<<<<<< HEAD
+=======
+	assert.False(t, j.Stopped())
+>>>>>>> 4cb759cfc9 (fixed log)
 
 	doneCh := make(chan struct{})
 	timeout := time.After(5 * time.Second)
@@ -185,6 +194,10 @@ func TestJobManager_Stop(t *testing.T) {
 
 	select {
 	case <-doneCh:
+<<<<<<< HEAD
+=======
+		assert.True(t, j.Stopped())
+>>>>>>> 4cb759cfc9 (fixed log)
 		break
 	case <-timeout:
 		t.Fatal("timed out")
@@ -747,6 +760,7 @@ func TestFairshare_queueWorkersSaturated(t *testing.T) {
 		j.l.RUnlock()
 	}
 }
+<<<<<<< HEAD
 
 func TestJobManager_GetWorkerCounts_RaceCondition(t *testing.T) {
 	j := NewJobManager("test-job-mgr", 20, nil, nil)
@@ -767,3 +781,5 @@ func TestJobManager_GetWorkerCounts_RaceCondition(t *testing.T) {
 
 	wg.Wait()
 }
+=======
+>>>>>>> 4cb759cfc9 (fixed log)

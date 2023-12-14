@@ -20,6 +20,7 @@ type MarshalOptions struct {
 type OptMarshaler interface {
 	MarshalJSONWithOptions(*MarshalOptions) ([]byte, error)
 }
+<<<<<<< HEAD
 
 // LogInputBexpr is used for evaluating boolean expressions with go-bexpr.
 type LogInputBexpr struct {
@@ -53,3 +54,5 @@ func (l *LogInput) BexprDatum(namespace string) *LogInputBexpr {
 		Path:       path,
 	}
 }
+=======
+>>>>>>> 4cb759cfc9 (fixed log)

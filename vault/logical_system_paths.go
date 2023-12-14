@@ -251,6 +251,10 @@ func (b *SystemBackend) configPaths() []*framework.Path {
 			HelpDescription: strings.TrimSpace(sysHelp["config/ui/headers"][0]),
 			HelpSynopsis:    strings.TrimSpace(sysHelp["config/ui/headers"][1]),
 		},
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cb759cfc9 (fixed log)
 		{
 			Pattern: "generate-root(/attempt)?$",
 
@@ -2436,6 +2440,7 @@ func (b *SystemBackend) internalPaths() []*framework.Path {
 			HelpSynopsis: "Generate an OpenAPI 3 document of all mounted paths.",
 		},
 		{
+<<<<<<< HEAD
 			Pattern: "internal/ui/authenticated-messages",
 
 			DisplayAttrs: &framework.DisplayAttributes{
@@ -2467,6 +2472,8 @@ func (b *SystemBackend) internalPaths() []*framework.Path {
 			},
 		},
 		{
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 			Pattern: "internal/ui/feature-flags",
 
 			DisplayAttrs: &framework.DisplayAttributes{
@@ -2685,6 +2692,7 @@ func (b *SystemBackend) internalPaths() []*framework.Path {
 			HelpDescription: strings.TrimSpace(sysHelp["internal-ui-resultant-acl"][1]),
 		},
 		{
+<<<<<<< HEAD
 			Pattern: "internal/ui/unauthenticated-messages",
 
 			DisplayAttrs: &framework.DisplayAttributes{
@@ -2716,6 +2724,8 @@ func (b *SystemBackend) internalPaths() []*framework.Path {
 			},
 		},
 		{
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 			Pattern: "internal/ui/version",
 			DisplayAttrs: &framework.DisplayAttributes{
 				OperationPrefix: "internal-ui",

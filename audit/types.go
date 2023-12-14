@@ -8,9 +8,15 @@ import (
 	"io"
 	"time"
 
+<<<<<<< HEAD
 	"github.com/hashicorp/go-bexpr"
 	"github.com/hashicorp/vault/internal/observability/event"
 	"github.com/hashicorp/vault/sdk/helper/salt"
+=======
+	"github.com/hashicorp/eventlogger"
+	"github.com/hashicorp/vault/sdk/helper/salt"
+
+>>>>>>> 4cb759cfc9 (fixed log)
 	"github.com/hashicorp/vault/sdk/logical"
 )
 
@@ -35,8 +41,13 @@ type subtype string
 // format defines types of format audit events support.
 type format string
 
+<<<<<<< HEAD
 // AuditEvent is the audit event.
 type AuditEvent struct {
+=======
+// auditEvent is the audit event.
+type auditEvent struct {
+>>>>>>> 4cb759cfc9 (fixed log)
 	ID        string            `json:"id"`
 	Version   string            `json:"version"`
 	Subtype   subtype           `json:"subtype"` // the subtype of the audit event.
@@ -144,6 +155,7 @@ type FormatterConfig struct {
 	RequiredFormat format
 }
 
+<<<<<<< HEAD
 // EntryFilter should be used to filter audit requests and responses which should
 // make it to a sink.
 type EntryFilter struct {
@@ -151,6 +163,8 @@ type EntryFilter struct {
 	evaluator *bexpr.Evaluator
 }
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 // RequestEntry is the structure of a request audit log entry.
 type RequestEntry struct {
 	Time          string   `json:"time,omitempty"`
@@ -275,10 +289,13 @@ type Backend interface {
 	// Salter interface must be implemented by anything implementing Backend.
 	Salter
 
+<<<<<<< HEAD
 	// The PipelineReader interface allows backends to surface information about their
 	// nodes for node and pipeline registration.
 	event.PipelineReader
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 	// LogRequest is used to synchronously log a request. This is done after the
 	// request is authorized but before the request is executed. The arguments
 	// MUST not be modified in any way. They should be deep copied if this is
@@ -302,6 +319,15 @@ type Backend interface {
 
 	// Invalidate is called for path invalidation
 	Invalidate(context.Context)
+<<<<<<< HEAD
+=======
+
+	// RegisterNodesAndPipeline provides an eventlogger.Broker pointer so that
+	// the Backend can call its RegisterNode and RegisterPipeline methods with
+	// the nodes and the pipeline that were created in the corresponding
+	// Factory function.
+	RegisterNodesAndPipeline(*eventlogger.Broker, string) error
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 
 // BackendConfig contains configuration parameters used in the factory func to

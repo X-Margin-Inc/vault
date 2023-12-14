@@ -44,8 +44,12 @@
 .has-error-border,
 select.has-error-border,
 .ttl-picker-form-field-error input,
+<<<<<<< HEAD
 .string-list-form-field-error .field:first-of-type textarea,
 .hds-form-checkbox.has-error-border {
+=======
+.string-list-form-field-error .field:first-of-type textarea {
+>>>>>>> 4cb759cfc9 (fixed log)
   border: 1px solid $red-500;
 }
 
@@ -60,11 +64,23 @@ select.has-error-border,
 }
 
 .has-text-grey-light {
+<<<<<<< HEAD
   color: var(--token-color-foreground-faint) !important;
 }
 
 .has-text-grey {
   color: var(--token-color-foreground-faint) !important;
+=======
+  color: $ui-gray-300 !important;
+}
+
+.has-text-grey-400 {
+  color: $ui-gray-400;
+}
+
+.has-text-grey {
+  color: $ui-gray-500 !important;
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 
 .has-text-grey-dark {
@@ -88,7 +104,11 @@ select.has-error-border,
 }
 
 .has-text-success {
+<<<<<<< HEAD
   color: var(--token-color-foreground-success) !important;
+=======
+  color: $green-500 !important;
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 
 .has-text-highlight {

@@ -1,6 +1,10 @@
 /**
  * Copyright (c) HashiCorp, Inc.
+<<<<<<< HEAD
  * SPDX-License-Identifier: BUSL-1.1
+=======
+ * SPDX-License-Identifier: MPL-2.0
+>>>>>>> 4cb759cfc9 (fixed log)
  */
 
 import { module, test } from 'qunit';
@@ -12,7 +16,10 @@ import { hbs } from 'ember-cli-htmlbars';
 import { kvMetadataPath } from 'vault/utils/kv-path';
 import { allowAllCapabilitiesStub } from 'vault/tests/helpers/stubs';
 import { PAGE } from 'vault/tests/helpers/kv/kv-selectors';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 const CREATE_RECORDS = (number, store, server) => {
   const mirageList = server.createList('kv-metadatum', number, 'withCustomPath');
@@ -44,6 +51,7 @@ module('Integration | Component | kv | Page::List', function (hooks) {
   hooks.beforeEach(async function () {
     this.server.post('/sys/capabilities-self', allowAllCapabilitiesStub());
     this.store = this.owner.lookup('service:store');
+<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO: ConfirmAction renders modal within list when @isInDropdown
@@ -61,24 +69,48 @@ module('Integration | Component | kv | Page::List', function (hooks) {
     this.breadcrumbs = [
       { label: 'secrets', route: 'secrets', linkExternal: true },
       { label: this.backend, route: 'list' },
+=======
+  });
+
+  test('it renders Pagination and allows you to delete a kv/metadata record', async function (assert) {
+    assert.expect(19);
+    CREATE_RECORDS(15, this.store, this.server);
+    this.model = await this.store.peekAll('kv/metadata');
+    this.model.meta = META;
+    this.breadcrumbs = [
+      { label: 'secrets', route: 'secrets', linkExternal: true },
+      { label: this.model.backend, route: 'list' },
+>>>>>>> 4cb759cfc9 (fixed log)
     ];
     this.failedDirectoryQuery = false;
     await render(
       hbs`<Page::List
+<<<<<<< HEAD
       @secrets={{this.model}}
       @backend={{this.backend}}
       @failedDirectoryQuery={{this.failedDirectoryQuery}}
       @breadcrumbs={{this.breadcrumbs}}
+=======
+      @secrets={{this.model}} 
+      @backend={{this.model.backend}}
+      @failedDirectoryQuery={{this.failedDirectoryQuery}}
+      @breadcrumbs={{this.breadcrumbs}} 
+>>>>>>> 4cb759cfc9 (fixed log)
       @meta={{this.model.meta}}
     />`,
       {
         owner: this.engine,
       }
     );
+<<<<<<< HEAD
 
     assert.dom(PAGE.list.pagination).exists('shows hds pagination component');
     assert.dom(PAGE.list.paginationInfo).hasText('1–15 of 16', 'shows correct page of pages');
     assert.dom(PAGE.title).includesText(this.backend, 'shows backend as title');
+=======
+    assert.dom(PAGE.list.pagination).exists('shows hds pagination component');
+    assert.dom(PAGE.list.paginationInfo).hasText('1–15 of 16', 'shows correct page of pages');
+>>>>>>> 4cb759cfc9 (fixed log)
 
     this.model.forEach((record) => {
       assert.dom(PAGE.list.item(record.path)).exists('lists all records from 0-14 on the first page');

@@ -13,7 +13,11 @@ declare module 'ember-data/types/registries/model' {
   export default interface ModelRegistry {
     'pki/action': PkiActionModel;
     'pki/certificate/generate': PkiCertificateGenerateModel;
+<<<<<<< HEAD
     'kv/data': KvSecretDataModel;
+=======
+    'kv/data': KvSecretDataModelModel;
+>>>>>>> 4cb759cfc9 (fixed log)
     'kv/metadata': KvSecretMetadataModel;
     // Catchall for any other models
     [key: string]: any;

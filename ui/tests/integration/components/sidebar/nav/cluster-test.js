@@ -8,7 +8,10 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import { stubFeaturesAndPermissions } from 'vault/tests/helpers/components/sidebar-nav';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 const renderComponent = () => {
   return render(hbs`
@@ -21,6 +24,7 @@ const renderComponent = () => {
 module('Integration | Component | sidebar-nav-cluster', function (hooks) {
   setupRenderingTest(hooks);
 
+<<<<<<< HEAD
   hooks.beforeEach(function () {
     setRunOptions({
       rules: {
@@ -32,6 +36,8 @@ module('Integration | Component | sidebar-nav-cluster', function (hooks) {
     });
   });
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   test('it should render nav headings', async function (assert) {
     const headings = ['Vault', 'Monitoring'];
     stubFeaturesAndPermissions(this.owner, true, true);
@@ -51,7 +57,11 @@ module('Integration | Component | sidebar-nav-cluster', function (hooks) {
     await renderComponent();
     assert
       .dom('[data-test-sidebar-nav-link]')
+<<<<<<< HEAD
       .exists({ count: 3 }, 'Nav links are hidden other than secrets, secrets sync and dashboard');
+=======
+      .exists({ count: 2 }, 'Nav links are hidden other than secrets and dashboard');
+>>>>>>> 4cb759cfc9 (fixed log)
     assert
       .dom('[data-test-sidebar-nav-heading]')
       .exists({ count: 1 }, 'Headings are hidden other than Vault');
@@ -61,7 +71,10 @@ module('Integration | Component | sidebar-nav-cluster', function (hooks) {
     const links = [
       'Dashboard',
       'Secrets Engines',
+<<<<<<< HEAD
       'Secrets Sync',
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
       'Access',
       'Policies',
       'Tools',

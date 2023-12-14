@@ -6,7 +6,10 @@ package event
 import (
 	"context"
 	"fmt"
+<<<<<<< HEAD
 	"strings"
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 	gsyslog "github.com/hashicorp/go-syslog"
 
@@ -26,11 +29,14 @@ type SyslogSink struct {
 func NewSyslogSink(format string, opt ...Option) (*SyslogSink, error) {
 	const op = "event.NewSyslogSink"
 
+<<<<<<< HEAD
 	format = strings.TrimSpace(format)
 	if format == "" {
 		return nil, fmt.Errorf("%s: format is required: %w", op, ErrInvalidParameter)
 	}
 
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 	opts, err := getOpts(opt...)
 	if err != nil {
 		return nil, fmt.Errorf("%s: error applying options: %w", op, err)

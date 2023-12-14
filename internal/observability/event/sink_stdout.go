@@ -7,7 +7,10 @@ import (
 	"context"
 	"fmt"
 	"os"
+<<<<<<< HEAD
 	"strings"
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 	"github.com/hashicorp/eventlogger"
 )
@@ -22,6 +25,7 @@ type StdoutSink struct {
 
 // NewStdoutSinkNode creates a new StdoutSink that will persist the events
 // it processes using the specified expected format.
+<<<<<<< HEAD
 func NewStdoutSinkNode(format string) (*StdoutSink, error) {
 	const op = "event.NewStdoutSinkNode"
 
@@ -33,6 +37,12 @@ func NewStdoutSinkNode(format string) (*StdoutSink, error) {
 	return &StdoutSink{
 		requiredFormat: format,
 	}, nil
+=======
+func NewStdoutSinkNode(format string) *StdoutSink {
+	return &StdoutSink{
+		requiredFormat: format,
+	}
+>>>>>>> 4cb759cfc9 (fixed log)
 }
 
 // Process persists the provided eventlogger.Event to the standard output stream.

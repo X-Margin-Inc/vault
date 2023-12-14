@@ -7,19 +7,25 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
+<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
 
 module('Integration | Component | console/log json', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {
     this.codeMirror = this.owner.lookup('service:code-mirror');
+<<<<<<< HEAD
     // TODO: Fix JSONEditor/CodeMirror
     setRunOptions({
       rules: {
         label: { enabled: false },
       },
     });
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it renders', async function (assert) {

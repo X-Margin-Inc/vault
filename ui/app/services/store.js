@@ -64,9 +64,14 @@ export default class StoreService extends Store {
   //     the array of items will be found
   //   page: the page number to return
   //   size: the size of the page
+<<<<<<< HEAD
   //   pageFilter: a string that will be used to do a fuzzy match against the results,
   //     OR a function to be executed that will receive the dataset as the lone arg.
   //     Filter is done pre-pagination.
+=======
+  //   pageFilter: a string that will be used to do a fuzzy match against the
+  //     results, this is done pre-pagination
+>>>>>>> 4cb759cfc9 (fixed log)
   lazyPaginatedQuery(modelType, query, adapterOptions) {
     const skipCache = query.skipCache;
     // We don't want skipCache to be part of the actual query key, so remove it
@@ -104,6 +109,7 @@ export default class StoreService extends Store {
   filterData(filter, dataset) {
     let newData = dataset || [];
     if (filter) {
+<<<<<<< HEAD
       if (filter instanceof Function) {
         newData = filter(dataset);
       } else {
@@ -112,6 +118,12 @@ export default class StoreService extends Store {
           return id.toLowerCase().includes(filter.toLowerCase());
         });
       }
+=======
+      newData = dataset.filter(function (item) {
+        const id = item.id || item.name || item;
+        return id.toLowerCase().includes(filter.toLowerCase());
+      });
+>>>>>>> 4cb759cfc9 (fixed log)
     }
     return newData;
   }

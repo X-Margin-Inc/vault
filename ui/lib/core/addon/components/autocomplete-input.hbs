@@ -5,7 +5,11 @@
 
 <div {{did-insert this.setElement}} ...attributes>
   {{#if @label}}
+<<<<<<< HEAD
     <FormFieldLabel @label={{@label}} @subText={{@subText}} for={{dasherize @label}} />
+=======
+    <FormFieldLabel @label={{@label}} @subText={{@subText}} />
+>>>>>>> 4cb759cfc9 (fixed log)
   {{/if}}
   <div class="control">
     <Input
@@ -15,7 +19,10 @@
       placeholder={{@placeholder}}
       class="input"
       {{on "input" this.onInput}}
+<<<<<<< HEAD
       id={{dasherize @label}}
+=======
+>>>>>>> 4cb759cfc9 (fixed log)
     />
     <BasicDropdown @registerAPI={{this.setDropdownAPI}} @renderInPlace={{true}} as |D|>
       <D.Content @defaultClass="autocomplete-input">
