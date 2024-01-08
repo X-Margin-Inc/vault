@@ -9,10 +9,7 @@ import { render, click, fillIn } from '@ember/test-helpers';
 import sinon from 'sinon';
 import hbs from 'htmlbars-inline-precompile';
 import selectors from 'vault/tests/helpers/components/ttl-picker';
-<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 module('Integration | Component | ttl-picker', function (hooks) {
   setupRenderingTest(hooks);
@@ -190,15 +187,12 @@ module('Integration | Component | ttl-picker', function (hooks) {
     });
 
     test('it shows subtext and description when passed', async function (assert) {
-<<<<<<< HEAD
       setRunOptions({
         rules: {
           // TODO: remove Tooltip
           'aria-command-name': { enabled: false },
         },
       });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
       this.set('label', 'My Label');
       await render(hbs`
         <TtlPicker

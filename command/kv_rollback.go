@@ -160,11 +160,7 @@ func (c *KVRollbackCommand) Run(args []string) int {
 	}
 
 	if !v2 {
-<<<<<<< HEAD
 		c.UI.Error("KV engine mount must be version 2 for rollback support")
-=======
-		c.UI.Error("K/V engine mount must be version 2 for rollback support")
->>>>>>> 4cb759cfc9 (fixed log)
 		return 2
 	}
 

@@ -75,13 +75,8 @@ management tool.
 
    ```shell-session
    $ vault write auth/saml/config \
-<<<<<<< HEAD
       default_role="admin" \
       idp_metadata_url="https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata" \
-=======
-      default_role=admin \
-      idp_metadata_url=https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml/metadata \
->>>>>>> 4cb759cfc9 (fixed log)
       entity_id="https://my.vault/v1/auth/saml" \
       acs_urls="https://my.vault/v1/auth/saml/callback"
    ```
@@ -90,17 +85,10 @@ management tool.
 
    ```shell-session
    $ vault write auth/saml/config \
-<<<<<<< HEAD
       default_role="admin" \
       idp_sso_url="https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml" \
       idp_entity_id="https://www.okta.com/abc123eb9xnIfzlaf697" \
       idp_cert="@path/to/cert.pem" \
-=======
-      default_role=admin \
-      idp_sso_url=https://company.okta.com/app/abc123eb9xnIfzlaf697/sso/saml \
-      idp_entity_id=https://www.okta.com/abc123eb9xnIfzlaf697 \
-      idp_cert=@path/to/cert.pem \
->>>>>>> 4cb759cfc9 (fixed log)
       entity_id="https://my.vault/v1/auth/saml" \
       acs_urls="https://my.vault/v1/auth/saml/callback"
    ```
@@ -108,20 +96,12 @@ management tool.
 1. Create a named role:
 
    ```shell-session
-<<<<<<< HEAD
    $ vault write auth/saml/role/admin \
-=======
-    $ vault write auth/saml/role/admin \
->>>>>>> 4cb759cfc9 (fixed log)
        bound_subjects="*@hashicorp.com" \
        bound_subjects_type="glob" \
        token_policies="writer" \
        bound_attributes=group="admin" \
-<<<<<<< HEAD
        ttl="1h"
-=======
-       ttl=1h
->>>>>>> 4cb759cfc9 (fixed log)
    ```
 
    This role authorizes users that have a subject with an `@hashicorp.com` suffix and

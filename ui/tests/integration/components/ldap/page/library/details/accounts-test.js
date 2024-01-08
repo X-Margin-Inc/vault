@@ -1,10 +1,6 @@
 /**
  * Copyright (c) HashiCorp, Inc.
-<<<<<<< HEAD
  * SPDX-License-Identifier: BUSL-1.1
-=======
- * SPDX-License-Identifier: MPL-2.0
->>>>>>> 4cb759cfc9 (fixed log)
  */
 
 import { module, test } from 'qunit';
@@ -80,11 +76,7 @@ module('Integration | Component | ldap | Page::Library::Details::Accounts', func
     assert.dom('[data-test-checked-out-card]').exists('Accounts checked out card renders');
 
     assert
-<<<<<<< HEAD
       .dom('[data-test-accounts-code-block] code')
-=======
-      .dom('[data-test-code-snippet] code')
->>>>>>> 4cb759cfc9 (fixed log)
       .hasText('vault lease renew ad/library/test-library/check-out/:lease_id', 'Renew cli command renders');
   });
 });

@@ -626,7 +626,6 @@ func TestBackend_connectionCrud(t *testing.T) {
 		t.Fatalf("err:%s resp:%#v\n", err, resp)
 	}
 
-<<<<<<< HEAD
 	// Configure a second connection to confirm below it doesn't get restarted.
 	data = map[string]interface{}{
 		"connection_url":    "test",
@@ -644,8 +643,6 @@ func TestBackend_connectionCrud(t *testing.T) {
 		t.Fatalf("err:%s resp:%#v\n", err, resp)
 	}
 
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 	// Create a role
 	data = map[string]interface{}{
 		"db_name":               "plugin-test",
@@ -737,7 +734,6 @@ func TestBackend_connectionCrud(t *testing.T) {
 		t.Fatal(diff)
 	}
 
-<<<<<<< HEAD
 	// Test endpoints for reloading plugins.
 	for _, reloadPath := range []string{
 		"reset/plugin-test",
@@ -781,19 +777,6 @@ func TestBackend_connectionCrud(t *testing.T) {
 				t.Fatalf("expected %v but got %v", expected, resp.Data["connections"])
 			}
 		}
-=======
-	// Reset Connection
-	data = map[string]interface{}{}
-	req = &logical.Request{
-		Operation: logical.UpdateOperation,
-		Path:      "reset/plugin-test",
-		Storage:   config.StorageView,
-		Data:      data,
-	}
-	resp, err = b.HandleRequest(namespace.RootContext(nil), req)
-	if err != nil || (resp != nil && resp.IsError()) {
-		t.Fatalf("err:%s resp:%#v\n", err, resp)
->>>>>>> 4cb759cfc9 (fixed log)
 	}
 
 	// Get creds

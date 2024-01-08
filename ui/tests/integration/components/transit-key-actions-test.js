@@ -13,10 +13,7 @@ import { render, click, find, findAll, fillIn, blur, triggerEvent } from '@ember
 import hbs from 'htmlbars-inline-precompile';
 import { encodeString } from 'vault/utils/b64';
 import waitForError from 'vault/tests/helpers/wait-for-error';
-<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 const storeStub = Service.extend({
   callArgs: null,
@@ -50,46 +47,29 @@ module('Integration | Component | transit key actions', function (hooks) {
       this.owner.register('service:store', storeStub);
       this.storeService = this.owner.lookup('service:store');
     });
-<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO: fix JSONEditor/CodeMirror
         label: { enabled: false },
       },
     });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it requires `key`', async function (assert) {
     const promise = waitForError();
     render(hbs`
-<<<<<<< HEAD
       <TransitKeyActions />`);
-=======
-      {{transit-key-actions}}`);
->>>>>>> 4cb759cfc9 (fixed log)
     const err = await promise;
     assert.ok(err.message.includes('`key` is required for'), 'asserts without key');
   });
 
   test('it renders', async function (assert) {
     this.set('key', { backend: 'transit', supportedActions: ['encrypt'] });
-<<<<<<< HEAD
     await render(hbs`<TransitKeyActions @selectedAction="encrypt" @key={{this.key}} />`);
     assert.dom('[data-test-transit-action="encrypt"]').exists({ count: 1 }, 'renders encrypt');
 
     this.set('key', { backend: 'transit', supportedActions: ['sign'] });
     await render(hbs`<TransitKeyActions @selectedAction="sign" @key={{this.key}} />`);
-=======
-    await render(hbs`
-      {{transit-key-actions selectedAction="encrypt" key=this.key}}`);
-    assert.dom('[data-test-transit-action="encrypt"]').exists({ count: 1 }, 'renders encrypt');
-
-    this.set('key', { backend: 'transit', supportedActions: ['sign'] });
-    await render(hbs`
-      {{transit-key-actions selectedAction="sign" key=this.key}}`);
->>>>>>> 4cb759cfc9 (fixed log)
     assert.dom('[data-test-transit-action="sign"]').exists({ count: 1 }, 'renders sign');
   });
 
@@ -97,11 +77,7 @@ module('Integration | Component | transit key actions', function (hooks) {
     this.set('key', { backend: 'transit', supportsSigning: true, supportedActions: ['sign', 'verify'] });
     this.set('selectedAction', 'sign');
     await render(hbs`
-<<<<<<< HEAD
     <TransitKeyActions @selectedAction={{this.selectedAction}} @key={{this.key}} />`);
-=======
-      {{transit-key-actions selectedAction=this.selectedAction key=this.key}}`);
->>>>>>> 4cb759cfc9 (fixed log)
     assert
       .dom('[data-test-signature-algorithm]')
       .doesNotExist('does not render signature_algorithm field on sign');
@@ -129,11 +105,7 @@ module('Integration | Component | transit key actions', function (hooks) {
   test('it renders: rotate', async function (assert) {
     this.set('key', { backend: 'transit', id: 'akey', supportedActions: ['rotate'] });
     await render(hbs`
-<<<<<<< HEAD
     <TransitKeyActions @selectedAction="rotate" @key={{this.key}} />`);
-=======
-      {{transit-key-actions selectedAction="rotate" key=this.key}}`);
->>>>>>> 4cb759cfc9 (fixed log)
 
     assert.dom('*').hasText('', 'renders an empty div');
 
@@ -151,11 +123,7 @@ module('Integration | Component | transit key actions', function (hooks) {
     this.set('selectedAction', 'encrypt');
     this.set('storeService.keyActionReturnVal', { ciphertext: 'secret' });
     await render(hbs`
-<<<<<<< HEAD
     <TransitKeyActions @selectedAction={{this.selectedAction}} @key={{this.key}} />`);
-=======
-      {{transit-key-actions selectedAction=this.selectedAction key=this.key}}`);
->>>>>>> 4cb759cfc9 (fixed log)
 
     find('#plaintext-control .CodeMirror').CodeMirror.setValue('plaintext');
     await click('button[type="submit"]');
@@ -205,11 +173,7 @@ module('Integration | Component | transit key actions', function (hooks) {
     this.set('key', key);
     this.set('storeService.keyActionReturnVal', { ciphertext: 'secret' });
     await render(hbs`
-<<<<<<< HEAD
     <TransitKeyActions @selectedAction="encrypt" @key={{this.key}} />`);
-=======
-      {{transit-key-actions selectedAction="encrypt" key=this.key}}`);
->>>>>>> 4cb759cfc9 (fixed log)
 
     findAll('.CodeMirror')[0].CodeMirror.setValue('plaintext');
     assert.dom('#key_version').exists({ count: 1 }, 'it renders the key version selector');
@@ -238,11 +202,7 @@ module('Integration | Component | transit key actions', function (hooks) {
     this.set('key', key);
     this.set('storeService.keyActionReturnVal', { ciphertext: 'secret' });
     await render(hbs`
-<<<<<<< HEAD
     <TransitKeyActions @selectedAction="encrypt" @key={{this.key}} />`);
-=======
-      {{transit-key-actions selectedAction="encrypt" key=this.key}}`);
->>>>>>> 4cb759cfc9 (fixed log)
 
     // await fillIn('#plaintext', 'plaintext');
     find('#plaintext-control .CodeMirror').CodeMirror.setValue('plaintext');
@@ -272,11 +232,7 @@ module('Integration | Component | transit key actions', function (hooks) {
       validKeyVersions: [1],
     });
     await render(hbs`
-<<<<<<< HEAD
     <TransitKeyActions @key={{this.key}} />`);
-=======
-      {{transit-key-actions key=this.key}}`);
->>>>>>> 4cb759cfc9 (fixed log)
   };
 
   test('it can export a key:default behavior', async function (assert) {
@@ -347,11 +303,8 @@ module('Integration | Component | transit key actions', function (hooks) {
   });
 
   test('it includes algorithm param for HMAC', async function (assert) {
-<<<<<<< HEAD
     // Return mocked data so a11y-testing doesn't get mad about empty copy button contents
     this.set('storeService.rootKeyActionReturnVal', { data: { hmac: 'vault:v1:hmac-token' } });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
     this.set('key', {
       backend: 'transit',
       id: 'akey',
@@ -359,11 +312,7 @@ module('Integration | Component | transit key actions', function (hooks) {
       validKeyVersions: [1],
     });
     await render(hbs`
-<<<<<<< HEAD
     <TransitKeyActions @key={{this.key}} />`);
-=======
-      {{transit-key-actions key=this.key}}`);
->>>>>>> 4cb759cfc9 (fixed log)
     await fillIn('#algorithm', 'sha2-384');
     await blur('#algorithm');
     await fillIn('[data-test-component="code-mirror-modifier"] textarea', 'plaintext');

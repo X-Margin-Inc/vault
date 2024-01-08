@@ -21,7 +21,6 @@
   {{else if this.authMethods.last.value}}
     <div class="control is-expanded">
       <div class="select is-fullwidth">
-<<<<<<< HEAD
         <select
           aria-label={{or @label "Select a mount accessor"}}
           name={{@name}}
@@ -29,9 +28,6 @@
           {{on "change" this.change}}
           data-test-mount-accessor-select
         >
-=======
-        <select name={{@name}} id={{@name}} {{on "change" this.change}} data-test-mount-accessor-select>
->>>>>>> 4cb759cfc9 (fixed log)
           {{#if this.noDefault}}
             <option value="">Select one</option>
           {{/if}}

@@ -9,10 +9,7 @@ import { click, fillIn, render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { setupEngine } from 'ember-engines/test-support';
 import { setupMirage } from 'ember-cli-mirage/test-support';
-<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 module('Integration | Component | pki-generate-csr', function (hooks) {
   setupRenderingTest(hooks);
@@ -33,15 +30,12 @@ module('Integration | Component | pki-generate-csr', function (hooks) {
         'pki-test/issuers/generate/intermediate/exported': ['root'],
       },
     }));
-<<<<<<< HEAD
     setRunOptions({
       rules: {
         // something strange happening here
         'link-name': { enabled: false },
       },
     });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it should render fields and save', async function (assert) {

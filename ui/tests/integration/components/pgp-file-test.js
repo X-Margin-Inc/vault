@@ -5,11 +5,7 @@
 
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-<<<<<<< HEAD
 import { render, click, fillIn, triggerEvent, waitUntil, find } from '@ember/test-helpers';
-=======
-import { render, click, fillIn, triggerEvent, waitUntil } from '@ember/test-helpers';
->>>>>>> 4cb759cfc9 (fixed log)
 import hbs from 'htmlbars-inline-precompile';
 
 let file;
@@ -115,11 +111,7 @@ module('Integration | Component | pgp file', function (hooks) {
       />
     `);
     await triggerEvent('[data-test-pgp-file-input]', ...event);
-<<<<<<< HEAD
     await waitUntil(() => find('[data-test-pgp-file-input-label]').innerText === 'file.json');
-=======
-
->>>>>>> 4cb759cfc9 (fixed log)
     await click('[data-test-text-toggle]');
     assert.dom('[data-test-pgp-file-textarea]').exists({ count: 1 }, 'renders the textarea on toggle');
     assert

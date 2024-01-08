@@ -32,11 +32,7 @@
           class="input {{if (includes index this.indicesWithComma) 'has-warning-border'}}"
           @value={{data.value}}
           name={{concat this.elementId "-" index}}
-<<<<<<< HEAD
           aria-label="{{@label}} list item {{index}}"
-=======
-          id={{concat this.elementId "-" index}}
->>>>>>> 4cb759cfc9 (fixed log)
           {{on "keyup" (action "inputChanged" index)}}
           {{on "change" (action "inputChanged" index)}}
         />

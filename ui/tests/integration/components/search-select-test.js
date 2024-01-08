@@ -15,10 +15,7 @@ import sinon from 'sinon';
 import waitForError from 'vault/tests/helpers/wait-for-error';
 import searchSelect from '../../pages/components/search-select';
 import { isWildcardString } from 'vault/helpers/is-wildcard-string';
-<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 const component = create(searchSelect);
 
@@ -94,7 +91,6 @@ module('Integration | Component | search select', function (hooks) {
       this.owner.unregister('service:store');
       this.owner.register('service:store', storeService);
     });
-<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO: Fix this component
@@ -105,8 +101,6 @@ module('Integration | Component | search select', function (hooks) {
         'aria-valid-attr-value': { enabled: false },
       },
     });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it renders', async function (assert) {

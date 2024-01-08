@@ -37,11 +37,7 @@
     <div class="column has-text-right">
       {{#if (eq @backendType "ssh")}}
         <PopupMenu @name="role-ssh-nav">
-<<<<<<< HEAD
           <nav class="menu" aria-label="navigation for managing SSH role {{@item.id}}">
-=======
-          <nav class="menu">
->>>>>>> 4cb759cfc9 (fixed log)
             <ul class="menu-list">
               {{#if (eq @item.keyType "otp")}}
                 {{#if @item.generatePath.isPending}}

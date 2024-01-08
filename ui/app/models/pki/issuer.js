@@ -135,7 +135,6 @@ export default class PkiIssuerModel extends Model {
   @attr importedKeys;
   @attr mapping;
 
-<<<<<<< HEAD
   @lazyCapabilities(apiPath`${'backend'}/issuer/${'issuerId'}`, 'backend', 'issuerId') issuerPath;
   @lazyCapabilities(apiPath`${'backend'}/root/rotate/exported`, 'backend') rotateExported;
   @lazyCapabilities(apiPath`${'backend'}/root/rotate/internal`, 'backend') rotateInternal;
@@ -144,15 +143,6 @@ export default class PkiIssuerModel extends Model {
   @lazyCapabilities(apiPath`${'backend'}/intermediate/cross-sign`, 'backend') crossSignPath;
   @lazyCapabilities(apiPath`${'backend'}/issuer/${'issuerId'}/sign-intermediate`, 'backend', 'issuerId')
   signIntermediate;
-=======
-  @lazyCapabilities(apiPath`${'backend'}/issuer/${'issuerId'}`) issuerPath;
-  @lazyCapabilities(apiPath`${'backend'}/root/rotate/exported`) rotateExported;
-  @lazyCapabilities(apiPath`${'backend'}/root/rotate/internal`) rotateInternal;
-  @lazyCapabilities(apiPath`${'backend'}/root/rotate/existing`) rotateExisting;
-  @lazyCapabilities(apiPath`${'backend'}/root`, 'backend') deletePath;
-  @lazyCapabilities(apiPath`${'backend'}/intermediate/cross-sign`) crossSignPath;
-  @lazyCapabilities(apiPath`${'backend'}/issuer/${'issuerId'}/sign-intermediate`) signIntermediate;
->>>>>>> 4cb759cfc9 (fixed log)
   get canRotateIssuer() {
     return (
       this.rotateExported.get('canUpdate') !== false ||

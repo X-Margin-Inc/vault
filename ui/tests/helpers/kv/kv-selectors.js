@@ -1,10 +1,6 @@
 /**
  * Copyright (c) HashiCorp, Inc.
-<<<<<<< HEAD
  * SPDX-License-Identifier: BUSL-1.1
-=======
- * SPDX-License-Identifier: MPL-2.0
->>>>>>> 4cb759cfc9 (fixed log)
  */
 
 export const PAGE = {
@@ -53,10 +49,7 @@ export const PAGE = {
     deleteOption: 'input#delete-version',
     deleteOptionLatest: 'input#delete-latest-version',
     deleteConfirm: '[data-test-delete-modal-confirm]',
-<<<<<<< HEAD
     syncAlert: (name) => (name ? `[data-test-sync-alert="${name}"]` : '[data-test-sync-alert]'),
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   },
   edit: {
     toggleDiff: '[data-test-toggle-input="Show diff"',
@@ -93,13 +86,8 @@ export const PAGE = {
   },
   paths: {
     copyButton: (label) => `${PAGE.infoRowValue(label)} button`,
-<<<<<<< HEAD
     codeSnippet: (section) => `[data-test-commands="${section}"] code`,
     snippetCopy: (section) => `[data-test-commands="${section}"] button`,
-=======
-    codeSnippet: (section) => `[data-test-code-snippet][data-test-commands="${section}"] code`,
-    snippetCopy: (section) => `[data-test-code-snippet][data-test-commands="${section}"] button`,
->>>>>>> 4cb759cfc9 (fixed log)
   },
 };
 

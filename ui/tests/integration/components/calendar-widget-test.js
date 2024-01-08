@@ -50,17 +50,9 @@ module('Integration | Component | calendar-widget', function (hooks) {
     const enabledMonths = ['January', 'February', 'March', 'April'];
     ARRAY_OF_MONTHS.forEach(function (month) {
       if (enabledMonths.includes(month)) {
-<<<<<<< HEAD
         assert.dom(`[data-test-calendar-month="${month}"]`).isNotDisabled(`${month} is enabled`);
       } else {
         assert.dom(`[data-test-calendar-month="${month}"]`).isDisabled(`${month} is disabled`);
-=======
-        assert
-          .dom(`[data-test-calendar-month="${month}"]`)
-          .doesNotHaveClass('is-readOnly', `${month} is enabled`);
-      } else {
-        assert.dom(`[data-test-calendar-month="${month}"]`).hasClass('is-readOnly', `${month} is read only`);
->>>>>>> 4cb759cfc9 (fixed log)
       }
     });
   });
@@ -86,17 +78,9 @@ module('Integration | Component | calendar-widget', function (hooks) {
     const disabledMonths = ['January', 'February', 'March'];
     ARRAY_OF_MONTHS.forEach(function (month) {
       if (disabledMonths.includes(month)) {
-<<<<<<< HEAD
         assert.dom(`[data-test-calendar-month="${month}"]`).isDisabled(`${month} is disabled`);
       } else {
         assert.dom(`[data-test-calendar-month="${month}"]`).isNotDisabled(`${month} is enabled`);
-=======
-        assert.dom(`[data-test-calendar-month="${month}"]`).hasClass('is-readOnly', `${month} is read only`);
-      } else {
-        assert
-          .dom(`[data-test-calendar-month="${month}"]`)
-          .doesNotHaveClass('is-readOnly', `${month} is enabled`);
->>>>>>> 4cb759cfc9 (fixed log)
       }
     });
   });
@@ -158,22 +142,13 @@ module('Integration | Component | calendar-widget', function (hooks) {
 
     await calendarDropdown.openCalendar();
     await calendarDropdown.clickPreviousYear();
-<<<<<<< HEAD
     await click(`[data-test-calendar-month="May"]`);
-=======
-    await click(`[data-test-calendar-month="March"]`);
->>>>>>> 4cb759cfc9 (fixed log)
     assert.propEqual(
       this.handleClientActivityQuery.lastCall.lastArg,
       {
         dateType: 'endDate',
-<<<<<<< HEAD
         monthIdx: 4,
         monthName: 'May',
-=======
-        monthIdx: 2,
-        monthName: 'March',
->>>>>>> 4cb759cfc9 (fixed log)
         year: 2017,
       },
       'it calls parent function with selected start date month/year'
@@ -200,17 +175,9 @@ module('Integration | Component | calendar-widget', function (hooks) {
     const prevYearEnabled = ['October', 'November', 'December'];
     ARRAY_OF_MONTHS.forEach(function (month) {
       if (prevYearEnabled.includes(month)) {
-<<<<<<< HEAD
         assert.dom(`[data-test-calendar-month="${month}"]`).isNotDisabled(`${month} is enabled`);
       } else {
         assert.dom(`[data-test-calendar-month="${month}"]`).isDisabled(`${month} is read only`);
-=======
-        assert
-          .dom(`[data-test-calendar-month="${month}"]`)
-          .doesNotHaveClass('is-readOnly', `${month} is enabled`);
-      } else {
-        assert.dom(`[data-test-calendar-month="${month}"]`).hasClass('is-readOnly', `${month} is read only`);
->>>>>>> 4cb759cfc9 (fixed log)
       }
     });
 
@@ -219,17 +186,9 @@ module('Integration | Component | calendar-widget', function (hooks) {
     const currYearEnabled = ['January', 'February', 'March', 'April'];
     ARRAY_OF_MONTHS.forEach(function (month) {
       if (currYearEnabled.includes(month)) {
-<<<<<<< HEAD
         assert.dom(`[data-test-calendar-month="${month}"]`).isNotDisabled(`${month} is enabled`);
       } else {
         assert.dom(`[data-test-calendar-month="${month}"]`).isDisabled(`${month} is disabled`);
-=======
-        assert
-          .dom(`[data-test-calendar-month="${month}"]`)
-          .doesNotHaveClass('is-readOnly', `${month} is enabled`);
-      } else {
-        assert.dom(`[data-test-calendar-month="${month}"]`).hasClass('is-readOnly', `${month} is read only`);
->>>>>>> 4cb759cfc9 (fixed log)
       }
     });
   });
@@ -247,10 +206,6 @@ module('Integration | Component | calendar-widget', function (hooks) {
 
     await calendarDropdown.openCalendar();
     assert.dom('[data-test-next-year]').isDisabled('Future year is disabled');
-<<<<<<< HEAD
-=======
-
->>>>>>> 4cb759cfc9 (fixed log)
     for (const year of [2017, 2016, 2015]) {
       await calendarDropdown.clickPreviousYear();
       assert.dom('[data-test-display-year]').hasText(year.toString());
@@ -259,30 +214,16 @@ module('Integration | Component | calendar-widget', function (hooks) {
     assert.dom('[data-test-previous-year]').isDisabled('previous year is disabled');
     assert.dom('[data-test-next-year]').isEnabled('next year is enabled');
 
-<<<<<<< HEAD
     const disabledMonths = ['January', 'February', 'March'];
     ARRAY_OF_MONTHS.forEach(function (month) {
       if (disabledMonths.includes(month)) {
         assert.dom(`[data-test-calendar-month="${month}"]`).isDisabled(`${month} is disabled`);
       } else {
         assert.dom(`[data-test-calendar-month="${month}"]`).isNotDisabled(`${month} is enabled`);
-=======
-    assert.dom('.calendar-widget .is-readOnly').exists('Some months disabled');
-
-    const disabledMonths = ['January', 'February', 'March'];
-    ARRAY_OF_MONTHS.forEach(function (month) {
-      if (disabledMonths.includes(month)) {
-        assert.dom(`[data-test-calendar-month="${month}"]`).hasClass('is-readOnly', `${month} is read only`);
-      } else {
-        assert
-          .dom(`[data-test-calendar-month="${month}"]`)
-          .doesNotHaveClass('is-readOnly', `${month} is enabled`);
->>>>>>> 4cb759cfc9 (fixed log)
       }
     });
 
     await click('[data-test-next-year]');
-<<<<<<< HEAD
     ARRAY_OF_MONTHS.forEach(function (month) {
       assert.dom(`[data-test-calendar-month="${month}"]`).isNotDisabled(`${month} is enabled for 2016`);
     });
@@ -291,28 +232,13 @@ module('Integration | Component | calendar-widget', function (hooks) {
       assert.dom(`[data-test-calendar-month="${month}"]`).isNotDisabled(`${month} is enabled for 2017`);
     });
     await click('[data-test-next-year]');
-=======
-    assert.dom('.calendar-widget .is-readOnly').doesNotExist('All months enabled for 2016');
-    await click('[data-test-next-year]');
-    assert.dom('.calendar-widget .is-readOnly').doesNotExist('All months enabled for 2017');
-    await click('[data-test-next-year]');
-    assert.dom('.calendar-widget .is-readOnly').exists('Some months disabled for 2018');
->>>>>>> 4cb759cfc9 (fixed log)
 
     const enabledMonths = ['January', 'February', 'March', 'April'];
     ARRAY_OF_MONTHS.forEach(function (month) {
       if (enabledMonths.includes(month)) {
-<<<<<<< HEAD
         assert.dom(`[data-test-calendar-month="${month}"]`).isNotDisabled(`${month} is enabled`);
       } else {
         assert.dom(`[data-test-calendar-month="${month}"]`).isDisabled(`${month} is disabled`);
-=======
-        assert
-          .dom(`[data-test-calendar-month="${month}"]`)
-          .doesNotHaveClass('is-readOnly', `${month} is enabled`);
-      } else {
-        assert.dom(`[data-test-calendar-month="${month}"]`).hasClass('is-readOnly', `${month} is read only`);
->>>>>>> 4cb759cfc9 (fixed log)
       }
     });
   });

@@ -15,10 +15,7 @@ import (
 // logFlags are the 'log' related flags that can be shared across commands.
 type logFlags struct {
 	flagCombineLogs       bool
-<<<<<<< HEAD
 	flagDisableGatedLogs  bool
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 	flagLogLevel          string
 	flagLogFormat         string
 	flagLogFile           string
@@ -45,7 +42,6 @@ func (f *FlagSet) addLogFlags(l *logFlags) {
 		Hidden:  true,
 	})
 
-<<<<<<< HEAD
 	f.BoolVar(&BoolVar{
 		Name:    flagDisableGatedLogs,
 		Target:  &l.flagDisableGatedLogs,
@@ -53,8 +49,6 @@ func (f *FlagSet) addLogFlags(l *logFlags) {
 		Hidden:  true,
 	})
 
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 	f.StringVar(&StringVar{
 		Name:       flagNameLogLevel,
 		Target:     &l.flagLogLevel,

@@ -1,9 +1,5 @@
 // Copyright (c) HashiCorp, Inc.
-<<<<<<< HEAD
 // SPDX-License-Identifier: BUSL-1.1
-=======
-// SPDX-License-Identifier: MPL-2.0
->>>>>>> 4cb759cfc9 (fixed log)
 
 package ldap
 
@@ -111,13 +107,8 @@ func NewLdapAuthMethod(conf *auth.AuthConfig) (auth.AuthMethod, error) {
 
 	if passReadPeriodRaw, ok := conf.Config["password_read_period"]; ok {
 		passReadPeriod, err := parseutil.ParseDurationSecond(passReadPeriodRaw)
-<<<<<<< HEAD
 		if err != nil || passReadPeriod <= 0 {
 			return nil, fmt.Errorf("error parsing 'password_read_period' value into a positive value: %w", err)
-=======
-		if err != nil {
-			return nil, fmt.Errorf("error parsing 'pass_read_period' value: %w", err)
->>>>>>> 4cb759cfc9 (fixed log)
 		}
 		readPeriod = passReadPeriod
 	} else {

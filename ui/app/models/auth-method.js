@@ -51,11 +51,7 @@ const ModelExport = AuthMethodModel.extend({
   }),
   sealWrap: attr('boolean', {
     helpText:
-<<<<<<< HEAD
       'When enabled - if a seal supporting seal wrapping is specified in the configuration, all critical security parameters (CSPs) in this backend will be seal wrapped. (For KV mounts, all values will be seal wrapped.) This can only be specified at mount time.',
-=======
-      'When enabled - if a seal supporting seal wrapping is specified in the configuration, all critical security parameters (CSPs) in this backend will be seal wrapped. (For K/V mounts, all values will be seal wrapped.) This can only be specified at mount time.',
->>>>>>> 4cb759cfc9 (fixed log)
   }),
 
   // used when the `auth` prefix is important,

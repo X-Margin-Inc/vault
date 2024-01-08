@@ -9,14 +9,11 @@ import { currentRouteName } from '@ember/test-helpers';
 import authPage from 'vault/tests/pages/auth';
 import { setupMirage } from 'ember-cli-mirage/test-support';
 import ENV from 'vault/config/environment';
-<<<<<<< HEAD
 import { createTokenCmd, runCmd, tokenWithPolicyCmd } from '../helpers/commands';
 
 const navLink = (title) => `[data-test-sidebar-nav-link="${title}"]`;
 // Matches the chroot namespace on the mirage handler
 const namespace = 'my-ns';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 module('Acceptance | chroot-namespace enterprise ui', function (hooks) {
   setupApplicationTest(hooks);
@@ -34,7 +31,6 @@ module('Acceptance | chroot-namespace enterprise ui', function (hooks) {
     assert.strictEqual(currentRouteName(), 'vault.cluster.dashboard', 'goes to dashboard page');
     assert.dom('[data-test-badge-namespace]').includesText('root', 'Shows root namespace badge');
   });
-<<<<<<< HEAD
 
   test('a user with default policy should see nav items', async function (assert) {
     await authPage.login();
@@ -128,6 +124,4 @@ module('Acceptance | chroot-namespace enterprise ui', function (hooks) {
     await authPage.login();
     await runCmd(`delete sys/namespaces/${namespace}`);
   });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 });

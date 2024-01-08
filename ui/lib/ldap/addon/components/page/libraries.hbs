@@ -6,7 +6,6 @@
 <TabPageHeader @model={{@backendModel}} @breadcrumbs={{@breadcrumbs}}>
   <:toolbarFilters>
     {{#if (and (not @promptConfig) @libraries)}}
-<<<<<<< HEAD
       <FilterInput
         aria-label="Filter libraries"
         placeholder="Filter libraries"
@@ -14,9 +13,6 @@
         @wait={{200}}
         @onInput={{fn (mut this.filterValue)}}
       />
-=======
-      <FilterInput @placeholder="Filter libraries" @onInput={{fn (mut this.filterValue)}} />
->>>>>>> 4cb759cfc9 (fixed log)
     {{/if}}
   </:toolbarFilters>
   <:toolbarActions>

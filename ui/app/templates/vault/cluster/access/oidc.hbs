@@ -20,13 +20,7 @@
         <br />
       {{/if}}
       methods and source of identity to any client applications.
-<<<<<<< HEAD
       <Hds::Link::Inline @href={{doc-link "/vault/tutorials/auth-methods/oidc-identity-provider"}}>Learn more</Hds::Link::Inline>
-=======
-      <DocLink @path="/vault/tutorials/auth-methods/oidc-identity-provider">
-        Learn more
-      </DocLink>
->>>>>>> 4cb759cfc9 (fixed log)
     </p>
     {{#if this.isCta}}
       <Hds::Button
@@ -39,11 +33,7 @@
   {{#unless this.isCta}}
     {{! show tab links in list routes }}
     <div class="tabs-container box is-sideless is-fullwidth is-paddingless is-marginless" data-test-oidc-tabs>
-<<<<<<< HEAD
       <nav class="tabs" aria-label="navigation for managing Open ID Connect">
-=======
-      <nav class="tabs">
->>>>>>> 4cb759cfc9 (fixed log)
         <ul>
           <LinkTo @route="vault.cluster.access.oidc.clients" data-test-tab="clients">
             Applications

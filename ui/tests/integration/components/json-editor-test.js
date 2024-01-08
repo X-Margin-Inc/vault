@@ -10,10 +10,7 @@ import { render, fillIn, find, waitUntil, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import jsonEditor from '../../pages/components/json-editor';
 import sinon from 'sinon';
-<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 const component = create(jsonEditor);
 
@@ -33,7 +30,6 @@ module('Integration | Component | json-editor', function (hooks) {
     this.set('json_blob', JSON_BLOB);
     this.set('bad_json_blob', BAD_JSON_BLOB);
     this.set('hashi-read-only-theme', 'hashi-read-only auto-height');
-<<<<<<< HEAD
     setRunOptions({
       rules: {
         // CodeMirror has a secret textarea without a label that causes this problem
@@ -42,8 +38,6 @@ module('Integration | Component | json-editor', function (hooks) {
         'color-contrast': { enabled: false },
       },
     });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it renders', async function (assert) {
@@ -88,10 +82,6 @@ module('Integration | Component | json-editor', function (hooks) {
       @theme={{this.hashi-read-only-theme}}
       @readOnly={{true}}
     />`);
-<<<<<<< HEAD
-=======
-
->>>>>>> 4cb759cfc9 (fixed log)
     assert.dom('.cm-s-hashi-read-only').hasStyle({
       background: 'rgb(247, 248, 250) none repeat scroll 0% 0% / auto padding-box border-box',
     });
@@ -119,7 +109,6 @@ module('Integration | Component | json-editor', function (hooks) {
     assert.dom('.CodeMirror-code').hasText(`1${this.example}`, 'Example is restored');
     assert.strictEqual(this.value, null, 'Value is cleared on restore example');
   });
-<<<<<<< HEAD
 
   test('obscure option works correctly', async function (assert) {
     this.set('readOnly', true);
@@ -141,6 +130,4 @@ module('Integration | Component | json-editor', function (hooks) {
     assert.dom('[data-test-toggle-input="revealValues"]').doesNotExist('reveal values toggle is hidden');
     assert.dom('.CodeMirror-code').hasText(JSON_BLOB, 'shows data with real values on edit mode');
   });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 });

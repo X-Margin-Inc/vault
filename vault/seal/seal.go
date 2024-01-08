@@ -12,10 +12,7 @@ import (
 	"reflect"
 	"sort"
 	"strings"
-<<<<<<< HEAD
 	"sync"
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 	"sync/atomic"
 	"time"
 
@@ -698,7 +695,6 @@ func (a *access) Decrypt(ctx context.Context, ciphertext *MultiWrapValue, option
 		oldKey bool
 		err    error
 	}
-<<<<<<< HEAD
 
 	resultCh := make(chan *result)
 	var resultWg sync.WaitGroup
@@ -709,17 +705,10 @@ func (a *access) Decrypt(ctx context.Context, ciphertext *MultiWrapValue, option
 			}
 		}()
 		resultWg.Wait()
-=======
-	resultCh := make(chan *result)
-	stopCh := make(chan struct{})
-	defer func() {
-		close(stopCh)
->>>>>>> 4cb759cfc9 (fixed log)
 		close(resultCh)
 	}()
 
 	reportResult := func(name string, plaintext []byte, oldKey bool, err error) {
-<<<<<<< HEAD
 		resultCh <- &result{
 			name:   name,
 			pt:     plaintext,
@@ -727,18 +716,6 @@ func (a *access) Decrypt(ctx context.Context, ciphertext *MultiWrapValue, option
 			err:    err,
 		}
 		resultWg.Done()
-=======
-		select {
-		case <-stopCh:
-		default:
-			resultCh <- &result{
-				name:   name,
-				pt:     plaintext,
-				oldKey: oldKey,
-				err:    err,
-			}
-		}
->>>>>>> 4cb759cfc9 (fixed log)
 	}
 
 	decrypt := func(sealWrapper *SealWrapper) {
@@ -756,10 +733,7 @@ func (a *access) Decrypt(ctx context.Context, ciphertext *MultiWrapValue, option
 			for _, sealWrapper := range wrappersByPriority {
 				keyId, err := sealWrapper.Wrapper.KeyId(ctx)
 				if err != nil {
-<<<<<<< HEAD
 					resultWg.Add(1)
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 					go reportResult(sealWrapper.Name, nil, false, err)
 					continue
 				}
@@ -771,19 +745,13 @@ func (a *access) Decrypt(ctx context.Context, ciphertext *MultiWrapValue, option
 		}
 	}
 
-<<<<<<< HEAD
 	resultWg.Add(1)
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 	go decrypt(first)
 	for _, sealWrapper := range wrappersByPriority {
 		sealWrapper := sealWrapper
 		if sealWrapper != first {
 			timer := time.AfterFunc(wrapperDecryptHighPriorityHeadStart, func() {
-<<<<<<< HEAD
 				resultWg.Add(1)
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 				decrypt(sealWrapper)
 			})
 			defer timer.Stop()

@@ -8,10 +8,7 @@ import (
 	"context"
 	"fmt"
 	"strconv"
-<<<<<<< HEAD
 	"strings"
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 	"sync"
 
 	"github.com/hashicorp/eventlogger"
@@ -22,7 +19,6 @@ import (
 	"github.com/hashicorp/vault/sdk/logical"
 )
 
-<<<<<<< HEAD
 var _ audit.Backend = (*Backend)(nil)
 
 // Backend is the audit backend for the syslog-based audit store.
@@ -48,15 +44,6 @@ func Factory(_ context.Context, conf *audit.BackendConfig, useEventLogger bool, 
 
 	if conf.SaltView == nil {
 		return nil, fmt.Errorf("%s: nil salt view", op)
-=======
-func Factory(ctx context.Context, conf *audit.BackendConfig, useEventLogger bool, headersConfig audit.HeaderFormatter) (audit.Backend, error) {
-	if conf.SaltConfig == nil {
-		return nil, fmt.Errorf("nil salt config")
-	}
-
-	if conf.SaltView == nil {
-		return nil, fmt.Errorf("nil salt view")
->>>>>>> 4cb759cfc9 (fixed log)
 	}
 
 	// Get facility or default to AUTH
@@ -71,53 +58,14 @@ func Factory(ctx context.Context, conf *audit.BackendConfig, useEventLogger bool
 		tag = "vault"
 	}
 
-<<<<<<< HEAD
 	cfg, err := formatterConfig(conf.Config)
 	if err != nil {
 		return nil, fmt.Errorf("%s: failed to create formatter config: %w", op, err)
-=======
-	var cfgOpts []audit.Option
-
-	if format, ok := conf.Config["format"]; ok {
-		cfgOpts = append(cfgOpts, audit.WithFormat(format))
-	}
-
-	// Check if hashing of accessor is disabled
-	if hmacAccessorRaw, ok := conf.Config["hmac_accessor"]; ok {
-		v, err := strconv.ParseBool(hmacAccessorRaw)
-		if err != nil {
-			return nil, err
-		}
-		cfgOpts = append(cfgOpts, audit.WithHMACAccessor(v))
-	}
-
-	// Check if raw logging is enabled
-	if raw, ok := conf.Config["log_raw"]; ok {
-		v, err := strconv.ParseBool(raw)
-		if err != nil {
-			return nil, err
-		}
-		cfgOpts = append(cfgOpts, audit.WithRaw(v))
-	}
-
-	if elideListResponsesRaw, ok := conf.Config["elide_list_responses"]; ok {
-		v, err := strconv.ParseBool(elideListResponsesRaw)
-		if err != nil {
-			return nil, err
-		}
-		cfgOpts = append(cfgOpts, audit.WithElision(v))
-	}
-
-	cfg, err := audit.NewFormatterConfig(cfgOpts...)
-	if err != nil {
-		return nil, err
->>>>>>> 4cb759cfc9 (fixed log)
 	}
 
 	// Get the logger
 	logger, err := gsyslog.NewLogger(gsyslog.LOG_INFO, facility, tag)
 	if err != nil {
-<<<<<<< HEAD
 		return nil, fmt.Errorf("%s: cannot create logger: %w", op, err)
 	}
 
@@ -127,26 +75,12 @@ func Factory(ctx context.Context, conf *audit.BackendConfig, useEventLogger bool
 		name:         conf.MountPath,
 		saltConfig:   conf.SaltConfig,
 		saltView:     conf.SaltView,
-=======
-		return nil, err
-	}
-
-	b := &Backend{
-		logger:       logger,
-		saltConfig:   conf.SaltConfig,
-		saltView:     conf.SaltView,
-		formatConfig: cfg,
->>>>>>> 4cb759cfc9 (fixed log)
 	}
 
 	// Configure the formatter for either case.
 	f, err := audit.NewEntryFormatter(b.formatConfig, b, audit.WithHeaderFormatter(headersConfig), audit.WithPrefix(conf.Config["prefix"]))
 	if err != nil {
-<<<<<<< HEAD
 		return nil, fmt.Errorf("%s: error creating formatter: %w", op, err)
-=======
-		return nil, fmt.Errorf("error creating formatter: %w", err)
->>>>>>> 4cb759cfc9 (fixed log)
 	}
 
 	var w audit.Writer
@@ -159,17 +93,12 @@ func Factory(ctx context.Context, conf *audit.BackendConfig, useEventLogger bool
 
 	fw, err := audit.NewEntryFormatterWriter(b.formatConfig, f, w)
 	if err != nil {
-<<<<<<< HEAD
 		return nil, fmt.Errorf("%s: error creating formatter writer: %w", op, err)
-=======
-		return nil, fmt.Errorf("error creating formatter writer: %w", err)
->>>>>>> 4cb759cfc9 (fixed log)
 	}
 
 	b.formatter = fw
 
 	if useEventLogger {
-<<<<<<< HEAD
 		b.nodeIDList = []eventlogger.NodeID{}
 		b.nodeMap = make(map[eventlogger.NodeID]eventlogger.Node)
 
@@ -203,63 +132,6 @@ func Factory(ctx context.Context, conf *audit.BackendConfig, useEventLogger bool
 }
 
 // Deprecated: Use eventlogger.
-=======
-		var opts []event.Option
-
-		// Get facility or default to AUTH
-		if facility, ok := conf.Config["facility"]; ok {
-			opts = append(opts, event.WithFacility(facility))
-		}
-
-		if tag, ok := conf.Config["tag"]; ok {
-			opts = append(opts, event.WithTag(tag))
-		}
-
-		b.nodeIDList = make([]eventlogger.NodeID, 2)
-		b.nodeMap = make(map[eventlogger.NodeID]eventlogger.Node)
-
-		formatterNodeID, err := event.GenerateNodeID()
-		if err != nil {
-			return nil, fmt.Errorf("error generating random NodeID for formatter node: %w", err)
-		}
-		b.nodeIDList[0] = formatterNodeID
-		b.nodeMap[formatterNodeID] = f
-
-		n, err := event.NewSyslogSink(b.formatConfig.RequiredFormat.String(), opts...)
-		if err != nil {
-			return nil, fmt.Errorf("error creating syslog sink node: %w", err)
-		}
-		sinkNode := &audit.SinkWrapper{Name: conf.MountPath, Sink: n}
-
-		sinkNodeID, err := event.GenerateNodeID()
-		if err != nil {
-			return nil, fmt.Errorf("error generating random NodeID for sink node: %w", err)
-		}
-		b.nodeIDList[1] = sinkNodeID
-		b.nodeMap[sinkNodeID] = sinkNode
-	}
-	return b, nil
-}
-
-// Backend is the audit backend for the syslog-based audit store.
-type Backend struct {
-	logger gsyslog.Syslogger
-
-	formatter    *audit.EntryFormatterWriter
-	formatConfig audit.FormatterConfig
-
-	saltMutex  sync.RWMutex
-	salt       *salt.Salt
-	saltConfig *salt.Config
-	saltView   logical.Storage
-
-	nodeIDList []eventlogger.NodeID
-	nodeMap    map[eventlogger.NodeID]eventlogger.Node
-}
-
-var _ audit.Backend = (*Backend)(nil)
-
->>>>>>> 4cb759cfc9 (fixed log)
 func (b *Backend) LogRequest(ctx context.Context, in *logical.LogInput) error {
 	var buf bytes.Buffer
 	if err := b.formatter.FormatAndWriteRequest(ctx, &buf, in); err != nil {
@@ -271,10 +143,7 @@ func (b *Backend) LogRequest(ctx context.Context, in *logical.LogInput) error {
 	return err
 }
 
-<<<<<<< HEAD
 // Deprecated: Use eventlogger.
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 func (b *Backend) LogResponse(ctx context.Context, in *logical.LogInput) error {
 	var buf bytes.Buffer
 	if err := b.formatter.FormatAndWriteResponse(ctx, &buf, in); err != nil {
@@ -325,21 +194,12 @@ func (b *Backend) Salt(ctx context.Context) (*salt.Salt, error) {
 	if b.salt != nil {
 		return b.salt, nil
 	}
-<<<<<<< HEAD
 	s, err := salt.NewSalt(ctx, b.saltView, b.saltConfig)
 	if err != nil {
 		return nil, err
 	}
 	b.salt = s
 	return s, nil
-=======
-	salt, err := salt.NewSalt(ctx, b.saltView, b.saltConfig)
-	if err != nil {
-		return nil, err
-	}
-	b.salt = salt
-	return salt, nil
->>>>>>> 4cb759cfc9 (fixed log)
 }
 
 func (b *Backend) Invalidate(_ context.Context) {
@@ -348,7 +208,6 @@ func (b *Backend) Invalidate(_ context.Context) {
 	b.salt = nil
 }
 
-<<<<<<< HEAD
 // formatterConfig creates the configuration required by a formatter node using
 // the config map supplied to the factory.
 func formatterConfig(config map[string]string) (audit.FormatterConfig, error) {
@@ -487,22 +346,4 @@ func (b *Backend) EventType() eventlogger.EventType {
 // HasFiltering determines if the first node for the pipeline is an eventlogger.NodeTypeFilter.
 func (b *Backend) HasFiltering() bool {
 	return len(b.nodeIDList) > 0 && b.nodeMap[b.nodeIDList[0]].Type() == eventlogger.NodeTypeFilter
-=======
-// RegisterNodesAndPipeline registers the nodes and a pipeline as required by
-// the audit.Backend interface.
-func (b *Backend) RegisterNodesAndPipeline(broker *eventlogger.Broker, name string) error {
-	for id, node := range b.nodeMap {
-		if err := broker.RegisterNode(id, node); err != nil {
-			return err
-		}
-	}
-
-	pipeline := eventlogger.Pipeline{
-		PipelineID: eventlogger.PipelineID(name),
-		EventType:  eventlogger.EventType("audit"),
-		NodeIDs:    b.nodeIDList,
-	}
-
-	return broker.RegisterPipeline(pipeline)
->>>>>>> 4cb759cfc9 (fixed log)
 }

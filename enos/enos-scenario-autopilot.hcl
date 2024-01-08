@@ -50,14 +50,9 @@ scenario "autopilot" {
       rhel   = provider.enos.rhel
       ubuntu = provider.enos.ubuntu
     }
-<<<<<<< HEAD
     manage_service                     = matrix.artifact_type == "bundle"
     vault_install_dir                  = matrix.artifact_type == "bundle" ? var.vault_install_dir : global.vault_install_dir_packages[matrix.distro]
     vault_autopilot_default_max_leases = semverconstraint(matrix.initial_version, ">=1.16.0-0") ? "300000" : ""
-=======
-    manage_service    = matrix.artifact_type == "bundle"
-    vault_install_dir = matrix.artifact_type == "bundle" ? var.vault_install_dir : global.vault_install_dir_packages[matrix.distro]
->>>>>>> 4cb759cfc9 (fixed log)
   }
 
   step "build_vault" {
@@ -530,7 +525,6 @@ scenario "autopilot" {
     }
   }
 
-<<<<<<< HEAD
   # Verify that upgrading from a version <1.16.0 does not introduce Default LCQ
   step "verify_default_lcq" {
     module = module.vault_verify_default_lcq
@@ -552,8 +546,6 @@ scenario "autopilot" {
     }
   }
 
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   output "audit_device_file_path" {
     description = "The file path for the file audit device, if enabled"
     value       = step.create_vault_cluster.audit_device_file_path

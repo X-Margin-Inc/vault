@@ -51,13 +51,10 @@ func NewConfig(mc ManagerConfig, templates ctconfig.TemplateConfigs) (*ctconfig.
 		conf.Vault.Transport.DisableKeepAlives = pointerutil.BoolPtr(true)
 	}
 
-<<<<<<< HEAD
 	if mc.AgentConfig.TemplateConfig != nil && mc.AgentConfig.TemplateConfig.MaxConnectionsPerHost != 0 {
 		conf.Vault.Transport.MaxConnsPerHost = &mc.AgentConfig.TemplateConfig.MaxConnectionsPerHost
 	}
 
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 	conf.Vault.SSL = &ctconfig.SSLConfig{
 		Enabled:    pointerutil.BoolPtr(false),
 		Verify:     pointerutil.BoolPtr(false),

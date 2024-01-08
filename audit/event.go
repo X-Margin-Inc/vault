@@ -12,11 +12,7 @@ import (
 // NewEvent should be used to create an audit event. The subtype field is needed
 // for audit events. It will generate an ID if no ID is supplied. Supported
 // options: WithID, WithNow.
-<<<<<<< HEAD
 func NewEvent(s subtype, opt ...Option) (*AuditEvent, error) {
-=======
-func NewEvent(s subtype, opt ...Option) (*auditEvent, error) {
->>>>>>> 4cb759cfc9 (fixed log)
 	const op = "audit.newEvent"
 
 	// Get the default options
@@ -34,11 +30,7 @@ func NewEvent(s subtype, opt ...Option) (*auditEvent, error) {
 		}
 	}
 
-<<<<<<< HEAD
 	audit := &AuditEvent{
-=======
-	audit := &auditEvent{
->>>>>>> 4cb759cfc9 (fixed log)
 		ID:        opts.withID,
 		Timestamp: opts.withNow,
 		Version:   version,
@@ -52,13 +44,8 @@ func NewEvent(s subtype, opt ...Option) (*auditEvent, error) {
 }
 
 // validate attempts to ensure the audit event in its present state is valid.
-<<<<<<< HEAD
 func (a *AuditEvent) validate() error {
 	const op = "audit.(AuditEvent).validate"
-=======
-func (a *auditEvent) validate() error {
-	const op = "audit.(auditEvent).validate"
->>>>>>> 4cb759cfc9 (fixed log)
 
 	if a == nil {
 		return fmt.Errorf("%s: event is nil: %w", op, event.ErrInvalidParameter)

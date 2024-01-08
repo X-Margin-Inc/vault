@@ -113,15 +113,11 @@ func WithNow(now time.Time) Option {
 // WithFacility provides an Option to represent a 'facility' for a syslog sink.
 func WithFacility(facility string) Option {
 	return func(o *options) error {
-<<<<<<< HEAD
 		facility = strings.TrimSpace(facility)
 
 		if facility != "" {
 			o.withFacility = facility
 		}
-=======
-		o.withFacility = facility
->>>>>>> 4cb759cfc9 (fixed log)
 
 		return nil
 	}
@@ -130,15 +126,11 @@ func WithFacility(facility string) Option {
 // WithTag provides an Option to represent a 'tag' for a syslog sink.
 func WithTag(tag string) Option {
 	return func(o *options) error {
-<<<<<<< HEAD
 		tag = strings.TrimSpace(tag)
 
 		if tag != "" {
 			o.withTag = tag
 		}
-=======
-		o.withTag = tag
->>>>>>> 4cb759cfc9 (fixed log)
 
 		return nil
 	}

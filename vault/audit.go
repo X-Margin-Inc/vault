@@ -397,12 +397,7 @@ func (c *Core) persistAudit(ctx context.Context, table *MountTable, localOnly bo
 	return nil
 }
 
-<<<<<<< HEAD
 // setupAudits is invoked after we've loaded the audit table to initialize the audit backends
-=======
-// setupAudit is invoked after we've loaded the audit able to
-// initialize the audit backends
->>>>>>> 4cb759cfc9 (fixed log)
 func (c *Core) setupAudits(ctx context.Context) error {
 	c.auditLock.Lock()
 	defer c.auditLock.Unlock()
@@ -543,10 +538,6 @@ func (c *Core) newAuditBackend(ctx context.Context, entry *MountEntry, view logi
 	}
 
 	auditLogger := c.baseLogger.Named("audit")
-<<<<<<< HEAD
-=======
-	c.AddLogger(auditLogger)
->>>>>>> 4cb759cfc9 (fixed log)
 
 	switch entry.Type {
 	case "file":
@@ -577,10 +568,7 @@ func (c *Core) newAuditBackend(ctx context.Context, entry *MountEntry, view logi
 		}
 	}
 
-<<<<<<< HEAD
 	c.AddLogger(auditLogger)
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 	return be, err
 }
 

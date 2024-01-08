@@ -18,10 +18,7 @@ import {
   overrideMirageResponse,
   overrideCapabilities,
 } from 'vault/tests/helpers/oidc-config';
-<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 const searchSelect = create(ss);
 
@@ -65,7 +62,6 @@ module('Integration | Component | oidc/client-form', function (hooks) {
         },
       };
     });
-<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO: fix RadioCard component (replace with HDS)
@@ -77,8 +73,6 @@ module('Integration | Component | oidc/client-form', function (hooks) {
         'color-contrast': { enabled: false },
       },
     });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it should save new client', async function (assert) {

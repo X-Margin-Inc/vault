@@ -56,11 +56,8 @@ type Config struct {
 const (
 	DisableIdleConnsEnv  = "VAULT_AGENT_DISABLE_IDLE_CONNECTIONS"
 	DisableKeepAlivesEnv = "VAULT_AGENT_DISABLE_KEEP_ALIVES"
-<<<<<<< HEAD
 
 	DefaultTemplateConfigMaxConnsPerHost = 10
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 )
 
 func (c *Config) Prune() {
@@ -94,10 +91,7 @@ type Vault struct {
 	ClientCert       string      `hcl:"client_cert"`
 	ClientKey        string      `hcl:"client_key"`
 	TLSServerName    string      `hcl:"tls_server_name"`
-<<<<<<< HEAD
 	Namespace        string      `hcl:"namespace"`
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 	Retry            *Retry      `hcl:"retry"`
 }
 
@@ -174,11 +168,8 @@ type TemplateConfig struct {
 	ExitOnRetryFailure       bool          `hcl:"exit_on_retry_failure"`
 	StaticSecretRenderIntRaw interface{}   `hcl:"static_secret_render_interval"`
 	StaticSecretRenderInt    time.Duration `hcl:"-"`
-<<<<<<< HEAD
 	MaxConnectionsPerHostRaw interface{}   `hcl:"max_connections_per_host"`
 	MaxConnectionsPerHost    int           `hcl:"-"`
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 }
 
 type ExecConfig struct {
@@ -1140,7 +1131,6 @@ func parseTemplateConfig(result *Config, list *ast.ObjectList) error {
 		result.TemplateConfig.StaticSecretRenderIntRaw = nil
 	}
 
-<<<<<<< HEAD
 	if result.TemplateConfig.MaxConnectionsPerHostRaw != nil {
 		var err error
 		if result.TemplateConfig.MaxConnectionsPerHost, err = parseutil.SafeParseInt(result.TemplateConfig.MaxConnectionsPerHostRaw); err != nil {
@@ -1152,8 +1142,6 @@ func parseTemplateConfig(result *Config, list *ast.ObjectList) error {
 		result.TemplateConfig.MaxConnectionsPerHost = DefaultTemplateConfigMaxConnsPerHost
 	}
 
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 	return nil
 }
 

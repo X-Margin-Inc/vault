@@ -78,13 +78,9 @@ module('Integration | Component | Select', function (hooks) {
 
   test('it calls onChange when an item is selected', async function (assert) {
     this.set('onChange', sinon.spy());
-<<<<<<< HEAD
     await render(
       hbs`<Select @label={{this.label}} @options={{this.options}} @name={{this.name}} @onChange={{this.onChange}}/>`
     );
-=======
-    await render(hbs`<Select @options={{this.options}} @name={{this.name}} @onChange={{this.onChange}}/>`);
->>>>>>> 4cb759cfc9 (fixed log)
     await fillIn('[data-test-select="foo"]', 'bar');
 
     assert.ok(this.onChange.calledOnce);

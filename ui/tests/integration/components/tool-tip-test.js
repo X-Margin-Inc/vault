@@ -11,11 +11,7 @@ import hbs from 'htmlbars-inline-precompile';
 module('Integration | Component | tool-tip', function (hooks) {
   setupRenderingTest(hooks);
 
-<<<<<<< HEAD
   test.skip('it should open and close on mouse enter and leave', async function (assert) {
-=======
-  test('it should open and close on mouse enter and leave', async function (assert) {
->>>>>>> 4cb759cfc9 (fixed log)
     await render(hbs`
       <ToolTip as |T|>
         <T.Trigger>

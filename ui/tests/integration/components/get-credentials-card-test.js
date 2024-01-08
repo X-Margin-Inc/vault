@@ -10,10 +10,7 @@ import { click, render } from '@ember/test-helpers';
 import { selectChoose, clickTrigger } from 'ember-power-select/test-support/helpers';
 import hbs from 'htmlbars-inline-precompile';
 import sinon from 'sinon';
-<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 const storeService = Service.extend({
   query(modelType) {
@@ -42,7 +39,6 @@ module('Integration | Component | get-credentials-card', function (hooks) {
     this.owner.register('service:store', storeService);
     this.set('title', 'Get Credentials');
     this.set('searchLabel', 'Role to use');
-<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO: Fix SearchSelect component
@@ -50,8 +46,6 @@ module('Integration | Component | get-credentials-card', function (hooks) {
         label: { enabled: false },
       },
     });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   });
 
   hooks.afterEach(function () {

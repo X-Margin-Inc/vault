@@ -9,10 +9,7 @@ import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { setupMirage } from 'ember-cli-mirage/test-support';
 import { click, settled, fillIn } from '@ember/test-helpers';
-<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 const ts = 'data-test-kms-provider';
 const root = {
@@ -49,7 +46,6 @@ module('Integration | Component | keymgmt/provider-edit', function (hooks) {
         return '';
       },
     });
-<<<<<<< HEAD
 
     setRunOptions({
       rules: {
@@ -58,8 +54,6 @@ module('Integration | Component | keymgmt/provider-edit', function (hooks) {
         'scrollable-region-focusable': { enabled: false },
       },
     });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it should render show view', async function (assert) {

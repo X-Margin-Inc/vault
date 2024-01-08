@@ -6,11 +6,7 @@
 'use strict';
 
 module.exports = {
-<<<<<<< HEAD
   test_page: 'tests/index.html?hidepassed&enableA11yAudit',
-=======
-  test_page: 'tests/index.html?hidepassed',
->>>>>>> 4cb759cfc9 (fixed log)
   tap_quiet_logs: true,
   tap_failed_tests_only: true,
   disable_watching: true,

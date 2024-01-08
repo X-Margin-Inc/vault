@@ -41,11 +41,7 @@ import (
 	credToken "github.com/hashicorp/vault/builtin/credential/token"
 	credUserpass "github.com/hashicorp/vault/builtin/credential/userpass"
 
-<<<<<<< HEAD
 	logicalKv "github.com/hashicorp/vault-plugin-secrets-kv"
-=======
-	logicalKv "github.com/X-Margin-Inc/vault-plugin-secrets-kv"
->>>>>>> 4cb759cfc9 (fixed log)
 	logicalDb "github.com/hashicorp/vault/builtin/logical/database"
 
 	physAerospike "github.com/hashicorp/vault/physical/aerospike"
@@ -152,11 +148,8 @@ const (
 	flagNameDisableRedirects = "disable-redirects"
 	// flagNameCombineLogs is used to specify whether log output should be combined and sent to stdout
 	flagNameCombineLogs = "combine-logs"
-<<<<<<< HEAD
 	// flagDisableGatedLogs is used to disable gated logs and immediately show the vault logs as they become available
 	flagDisableGatedLogs = "disable-gated-logs"
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 	// flagNameLogFile is used to specify the path to the log file that Vault should use for logging
 	flagNameLogFile = "log-file"
 	// flagNameLogRotateBytes is the flag used to specify the number of bytes a log file should be before it is rotated.

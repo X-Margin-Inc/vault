@@ -1651,7 +1651,6 @@ func TestLeaseCacheRestore_expired(t *testing.T) {
 	err := restoredCache.Restore(context.Background(), boltStorage)
 	assert.NoError(t, err)
 
-<<<<<<< HEAD
 	// The original mem cache should between one-to-three items.
 	// This will usually be three, but could be less if any renewals
 	// happens before this check, which will evict the expired cache entries.
@@ -1661,12 +1660,6 @@ func TestLeaseCacheRestore_expired(t *testing.T) {
 	require.NoError(t, err)
 	assert.LessOrEqual(t, len(beforeDB), 3)
 	assert.LessOrEqual(t, 1, len(beforeDB))
-=======
-	// The original mem cache should have all three items
-	beforeDB, err := lc.db.GetByPrefix(cachememdb.IndexNameID)
-	require.NoError(t, err)
-	assert.Len(t, beforeDB, 3)
->>>>>>> 4cb759cfc9 (fixed log)
 
 	// There should only be one item in the restored cache: the autoauth token
 	afterDB, err := restoredCache.db.GetByPrefix(cachememdb.IndexNameID)

@@ -24,17 +24,12 @@ export default AuthConfig.extend({
   oidcClientSecret: attr('string', {
     label: 'OIDC client secret',
   }),
-<<<<<<< HEAD
-
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   oidcDiscoveryCaPem: attr('string', {
     label: 'OIDC discovery CA PEM',
     editType: 'file',
     helpText:
       'The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used',
   }),
-<<<<<<< HEAD
 
   jwksCaPem: attr('string', {
     label: 'JWKS CA PEM',
@@ -53,8 +48,6 @@ export default AuthConfig.extend({
     label: 'OIDC response types',
   }),
 
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   jwtValidationPubkeys: attr({
     label: 'JWT validation public keys',
     editType: 'stringArray',
@@ -63,22 +56,15 @@ export default AuthConfig.extend({
   jwtSupportedAlgs: attr({
     label: 'JWT supported algorithms',
   }),
-<<<<<<< HEAD
 
   boundIssuer: attr('string', {
     helpText: 'The value against which to match the iss claim in a JWT',
   }),
 
-=======
-  boundIssuer: attr('string', {
-    helpText: 'The value against which to match the iss claim in a JWT',
-  }),
->>>>>>> 4cb759cfc9 (fixed log)
   fieldGroups: computed('constructor.modelName', 'newFields', function () {
     const type = this.constructor.modelName.split('/')[1].toUpperCase();
     let groups = [
       {
-<<<<<<< HEAD
         default: [
           'oidcDiscoveryUrl',
           'defaultRole',
@@ -87,9 +73,6 @@ export default AuthConfig.extend({
           'oidcResponseMode',
           'oidcResponseTypes',
         ],
-=======
-        default: ['oidcDiscoveryUrl', 'defaultRole'],
->>>>>>> 4cb759cfc9 (fixed log)
       },
       {
         [`${type} Options`]: [

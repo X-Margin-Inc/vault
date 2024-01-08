@@ -226,7 +226,6 @@ module "vault_verify_undo_logs" {
   vault_instance_count = var.vault_instance_count
 }
 
-<<<<<<< HEAD
 module "vault_verify_default_lcq" {
   source = "./modules/vault_verify_default_lcq"
 
@@ -234,8 +233,6 @@ module "vault_verify_default_lcq" {
   vault_instance_count               = var.vault_instance_count
 }
 
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 module "vault_verify_replication" {
   source = "./modules/vault_verify_replication"
 

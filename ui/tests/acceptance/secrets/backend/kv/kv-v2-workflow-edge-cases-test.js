@@ -95,11 +95,7 @@ module('Acceptance | kv-v2 workflow | edge cases', function (hooks) {
       );
 
       // Title correct
-<<<<<<< HEAD
       assert.dom(PAGE.title).hasText(`${backend} version 2`);
-=======
-      assert.dom(PAGE.title).hasText(`${backend} Version 2`);
->>>>>>> 4cb759cfc9 (fixed log)
       // Tabs correct
       assert.dom(PAGE.secretTab('Secrets')).hasText('Secrets');
       assert.dom(PAGE.secretTab('Secrets')).hasClass('active');
@@ -275,16 +271,12 @@ module('Acceptance | kv-v2 workflow | edge cases', function (hooks) {
     assert.dom(PAGE.list.item()).exists({ count: 2 }, 'two secrets are listed');
   });
 
-<<<<<<< HEAD
   test('advanced secret values default to JSON display', async function (assert) {
     const obscuredData = `{
   "foo3": {
     "name": "********"
   }
 }`;
-=======
-  test('complex values default to JSON display', async function (assert) {
->>>>>>> 4cb759cfc9 (fixed log)
     await visit(`/vault/secrets/${this.backend}/kv/create`);
     await fillIn(FORM.inputByAttr('path'), 'complex');
 
@@ -292,7 +284,6 @@ module('Acceptance | kv-v2 workflow | edge cases', function (hooks) {
     assert.strictEqual(codemirror().getValue(), '{ "": "" }');
     codemirror().setValue('{ "foo3": { "name": "bar3" } }');
     await click(FORM.saveBtn);
-<<<<<<< HEAD
 
     // Details view
     assert.dom(FORM.toggleJson).isDisabled();
@@ -321,12 +312,6 @@ module('Acceptance | kv-v2 workflow | edge cases', function (hooks) {
     await click(PAGE.detail.createNewVersion);
     assert.dom(FORM.toggleJson).isNotDisabled();
     assert.dom(FORM.toggleJson).isNotChecked();
-=======
-    // Future: test that json is automatic on details too
-    await click(PAGE.detail.createNewVersion);
-    assert.dom(FORM.toggleJson).isDisabled();
-    assert.dom(FORM.toggleJson).isChecked();
->>>>>>> 4cb759cfc9 (fixed log)
   });
 });
 

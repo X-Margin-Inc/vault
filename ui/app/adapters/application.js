@@ -36,11 +36,7 @@ export default RESTAdapter.extend({
     return false;
   },
 
-<<<<<<< HEAD
   addHeaders(url, options, method) {
-=======
-  addHeaders(url, options) {
->>>>>>> 4cb759cfc9 (fixed log)
     const token = options.clientToken || this.auth.currentToken;
     const headers = {};
     if (token && !options.unauthenticated) {
@@ -49,12 +45,9 @@ export default RESTAdapter.extend({
     if (options.wrapTTL) {
       headers['X-Vault-Wrap-TTL'] = options.wrapTTL;
     }
-<<<<<<< HEAD
     if (method === 'PATCH') {
       headers['Content-Type'] = 'application/merge-patch+json';
     }
-=======
->>>>>>> 4cb759cfc9 (fixed log)
     const namespace =
       typeof options.namespace === 'undefined' ? this.namespaceService.path : options.namespace;
     if (namespace && !NAMESPACE_ROOT_URLS.some((str) => url.includes(str))) {
@@ -63,13 +56,8 @@ export default RESTAdapter.extend({
     options.headers = assign(options.headers || {}, headers);
   },
 
-<<<<<<< HEAD
   _preRequest(url, options, method) {
     this.addHeaders(url, options, method);
-=======
-  _preRequest(url, options) {
-    this.addHeaders(url, options);
->>>>>>> 4cb759cfc9 (fixed log)
     const isPolling = POLLING_URLS.some((str) => url.includes(str));
     if (!isPolling) {
       this.auth.setLastFetch(Date.now());
@@ -98,11 +86,7 @@ export default RESTAdapter.extend({
         },
       };
     }
-<<<<<<< HEAD
     const opts = this._preRequest(url, options, method);
-=======
-    const opts = this._preRequest(url, options);
->>>>>>> 4cb759cfc9 (fixed log)
 
     return this._super(url, type, opts).then((...args) => {
       if (controlGroupToken) {

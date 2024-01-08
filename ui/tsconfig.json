@@ -17,8 +17,12 @@
     // work with TypeScript.
     "baseUrl": ".",
     "paths": {
-      "vault/tests/*": ["tests/*"],
-      "vault/mirage/*": ["mirage/*"],
+      "vault/tests/*": [
+        "tests/*"
+      ],
+      "vault/mirage/*": [
+        "mirage/*"
+      ],
       "vault/*": [
         "types/*",
         "types/vault/*",
@@ -31,50 +35,117 @@
         "lib/replication/app/*",
         "lib/service-worker-authenticated-download/app/*"
       ],
-      "core": ["lib/core/addon"],
-      "core/*": ["lib/core/addon/*"],
-      "core/test-support": ["lib/core/addon-test-support"],
-      "core/test-support/*": ["lib/core/addon-test-support/*"],
-      "css": ["lib/css/addon"],
-      "css/*": ["lib/css/addon/*"],
-      "css/test-support": ["lib/css/addon-test-support"],
-      "css/test-support/*": ["lib/css/addon-test-support/*"],
-      "kmip": ["lib/kmip/addon"],
-      "kmip/*": ["lib/kmip/addon/*"],
-      "kmip/test-support": ["lib/kmip/addon-test-support"],
-      "kmip/test-support/*": ["lib/kmip/addon-test-support/*"],
-      "ldap": ["lib/ldap/addon"],
-      "ldap/*": ["lib/ldap/addon/*"],
-      "kv": ["lib/kv/addon"],
-      "kv/*": ["lib/kv/addon/*"],
-      "kv/test-support": ["lib/kv/addon-test-support"],
-      "kv/test-support/*": ["lib/kv/addon-test-support/*"],
-      "open-api-explorer": ["lib/open-api-explorer/addon"],
-      "open-api-explorer/*": ["lib/open-api-explorer/addon/*"],
-      "open-api-explorer/test-support": ["lib/open-api-explorer/addon-test-support"],
-      "open-api-explorer/test-support/*": ["lib/open-api-explorer/addon-test-support/*"],
-      "pki": ["lib/pki/addon"],
-      "pki/*": ["lib/pki/addon/*"],
-      "pki/test-support": ["lib/pki/addon-test-support"],
-      "pki/test-support/*": ["lib/pki/addon-test-support/*"],
-      "replication": ["lib/replication/addon"],
-      "replication/*": ["lib/replication/addon/*"],
-      "replication/test-support": ["lib/replication/addon-test-support"],
-      "replication/test-support/*": ["lib/replication/addon-test-support/*"],
-      "service-worker-authenticated-download": ["lib/service-worker-authenticated-download/addon"],
-      "service-worker-authenticated-download/*": ["lib/service-worker-authenticated-download/addon/*"],
+      "core": [
+        "lib/core/addon"
+      ],
+      "core/*": [
+        "lib/core/addon/*"
+      ],
+      "core/test-support": [
+        "lib/core/addon-test-support"
+      ],
+      "core/test-support/*": [
+        "lib/core/addon-test-support/*"
+      ],
+      "css": [
+        "lib/css/addon"
+      ],
+      "css/*": [
+        "lib/css/addon/*"
+      ],
+      "css/test-support": [
+        "lib/css/addon-test-support"
+      ],
+      "css/test-support/*": [
+        "lib/css/addon-test-support/*"
+      ],
+      "kmip": [
+        "lib/kmip/addon"
+      ],
+      "kmip/*": [
+        "lib/kmip/addon/*"
+      ],
+      "kmip/test-support": [
+        "lib/kmip/addon-test-support"
+      ],
+      "kmip/test-support/*": [
+        "lib/kmip/addon-test-support/*"
+      ],
+      "ldap": [
+        "lib/ldap/addon"
+      ],
+      "ldap/*": [
+        "lib/ldap/addon/*"
+      ],
+      "kv": [
+        "lib/kv/addon"
+      ],
+      "kv/*": [
+        "lib/kv/addon/*"
+      ],
+      "kv/test-support": [
+        "lib/kv/addon-test-support"
+      ],
+      "kv/test-support/*": [
+        "lib/kv/addon-test-support/*"
+      ],
+      "open-api-explorer": [
+        "lib/open-api-explorer/addon"
+      ],
+      "open-api-explorer/*": [
+        "lib/open-api-explorer/addon/*"
+      ],
+      "open-api-explorer/test-support": [
+        "lib/open-api-explorer/addon-test-support"
+      ],
+      "open-api-explorer/test-support/*": [
+        "lib/open-api-explorer/addon-test-support/*"
+      ],
+      "pki": [
+        "lib/pki/addon"
+      ],
+      "pki/*": [
+        "lib/pki/addon/*"
+      ],
+      "pki/test-support": [
+        "lib/pki/addon-test-support"
+      ],
+      "pki/test-support/*": [
+        "lib/pki/addon-test-support/*"
+      ],
+      "replication": [
+        "lib/replication/addon"
+      ],
+      "replication/*": [
+        "lib/replication/addon/*"
+      ],
+      "replication/test-support": [
+        "lib/replication/addon-test-support"
+      ],
+      "replication/test-support/*": [
+        "lib/replication/addon-test-support/*"
+      ],
+      "service-worker-authenticated-download": [
+        "lib/service-worker-authenticated-download/addon"
+      ],
+      "service-worker-authenticated-download/*": [
+        "lib/service-worker-authenticated-download/addon/*"
+      ],
       "service-worker-authenticated-download/test-support": [
         "lib/service-worker-authenticated-download/addon-test-support"
       ],
       "service-worker-authenticated-download/test-support/*": [
         "lib/service-worker-authenticated-download/addon-test-support/*"
       ],
-<<<<<<< HEAD
-      "sync": ["lib/sync/addon"],
-      "sync/*": ["lib/sync/addon/*"],
-=======
->>>>>>> 4cb759cfc9 (fixed log)
-      "*": ["types/*"]
+      "sync": [
+        "lib/sync/addon"
+      ],
+      "sync/*": [
+        "lib/sync/addon/*"
+      ],
+      "*": [
+        "types/*"
+      ]
     }
   },
   "include": [
@@ -89,11 +160,10 @@
     "lib/pki/**/*",
     "lib/replication/**/*",
     "lib/service-worker-authenticated-download/**/*",
-<<<<<<< HEAD
     "lib/sync/**/*",
-=======
->>>>>>> 4cb759cfc9 (fixed log)
     "mirage/**/*"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

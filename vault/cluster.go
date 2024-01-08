@@ -340,11 +340,7 @@ func (c *Core) startClusterListener(ctx context.Context) error {
 	}
 	if strings.HasSuffix(c.ClusterAddr(), ":0") {
 		// If we listened on port 0, record the port the OS gave us.
-<<<<<<< HEAD
 		c.SetClusterAddr(fmt.Sprintf("https://%s", c.getClusterListener().Addr()))
-=======
-		c.clusterAddr.Store(fmt.Sprintf("https://%s", c.getClusterListener().Addr()))
->>>>>>> 4cb759cfc9 (fixed log)
 	}
 
 	if len(c.ClusterAddr()) != 0 {
@@ -360,7 +356,6 @@ func (c *Core) ClusterAddr() string {
 	return c.clusterAddr.Load().(string)
 }
 
-<<<<<<< HEAD
 func (c *Core) SetClusterAddr(s string) {
 	c.clusterAddr.Store(s)
 	rb := c.getRaftBackend()
@@ -370,8 +365,6 @@ func (c *Core) SetClusterAddr(s string) {
 	}
 }
 
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 func (c *Core) getClusterListener() *cluster.Listener {
 	cl := c.clusterListener.Load()
 	if cl == nil {

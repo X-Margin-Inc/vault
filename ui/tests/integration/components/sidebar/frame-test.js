@@ -8,15 +8,11 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import sinon from 'sinon';
-<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 module('Integration | Component | sidebar-frame', function (hooks) {
   setupRenderingTest(hooks);
 
-<<<<<<< HEAD
   hooks.beforeEach(function () {
     setRunOptions({
       rules: {
@@ -28,8 +24,6 @@ module('Integration | Component | sidebar-frame', function (hooks) {
     });
   });
 
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   test('it should hide and show sidebar', async function (assert) {
     this.set('showSidebar', true);
     await render(hbs`
@@ -61,7 +55,6 @@ module('Integration | Component | sidebar-frame', function (hooks) {
   });
 
   test('it should render logo and actions in sidebar header', async function (assert) {
-<<<<<<< HEAD
     setRunOptions({
       rules: {
         'aria-prohibited-attr': { enabled: false },
@@ -69,8 +62,6 @@ module('Integration | Component | sidebar-frame', function (hooks) {
         label: { enabled: false },
       },
     });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
     this.owner.lookup('service:currentCluster').setCluster({ name: 'vault' });
 
     await render(hbs`
@@ -81,10 +72,6 @@ module('Integration | Component | sidebar-frame', function (hooks) {
     assert.dom('[data-test-console-toggle]').exists('Console toggle button renders in sidebar header');
     await click('[data-test-console-toggle]');
     assert.dom('.panel-open').exists('Console ui panel opens');
-<<<<<<< HEAD
-
-=======
->>>>>>> 4cb759cfc9 (fixed log)
     await click('[data-test-console-toggle]');
     assert.dom('.panel-open').doesNotExist('Console ui panel closes');
     assert.dom('[data-test-user-menu]').exists('User menu renders');

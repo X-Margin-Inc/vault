@@ -7,11 +7,7 @@ import (
 	"context"
 	"testing"
 
-<<<<<<< HEAD
 	kv "github.com/hashicorp/vault-plugin-secrets-kv"
-=======
-	kv "github.com/X-Margin-Inc/vault-plugin-secrets-kv"
->>>>>>> 4cb759cfc9 (fixed log)
 	"github.com/hashicorp/vault/sdk/logical"
 
 	"github.com/hashicorp/vault/helper/testhelpers"

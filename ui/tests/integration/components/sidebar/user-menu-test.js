@@ -8,17 +8,13 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import sinon from 'sinon';
-<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 module('Integration | Component | sidebar-user-menu', function (hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function () {
     this.auth = this.owner.lookup('service:auth');
-<<<<<<< HEAD
     setRunOptions({
       // TODO: fix this component
       rules: {
@@ -27,8 +23,6 @@ module('Integration | Component | sidebar-user-menu', function (hooks) {
         list: { enabled: false },
       },
     });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it should render trigger and open menu', async function (assert) {

@@ -12,11 +12,7 @@
       {{#if @mountName}}
         <Icon @name="kv" @size="24" class="has-text-grey-light" />
         {{@mountName}}
-<<<<<<< HEAD
         <span class="tag">version 2</span>
-=======
-        <span class="tag">Version 2</span>
->>>>>>> 4cb759cfc9 (fixed log)
       {{else}}
         {{@pageTitle}}
       {{/if}}
@@ -24,13 +20,10 @@
   </p.levelLeft>
 </PageHeader>
 
-<<<<<<< HEAD
 {{#if (has-block "syncDetails")}}
   {{yield to="syncDetails"}}
 {{/if}}
 
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 {{#if (has-block "tabLinks")}}
   <div class="tabs-container box is-bottomless is-marginless is-paddingless">
     <nav class="tabs" aria-label="kv tabs">
@@ -42,19 +35,11 @@
 {{/if}}
 
 {{#if (or (has-block "toolbarFilters") (has-block "toolbarActions"))}}
-<<<<<<< HEAD
   <Toolbar aria-label="menu items for managing {{or @mountName @pageTitle}}">
     <ToolbarFilters aria-label="filters for secrets list">
       {{yield to="toolbarFilters"}}
     </ToolbarFilters>
     <ToolbarActions aria-label="actions for secrets">
-=======
-  <Toolbar>
-    <ToolbarFilters>
-      {{yield to="toolbarFilters"}}
-    </ToolbarFilters>
-    <ToolbarActions>
->>>>>>> 4cb759cfc9 (fixed log)
       {{yield to="toolbarActions"}}
     </ToolbarActions>
   </Toolbar>

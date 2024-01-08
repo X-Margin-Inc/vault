@@ -13,11 +13,7 @@ import enablePage from 'vault/tests/pages/settings/mount-secret-backend';
 import { click, currentURL, fillIn, find, isSettled, visit } from '@ember/test-helpers';
 import { SELECTORS } from 'vault/tests/helpers/pki/workflow';
 import { adminPolicy, readerPolicy, updatePolicy } from 'vault/tests/helpers/policy-generator/pki';
-<<<<<<< HEAD
 import { tokenWithPolicy, runCommands, clearRecords } from 'vault/tests/helpers/pki/pki-run-commands';
-=======
-import { tokenWithPolicy, runCommands } from 'vault/tests/helpers/pki/pki-run-commands';
->>>>>>> 4cb759cfc9 (fixed log)
 import { unsupportedPem } from 'vault/tests/helpers/pki/values';
 
 /**
@@ -29,20 +25,14 @@ module('Acceptance | pki workflow', function (hooks) {
   setupApplicationTest(hooks);
 
   hooks.beforeEach(async function () {
-<<<<<<< HEAD
     this.store = this.owner.lookup('service:store');
-=======
->>>>>>> 4cb759cfc9 (fixed log)
     await authPage.login();
     // Setup PKI engine
     const mountPath = `pki-workflow-${uuidv4()}`;
     await enablePage.enable('pki', mountPath);
     this.mountPath = mountPath;
     await logout.visit();
-<<<<<<< HEAD
     clearRecords(this.store);
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   });
 
   hooks.afterEach(async function () {
@@ -52,7 +42,6 @@ module('Acceptance | pki workflow', function (hooks) {
     await runCommands([`delete sys/mounts/${this.mountPath}`]);
   });
 
-<<<<<<< HEAD
   module('not configured', function (hooks) {
     hooks.beforeEach(async function () {
       await authPage.login();
@@ -97,42 +86,6 @@ module('Acceptance | pki workflow', function (hooks) {
       await click(SELECTORS.tidyTab);
       assertEmptyState(assert, 'tidy');
     });
-=======
-  test('empty state messages are correct when PKI not configured', async function (assert) {
-    assert.expect(21);
-    const assertEmptyState = (assert, resource) => {
-      assert.strictEqual(currentURL(), `/vault/secrets/${this.mountPath}/pki/${resource}`);
-      assert
-        .dom(SELECTORS.emptyStateTitle)
-        .hasText(
-          'PKI not configured',
-          `${resource} index renders correct empty state title when PKI not configured`
-        );
-      assert.dom(SELECTORS.emptyStateLink).hasText('Configure PKI');
-      assert
-        .dom(SELECTORS.emptyStateMessage)
-        .hasText(
-          `This PKI mount hasn't yet been configured with a certificate issuer.`,
-          `${resource} index empty state message correct when PKI not configured`
-        );
-    };
-    await authPage.login(this.pkiAdminToken);
-    await visit(`/vault/secrets/${this.mountPath}/pki/overview`);
-    assert.strictEqual(currentURL(), `/vault/secrets/${this.mountPath}/pki/overview`);
-
-    await click(SELECTORS.rolesTab);
-    assertEmptyState(assert, 'roles');
-
-    await click(SELECTORS.issuersTab);
-    assertEmptyState(assert, 'issuers');
-
-    await click(SELECTORS.certsTab);
-    assertEmptyState(assert, 'certificates');
-    await click(SELECTORS.keysTab);
-    assertEmptyState(assert, 'keys');
-    await click(SELECTORS.tidyTab);
-    assertEmptyState(assert, 'tidy');
->>>>>>> 4cb759cfc9 (fixed log)
   });
 
   module('roles', function (hooks) {
@@ -150,18 +103,11 @@ module('Acceptance | pki workflow', function (hooks) {
       const pki_admin_policy = adminPolicy(this.mountPath, 'roles');
       const pki_reader_policy = readerPolicy(this.mountPath, 'roles');
       const pki_editor_policy = updatePolicy(this.mountPath, 'roles');
-<<<<<<< HEAD
       this.pkiRoleReader = await tokenWithPolicy(`pki-reader-${this.mountPath}`, pki_reader_policy);
       this.pkiRoleEditor = await tokenWithPolicy(`pki-editor-${this.mountPath}`, pki_editor_policy);
       this.pkiAdminToken = await tokenWithPolicy(`pki-admin-${this.mountPath}`, pki_admin_policy);
       await logout.visit();
       clearRecords(this.store);
-=======
-      this.pkiRoleReader = await tokenWithPolicy('pki-reader', pki_reader_policy);
-      this.pkiRoleEditor = await tokenWithPolicy('pki-editor', pki_editor_policy);
-      this.pkiAdminToken = await tokenWithPolicy('pki-admin', pki_admin_policy);
-      await logout.visit();
->>>>>>> 4cb759cfc9 (fixed log)
     });
 
     test('shows correct items if user has all permissions', async function (assert) {
@@ -289,18 +235,11 @@ module('Acceptance | pki workflow', function (hooks) {
       const pki_admin_policy = adminPolicy(this.mountPath);
       const pki_reader_policy = readerPolicy(this.mountPath, 'keys', true);
       const pki_editor_policy = updatePolicy(this.mountPath, 'keys');
-<<<<<<< HEAD
       this.pkiKeyReader = await tokenWithPolicy(`pki-reader-${this.mountPath}`, pki_reader_policy);
       this.pkiKeyEditor = await tokenWithPolicy(`pki-editor-${this.mountPath}`, pki_editor_policy);
       this.pkiAdminToken = await tokenWithPolicy(`pki-admin-${this.mountPath}`, pki_admin_policy);
       await logout.visit();
       clearRecords(this.store);
-=======
-      this.pkiKeyReader = await tokenWithPolicy('pki-reader', pki_reader_policy);
-      this.pkiKeyEditor = await tokenWithPolicy('pki-editor', pki_editor_policy);
-      this.pkiAdminToken = await tokenWithPolicy('pki-admin', pki_admin_policy);
-      await logout.visit();
->>>>>>> 4cb759cfc9 (fixed log)
     });
 
     test('shows correct items if user has all permissions', async function (assert) {
@@ -414,20 +353,14 @@ module('Acceptance | pki workflow', function (hooks) {
   module('issuers', function (hooks) {
     hooks.beforeEach(async function () {
       await authPage.login();
-<<<<<<< HEAD
       const pki_admin_policy = adminPolicy(this.mountPath);
       this.pkiAdminToken = await tokenWithPolicy(`pki-admin-${this.mountPath}`, pki_admin_policy);
-=======
->>>>>>> 4cb759cfc9 (fixed log)
       // Configure engine with a default issuer
       await runCommands([
         `write ${this.mountPath}/root/generate/internal common_name="Hashicorp Test" name="Hashicorp Test"`,
       ]);
       await logout.visit();
-<<<<<<< HEAD
       clearRecords(this.store);
-=======
->>>>>>> 4cb759cfc9 (fixed log)
     });
     test('lists the correct issuer metadata info', async function (assert) {
       assert.expect(6);
@@ -457,14 +390,10 @@ module('Acceptance | pki workflow', function (hooks) {
         capabilities = ["deny"]
       }
       `;
-<<<<<<< HEAD
       this.token = await tokenWithPolicy(
         `pki-issuer-denied-policy-${this.mountPath}`,
         pki_issuer_denied_policy
       );
-=======
-      this.token = await tokenWithPolicy('pki-issuer-denied-policy', pki_issuer_denied_policy);
->>>>>>> 4cb759cfc9 (fixed log)
       await logout.visit();
       await authPage.login(this.token);
       await visit(`/vault/secrets/${this.mountPath}/pki/overview`);
@@ -578,14 +507,10 @@ module('Acceptance | pki workflow', function (hooks) {
       ${adminPolicy(this.mountPath)}
       ${readerPolicy(this.mountPath, 'config/cluster')}
       `;
-<<<<<<< HEAD
       this.mixedConfigCapabilities = await tokenWithPolicy(
         `pki-reader-${this.mountPath}`,
         mixed_config_policy
       );
-=======
-      this.mixedConfigCapabilities = await tokenWithPolicy('pki-reader', mixed_config_policy);
->>>>>>> 4cb759cfc9 (fixed log)
       await logout.visit();
     });
 

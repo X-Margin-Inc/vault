@@ -11,10 +11,7 @@ import { render, click, waitUntil, find, fillIn } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import { Response } from 'miragejs';
 import sinon from 'sinon';
-<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 module('Integration | Component | kubernetes | Page::Configure', function (hooks) {
   setupRenderingTest(hooks);
@@ -47,7 +44,6 @@ module('Integration | Component | kubernetes | Page::Configure', function (hooks
       kubernetes_host: null,
       service_account_jwt: null,
     };
-<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO: fix RadioCard component (replace with HDS)
@@ -55,8 +51,6 @@ module('Integration | Component | kubernetes | Page::Configure', function (hooks
         'nested-interactive': { enabled: false },
       },
     });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it should display proper options when toggling radio cards', async function (assert) {

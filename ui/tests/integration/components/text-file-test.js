@@ -9,10 +9,7 @@ import { click, fillIn, render, triggerEvent } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import sinon from 'sinon';
 import { componentPemBundle } from 'vault/tests/helpers/pki/values';
-<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 const SELECTORS = {
   label: '[data-test-text-file-label]',
@@ -38,7 +35,6 @@ module('Integration | Component | text-file', function (hooks) {
   });
 
   test('it renders without toggle and option for text input when uploadOnly=true', async function (assert) {
-<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO: fix textFile / replace with HDS
@@ -47,8 +43,6 @@ module('Integration | Component | text-file', function (hooks) {
       },
     });
 
-=======
->>>>>>> 4cb759cfc9 (fixed log)
     await render(hbs`<TextFile @onChange={{this.onChange}} @uploadOnly={{true}} />`);
 
     assert.dom(SELECTORS.label).doesNotExist('Label no longer rendered');
@@ -67,16 +61,10 @@ module('Integration | Component | text-file', function (hooks) {
   });
 
   test('it correctly parses uploaded files', async function (assert) {
-<<<<<<< HEAD
     const file = new Blob([['some content for a file']], { type: 'text/plain' });
     file.name = 'filename.txt';
     await render(hbs`<TextFile @onChange={{this.onChange}} />`);
     await triggerEvent(SELECTORS.fileUpload, 'change', { files: [file] });
-=======
-    this.file = new File(['some content for a file'], 'filename.txt');
-    await render(hbs`<TextFile @onChange={{this.onChange}} />`);
-    await triggerEvent(SELECTORS.fileUpload, 'change', { files: [this.file] });
->>>>>>> 4cb759cfc9 (fixed log)
     assert.propEqual(
       this.onChange.lastCall.args[0],
       {

@@ -1,10 +1,6 @@
 /**
  * Copyright (c) HashiCorp, Inc.
-<<<<<<< HEAD
  * SPDX-License-Identifier: BUSL-1.1
-=======
- * SPDX-License-Identifier: MPL-2.0
->>>>>>> 4cb759cfc9 (fixed log)
  */
 
 import { module, test } from 'qunit';
@@ -16,11 +12,8 @@ import { hbs } from 'ember-cli-htmlbars';
 import { kvDataPath, kvMetadataPath } from 'vault/utils/kv-path';
 import { allowAllCapabilitiesStub } from 'vault/tests/helpers/stubs';
 import { FORM, PAGE, parseJsonEditor } from 'vault/tests/helpers/kv/kv-selectors';
-<<<<<<< HEAD
 import { syncStatusResponse } from 'vault/mirage/handlers/sync';
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 module('Integration | Component | kv-v2 | Page::Secret::Details', function (hooks) {
   setupRenderingTest(hooks);
@@ -48,11 +41,8 @@ module('Integration | Component | kv-v2 | Page::Secret::Details', function (hook
       deletion_time: '',
       destroyed: false,
       version: this.version,
-<<<<<<< HEAD
       backend: this.backend,
       path: this.path,
-=======
->>>>>>> 4cb759cfc9 (fixed log)
     });
     // nested secret
     this.secretDataComplex = {
@@ -100,7 +90,6 @@ module('Integration | Component | kv-v2 | Page::Secret::Details', function (hook
       secret: this.secretComplex,
       metadata: this.metadata,
     };
-<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO: Fix JSONEditor component
@@ -124,12 +113,6 @@ module('Integration | Component | kv-v2 | Page::Secret::Details', function (hook
       // no records so response returns 404
       return syncStatusResponse(schema, req);
     });
-=======
-  });
-
-  test('it renders secret details and toggles json view', async function (assert) {
-    assert.expect(6);
->>>>>>> 4cb759cfc9 (fixed log)
 
     await render(
       hbs`
@@ -143,12 +126,9 @@ module('Integration | Component | kv-v2 | Page::Secret::Details', function (hook
       { owner: this.engine }
     );
 
-<<<<<<< HEAD
     assert
       .dom(PAGE.detail.syncAlert())
       .doesNotExist('sync page alert banner does not render when sync status errors');
-=======
->>>>>>> 4cb759cfc9 (fixed log)
     assert.dom(PAGE.title).includesText(this.model.path, 'renders secret path as page title');
     assert.dom(PAGE.infoRowValue('foo')).exists('renders row for secret data');
     assert.dom(PAGE.infoRowValue('foo')).hasText('***********');
@@ -175,11 +155,7 @@ module('Integration | Component | kv-v2 | Page::Secret::Details', function (hook
     );
     assert.dom(PAGE.infoRowValue('foo')).doesNotExist('does not render rows of secret data');
     assert.dom(FORM.toggleJson).isDisabled();
-<<<<<<< HEAD
     assert.dom('[data-test-component="code-mirror-modifier"]').exists('shows json editor');
-=======
-    assert.dom('[data-test-component="code-mirror-modifier"]').includesText(`{ "foo": { "bar": "baz" }}`);
->>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it renders deleted empty state', async function (assert) {
@@ -263,7 +239,6 @@ module('Integration | Component | kv-v2 | Page::Secret::Details', function (hook
       .dom(`${PAGE.detail.version(this.metadata.currentVersion)} [data-test-icon="check-circle"]`)
       .exists('renders current version icon');
   });
-<<<<<<< HEAD
 
   test('it renders sync status page alert and refreshes', async function (assert) {
     assert.expect(6); // assert count important because confirms request made to fetch sync status twice
@@ -358,6 +333,4 @@ module('Integration | Component | kv-v2 | Page::Secret::Details', function (hook
         'renders alert title referring to plural destinations'
       );
   });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 });

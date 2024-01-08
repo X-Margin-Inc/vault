@@ -4,10 +4,7 @@
  */
 
 import Service, { inject as service } from '@ember/service';
-<<<<<<< HEAD
 import { sanitizePath, sanitizeStart } from 'core/utils/sanitize-path';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 import { task } from 'ember-concurrency';
 
 const API_PATHS = {
@@ -69,10 +66,7 @@ export default Service.extend({
   globPaths: null,
   canViewAll: null,
   readFailed: false,
-<<<<<<< HEAD
   chrootNamespace: null,
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   store: service(),
   auth: service(),
   namespace: service(),
@@ -97,10 +91,7 @@ export default Service.extend({
     this.set('exactPaths', resp.data.exact_paths);
     this.set('globPaths', resp.data.glob_paths);
     this.set('canViewAll', resp.data.root);
-<<<<<<< HEAD
     this.set('chrootNamespace', resp.data.chroot_namespace);
-=======
->>>>>>> 4cb759cfc9 (fixed log)
     this.set('readFailed', false);
   },
 
@@ -109,10 +100,7 @@ export default Service.extend({
     this.set('globPaths', null);
     this.set('canViewAll', null);
     this.set('readFailed', false);
-<<<<<<< HEAD
     this.set('chrootNamespace', null);
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   },
 
   hasNavPermission(navItem, routeParams, requireAll) {
@@ -140,35 +128,21 @@ export default Service.extend({
   },
 
   pathNameWithNamespace(pathName) {
-<<<<<<< HEAD
     const namespace = this.chrootNamespace
       ? `${sanitizePath(this.chrootNamespace)}/${sanitizePath(this.namespace.path)}`
       : sanitizePath(this.namespace.path);
     if (namespace) {
       return `${sanitizePath(namespace)}/${sanitizeStart(pathName)}`;
-=======
-    const namespace = this.namespace.path;
-    if (namespace) {
-      return `${namespace}/${pathName}`;
->>>>>>> 4cb759cfc9 (fixed log)
     } else {
       return pathName;
     }
   },
 
   hasPermission(pathName, capabilities = [null]) {
-<<<<<<< HEAD
     if (this.canViewAll) {
       return true;
     }
     const path = this.pathNameWithNamespace(pathName);
-=======
-    const path = this.pathNameWithNamespace(pathName);
-
-    if (this.canViewAll) {
-      return true;
-    }
->>>>>>> 4cb759cfc9 (fixed log)
 
     return capabilities.every(
       (capability) =>

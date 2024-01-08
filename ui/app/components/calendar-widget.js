@@ -28,11 +28,6 @@ export default class CalendarWidget extends Component {
   currentDate = timestamp.now();
   @tracked calendarDisplayDate = this.currentDate; // init to current date, updates when user clicks on calendar chevrons
   @tracked showCalendar = false;
-<<<<<<< HEAD
-=======
-  @tracked tooltipTarget = null;
-  @tracked tooltipText = null;
->>>>>>> 4cb759cfc9 (fixed log)
 
   // both date getters return a date object
   get startDate() {
@@ -76,23 +71,6 @@ export default class CalendarWidget extends Component {
   }
 
   @action
-<<<<<<< HEAD
-=======
-  addTooltip() {
-    if (this.disablePastYear) {
-      const previousYear = this.displayYear - 1;
-      this.tooltipText = `${previousYear} is unavailable because it is before your start date. Change your start month to a date in ${previousYear} to see data for this year.`;
-      this.tooltipTarget = '#previous-year';
-    }
-  }
-
-  @action
-  removeTooltip() {
-    this.tooltipTarget = null;
-  }
-
-  @action
->>>>>>> 4cb759cfc9 (fixed log)
   addYear() {
     this.calendarDisplayDate = addYears(this.calendarDisplayDate, 1);
   }

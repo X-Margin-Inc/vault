@@ -175,11 +175,7 @@ func TestCluster_ListenForRequests(t *testing.T) {
 
 func TestCluster_ForwardRequests(t *testing.T) {
 	// Make this nicer for tests
-<<<<<<< HEAD
 	manualStepDownSleepPeriod = 2 * time.Second
-=======
-	manualStepDownSleepPeriod = 5 * time.Second
->>>>>>> 4cb759cfc9 (fixed log)
 
 	t.Run("tcpLayer", func(t *testing.T) {
 		testCluster_ForwardRequestsCommon(t, nil)
@@ -256,11 +252,7 @@ func testCluster_ForwardRequestsCommon(t *testing.T, clusterOpts *TestClusterOpt
 }
 
 func testCluster_Forwarding(t *testing.T, cluster *TestCluster, oldLeaderCoreIdx, newLeaderCoreIdx int, rootToken, remoteCoreID string) {
-<<<<<<< HEAD
 	cluster.Logger.Info("stepping down cores to make new_idx the leader", "old_idx", oldLeaderCoreIdx, "new_idx", newLeaderCoreIdx)
-=======
-	t.Logf("new leaderidx will be %d, stepping down other cores to make it so", newLeaderCoreIdx)
->>>>>>> 4cb759cfc9 (fixed log)
 	err := cluster.Cores[oldLeaderCoreIdx].StepDown(context.Background(), &logical.Request{
 		Operation:   logical.UpdateOperation,
 		Path:        "sys/step-down",
@@ -269,7 +261,6 @@ func testCluster_Forwarding(t *testing.T, cluster *TestCluster, oldLeaderCoreIdx
 	if err != nil {
 		t.Fatal(err)
 	}
-<<<<<<< HEAD
 
 	waitNewLeader := func(oldIdx int) {
 		t.Helper()
@@ -305,29 +296,16 @@ func testCluster_Forwarding(t *testing.T, cluster *TestCluster, oldLeaderCoreIdx
 	for i := 0; i < 3; i++ {
 		if i != oldLeaderCoreIdx && i != newLeaderCoreIdx {
 			cluster.Logger.Info("stepping down core", "idx", i)
-=======
-	time.Sleep(clusterTestPausePeriod)
-
-	for i := 0; i < 3; i++ {
-		if i != oldLeaderCoreIdx && i != newLeaderCoreIdx {
->>>>>>> 4cb759cfc9 (fixed log)
 			_ = cluster.Cores[i].StepDown(context.Background(), &logical.Request{
 				Operation:   logical.UpdateOperation,
 				Path:        "sys/step-down",
 				ClientToken: rootToken,
 			})
-<<<<<<< HEAD
 			waitNewLeader(i)
 		}
 	}
 
 	cluster.Logger.Info("new leader should be ready, waiting", "idx", newLeaderCoreIdx)
-=======
-			time.Sleep(clusterTestPausePeriod)
-		}
-	}
-
->>>>>>> 4cb759cfc9 (fixed log)
 	TestWaitActiveForwardingReady(t, cluster.Cores[newLeaderCoreIdx].Core)
 
 	deadline := time.Now().Add(5 * time.Second)

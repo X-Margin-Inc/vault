@@ -7,16 +7,10 @@
 
 .tag:not(body) {
   align-items: center;
-<<<<<<< HEAD
   // same as HDS::Badge @color=neutral
   background-color: var(--token-color-surface-strong);
   color: var(--token-color-foreground-primary);
   border-radius: $radius;
-=======
-  background-color: $ui-gray-100;
-  border-radius: $radius;
-  color: $grey;
->>>>>>> 4cb759cfc9 (fixed log)
   display: inline-flex;
   font-size: $size-8;
   font-weight: $font-weight-normal;
@@ -29,11 +23,7 @@
   vertical-align: middle;
 
   code {
-<<<<<<< HEAD
     color: var(--token-color-foreground-primary);
-=======
-    color: $grey;
->>>>>>> 4cb759cfc9 (fixed log)
   }
 
   .icon {

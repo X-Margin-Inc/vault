@@ -34,11 +34,7 @@ import (
 	log "github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-secure-stdlib/reloadutil"
 	raftlib "github.com/hashicorp/raft"
-<<<<<<< HEAD
 	kv "github.com/hashicorp/vault-plugin-secrets-kv"
-=======
-	kv "github.com/X-Margin-Inc/vault-plugin-secrets-kv"
->>>>>>> 4cb759cfc9 (fixed log)
 	"github.com/mitchellh/copystructure"
 	"github.com/mitchellh/go-testing-interface"
 	"golang.org/x/crypto/ed25519"
@@ -660,10 +656,7 @@ func TestWaitActive(t testing.T, core *Core) {
 }
 
 func TestWaitActiveForwardingReady(t testing.T, core *Core) {
-<<<<<<< HEAD
 	t.Helper()
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 	TestWaitActive(t, core)
 
 	deadline := time.Now().Add(2 * time.Second)
@@ -716,10 +709,6 @@ type TestCluster struct {
 	SetupFunc          func()
 
 	cleanupFuncs      []func()
-<<<<<<< HEAD
-=======
-	base              *CoreConfig
->>>>>>> 4cb759cfc9 (fixed log)
 	LicensePublicKey  ed25519.PublicKey
 	LicensePrivateKey ed25519.PrivateKey
 	opts              *TestClusterOptions
@@ -1125,22 +1114,12 @@ type TestClusterOptions struct {
 
 	CoreMetricSinkProvider func(clusterName string) (*metricsutil.ClusterMetricSink, *metricsutil.MetricsHelper)
 
-<<<<<<< HEAD
 	PhysicalFactoryConfig        map[string]interface{}
 	PerNodePhysicalFactoryConfig map[int]map[string]interface{}
 
 	LicensePublicKey  ed25519.PublicKey
 	LicensePrivateKey ed25519.PrivateKey
 
-=======
-	PhysicalFactoryConfig map[string]interface{}
-	LicensePublicKey      ed25519.PublicKey
-	LicensePrivateKey     ed25519.PrivateKey
-
-	// this stores the vault version that should be used for each core config
-	VersionMap             map[int]string
-	RedundancyZoneMap      map[int]string
->>>>>>> 4cb759cfc9 (fixed log)
 	KVVersion              string
 	EffectiveSDKVersionMap map[int]string
 
@@ -1208,10 +1187,6 @@ func NewTestCluster(t testing.T, base *CoreConfig, opts *TestClusterOptions) *Te
 
 	baseAddr, certIPs := GenerateListenerAddr(t, opts, certIPs)
 	var testCluster TestCluster
-<<<<<<< HEAD
-=======
-	testCluster.base = base
->>>>>>> 4cb759cfc9 (fixed log)
 
 	switch {
 	case opts != nil && opts.Logger != nil && !reflect.ValueOf(opts.Logger).IsNil():
@@ -1533,10 +1508,7 @@ func NewTestCluster(t testing.T, base *CoreConfig, opts *TestClusterOptions) *Te
 		coreConfig.PendingRemovalMountsAllowed = base.PendingRemovalMountsAllowed
 		coreConfig.ExpirationRevokeRetryBase = base.ExpirationRevokeRetryBase
 		coreConfig.PeriodicLeaderRefreshInterval = base.PeriodicLeaderRefreshInterval
-<<<<<<< HEAD
 		coreConfig.ClusterAddrBridge = base.ClusterAddrBridge
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 		testApplyEntBaseConfig(coreConfig, base)
 	}
 	if coreConfig.ClusterName == "" {
@@ -1859,18 +1831,10 @@ func (testCluster *TestCluster) newCore(t testing.T, idx int, coreConfig *CoreCo
 		if pfc == nil {
 			pfc = make(map[string]interface{})
 		}
-<<<<<<< HEAD
 		if opts.PerNodePhysicalFactoryConfig != nil {
 			for k, v := range opts.PerNodePhysicalFactoryConfig[idx] {
 				pfc[k] = v
 			}
-=======
-		if len(opts.VersionMap) > 0 {
-			pfc["autopilot_upgrade_version"] = opts.VersionMap[idx]
-		}
-		if len(opts.RedundancyZoneMap) > 0 {
-			pfc["autopilot_redundancy_zone"] = opts.RedundancyZoneMap[idx]
->>>>>>> 4cb759cfc9 (fixed log)
 		}
 		physBundle := opts.PhysicalFactory(t, idx, localConfig.Logger, pfc)
 		switch {
@@ -1906,12 +1870,9 @@ func (testCluster *TestCluster) newCore(t testing.T, idx int, coreConfig *CoreCo
 		localConfig.ClusterNetworkLayer = opts.ClusterLayers.Layers()[idx]
 		localConfig.ClusterAddr = "https://" + localConfig.ClusterNetworkLayer.Listeners()[0].Addr().String()
 	}
-<<<<<<< HEAD
 	if opts != nil && opts.BaseClusterListenPort != 0 {
 		localConfig.ClusterAddr = fmt.Sprintf("https://127.0.0.1:%d", opts.BaseClusterListenPort+idx)
 	}
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 	switch {
 	case localConfig.LicensingConfig != nil:

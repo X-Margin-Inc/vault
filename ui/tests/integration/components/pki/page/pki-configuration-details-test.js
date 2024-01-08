@@ -8,10 +8,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { setupEngine } from 'ember-engines/test-support';
-<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 const SELECTORS = {
   rowLabel: (attr) => `[data-test-row-label="${attr}"]`,
@@ -50,15 +47,12 @@ module('Integration | Component | Page::PkiConfigurationDetails', function (hook
       unifiedCrl: true,
       unifiedCrlOnExistingPaths: true,
     });
-<<<<<<< HEAD
     // Fails on #ember-testing-container
     setRunOptions({
       rules: {
         'scrollable-region-focusable': { enabled: false },
       },
     });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('shows the correct information on cluster config', async function (assert) {

@@ -12,18 +12,12 @@ import (
 	"testing"
 	"time"
 
-<<<<<<< HEAD
 	"github.com/hashicorp/eventlogger"
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 	"github.com/hashicorp/vault/audit"
 	"github.com/hashicorp/vault/helper/namespace"
 	"github.com/hashicorp/vault/sdk/helper/salt"
 	"github.com/hashicorp/vault/sdk/logical"
-<<<<<<< HEAD
 	"github.com/stretchr/testify/require"
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 )
 
 func TestAuditFile_fileModeNew(t *testing.T) {
@@ -153,10 +147,7 @@ func TestAuditFile_EventLogger_fileModeNew(t *testing.T) {
 	}
 
 	_, err = Factory(context.Background(), &audit.BackendConfig{
-<<<<<<< HEAD
 		MountPath:  "foo/bar",
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 		SaltConfig: &salt.Config{},
 		SaltView:   &logical.InmemStorage{},
 		Config:     config,
@@ -222,7 +213,6 @@ func BenchmarkAuditFile_request(b *testing.B) {
 		}
 	})
 }
-<<<<<<< HEAD
 
 // TestBackend_formatterConfig ensures that all the configuration values are parsed correctly.
 func TestBackend_formatterConfig(t *testing.T) {
@@ -586,5 +576,3 @@ func TestBackend_configureFilterFormatterSink(t *testing.T) {
 	node = b.nodeMap[id]
 	require.Equal(t, eventlogger.NodeTypeSink, node.Type())
 }
-=======
->>>>>>> 4cb759cfc9 (fixed log)

@@ -55,7 +55,6 @@ configuration will be overridden and the token in the request will be used to
 forward the request to the Vault server. If set to `"force"` Proxy will use the
 auto-auth token, overwriting the attached Vault token if set.
 
-<<<<<<< HEAD
 - `prepend_configured_namespace` `(bool: false)` - If set, when Proxy has a
   namespace configured, such as through the
   [Vault stanza](/vault/docs/agent-and-proxy/proxy#vault-stanza), all requests
@@ -66,8 +65,6 @@ auto-auth token, overwriting the attached Vault token if set.
   In essence, what this means is that all proxied requests must go to the configured
   namespace or to its child namespaces.
 
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 The following two `api_proxy` options are only useful when making requests to a Vault
 Enterprise cluster, and are documented as part of its
 [Eventual Consistency](/vault/docs/enterprise/consistency#vault-agent-and-consistency-headers)

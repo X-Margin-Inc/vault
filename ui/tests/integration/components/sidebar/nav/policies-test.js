@@ -8,10 +8,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import { stubFeaturesAndPermissions } from 'vault/tests/helpers/components/sidebar-nav';
-<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 const renderComponent = () => {
   return render(hbs`
@@ -24,7 +21,6 @@ const renderComponent = () => {
 module('Integration | Component | sidebar-nav-policies', function (hooks) {
   setupRenderingTest(hooks);
 
-<<<<<<< HEAD
   hooks.beforeEach(function () {
     setRunOptions({
       rules: {
@@ -36,8 +32,6 @@ module('Integration | Component | sidebar-nav-policies', function (hooks) {
     });
   });
 
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   test('it should hide links user does not have access too', async function (assert) {
     await renderComponent();
     assert

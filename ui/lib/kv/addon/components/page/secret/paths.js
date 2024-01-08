@@ -1,10 +1,6 @@
 /**
  * Copyright (c) HashiCorp, Inc.
-<<<<<<< HEAD
  * SPDX-License-Identifier: BUSL-1.1
-=======
- * SPDX-License-Identifier: MPL-2.0
->>>>>>> 4cb759cfc9 (fixed log)
  */
 
 import Component from '@glimmer/component';
@@ -66,19 +62,10 @@ export default class KvSecretPaths extends Component {
 
     return {
       cli: `vault kv get ${cliPath}`,
-<<<<<<< HEAD
       api: `curl \\
   --header "X-Vault-Token: ..." \\
   --request GET \\
   ${url}`,
-=======
-      /* eslint-disable-next-line no-useless-escape */
-      apiCopy: `curl \ --header "X-Vault-Token: ..." \ --request GET \ ${url}`,
-      apiDisplay: `curl \\
-        --header "X-Vault-Token: ..." \\
-        --request GET \\
-      ${url}`,
->>>>>>> 4cb759cfc9 (fixed log)
     };
   }
 }

@@ -83,10 +83,7 @@ export default class App extends Application {
         ],
         externalRoutes: {
           secrets: 'vault.cluster.secrets.backends',
-<<<<<<< HEAD
           syncDestination: 'vault.cluster.sync.secrets.destinations.destination',
-=======
->>>>>>> 4cb759cfc9 (fixed log)
         },
       },
     },
@@ -110,7 +107,6 @@ export default class App extends Application {
         },
       },
     },
-<<<<<<< HEAD
     sync: {
       dependencies: {
         services: ['flash-messages', 'router', 'store', 'version'],
@@ -120,8 +116,6 @@ export default class App extends Application {
         },
       },
     },
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   };
 }
 

@@ -7,10 +7,7 @@ import (
 	"context"
 	"fmt"
 	"net"
-<<<<<<< HEAD
 	"strings"
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 	"sync"
 	"time"
 
@@ -33,7 +30,6 @@ type SocketSink struct {
 
 // NewSocketSink should be used to create a new SocketSink.
 // Accepted options: WithMaxDuration and WithSocketType.
-<<<<<<< HEAD
 func NewSocketSink(address string, format string, opt ...Option) (*SocketSink, error) {
 	const op = "event.NewSocketSink"
 
@@ -47,11 +43,6 @@ func NewSocketSink(address string, format string, opt ...Option) (*SocketSink, e
 		return nil, fmt.Errorf("%s: format is required: %w", op, ErrInvalidParameter)
 	}
 
-=======
-func NewSocketSink(format string, address string, opt ...Option) (*SocketSink, error) {
-	const op = "event.NewSocketSink"
-
->>>>>>> 4cb759cfc9 (fixed log)
 	opts, err := getOpts(opt...)
 	if err != nil {
 		return nil, fmt.Errorf("%s: error applying options: %w", op, err)

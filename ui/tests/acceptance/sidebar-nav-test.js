@@ -9,10 +9,7 @@ import { click, currentURL } from '@ember/test-helpers';
 import { setupMirage } from 'ember-cli-mirage/test-support';
 import authPage from 'vault/tests/pages/auth';
 import modifyPassthroughResponse from 'vault/mirage/helpers/modify-passthrough-response';
-<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 const link = (label) => `[data-test-sidebar-nav-link="${label}"]`;
 const panel = (label) => `[data-test-sidebar-nav-panel="${label}"]`;
@@ -27,16 +24,12 @@ module('Acceptance | sidebar navigation', function (hooks) {
       return modifyPassthroughResponse(req, { storage_type: 'raft' });
     });
     this.server.get('/sys/storage/raft/configuration', () => this.server.create('configuration', 'withRaft'));
-<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO: fix use Dropdown on user-menu
         'nested-interactive': { enabled: false },
       },
     });
-=======
-
->>>>>>> 4cb759cfc9 (fixed log)
     return authPage.login();
   });
 

@@ -4,11 +4,7 @@
 ~}}
 
 {{#if this.label}}
-<<<<<<< HEAD
   <label for="select-{{this.name}}" class="is-label" data-test-select-label>
-=======
-  <label for="select-{{this.elementId}}" class="is-label" data-test-select-label>
->>>>>>> 4cb759cfc9 (fixed log)
     {{this.label}}
   </label>
 {{/if}}
@@ -16,16 +12,10 @@
   <div class="select {{if this.isFullwidth 'is-fullwidth'}}">
     <select
       class="select"
-<<<<<<< HEAD
       id="select-{{this.name}}"
       onchange={{action this.onChange value="target.value"}}
       data-test-select={{this.name}}
       aria-label={{this.ariaLabel}}
-=======
-      id="select-{{this.elementId}}"
-      onchange={{action this.onChange value="target.value"}}
-      data-test-select={{this.name}}
->>>>>>> 4cb759cfc9 (fixed log)
     >
       {{#if this.noDefault}}
         <option value="">

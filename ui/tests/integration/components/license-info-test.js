@@ -11,10 +11,7 @@ import hbs from 'htmlbars-inline-precompile';
 import { create } from 'ember-cli-page-object';
 import license from '../../pages/components/license-info';
 import { allFeatures } from 'vault/helpers/all-features';
-<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 const FEATURES = allFeatures();
 
@@ -23,7 +20,6 @@ const component = create(license);
 module('Integration | Component | license info', function (hooks) {
   setupRenderingTest(hooks);
 
-<<<<<<< HEAD
   hooks.beforeEach(function () {
     // Fails on #ember-testing-container
     setRunOptions({
@@ -33,8 +29,6 @@ module('Integration | Component | license info', function (hooks) {
     });
   });
 
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   test('it renders feature status properly for features associated with license', async function (assert) {
     const now = Date.now();
     this.set('licenseId', 'temporary');

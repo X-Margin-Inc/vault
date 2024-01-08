@@ -6,12 +6,8 @@ description: The `/sys/quotas/config` endpoint is used to configure rate limit q
 
 # `/sys/quotas/config`
 
-<<<<<<< HEAD
 @include 'alerts/restricted-admin.mdx'
 
-=======
-@include 'alerts/restricted-root.mdx'
->>>>>>> 4cb759cfc9 (fixed log)
 
 The `/sys/quotas/config` endpoint is used to configure rate limit quotas.
 
@@ -24,7 +20,6 @@ The `/sys/quotas/config` endpoint is used to configure rate limit quotas.
 ### Parameters
 
 - `rate_limit_exempt_paths` `([]string: [])` - Specifies the list of exempt paths
-<<<<<<< HEAD
   from all rate limit quotas. Exempt paths are relative and apply to all
   namespaces. When `rate_limit_exempt_paths` is empty, Vault applies quotas to
   all relative paths. Access to exemption data is read-only from the admin namespace.
@@ -34,9 +29,6 @@ The `/sys/quotas/config` endpoint is used to configure rate limit quotas.
   do not apply across namespaces. When `global_rate_limit_exempt_paths` is empty,
   Vault applies quotas to all absolute paths. You can only add, update, or delete
   global paths within the scope of the calling namespace.
-=======
-  from all rate limit quotas. If empty no paths will be exempt.
->>>>>>> 4cb759cfc9 (fixed log)
 - `enable_rate_limit_audit_logging` `(bool: false)` - If set, starts audit logging
   of requests that get rejected due to rate limit quota rule violations.
 - `enable_rate_limit_response_headers` `(bool: false)` - If set, additional rate

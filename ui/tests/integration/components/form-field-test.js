@@ -11,11 +11,8 @@ import hbs from 'htmlbars-inline-precompile';
 import { create } from 'ember-cli-page-object';
 import sinon from 'sinon';
 import formFields from '../../pages/components/form-field';
-<<<<<<< HEAD
 import { format, startOfDay } from 'date-fns';
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 const component = create(formFields);
 
@@ -84,30 +81,24 @@ module('Integration | Component | form field', function (hooks) {
   });
 
   test('it renders: object', async function (assert) {
-<<<<<<< HEAD
     // TODO: Fix JSONEditor/CodeMirror
     setRunOptions({
       rules: {
         label: { enabled: false },
       },
     });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
     await setup.call(this, createAttr('foo', 'object'));
     assert.strictEqual(component.fields.objectAt(0).labelText[0], 'Foo', 'renders a label');
     assert.ok(component.hasJSONEditor, 'renders the json editor');
   });
 
   test('it renders: string as json with clear button', async function (assert) {
-<<<<<<< HEAD
     // TODO: Fix JSONEditor/CodeMirror
     setRunOptions({
       rules: {
         label: { enabled: false },
       },
     });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
     await setup.call(this, createAttr('foo', 'string', { editType: 'json', allowReset: true }));
     assert.strictEqual(component.fields.objectAt(0).labelText[0], 'Foo', 'renders a label');
     assert.ok(component.hasJSONEditor, 'renders the json editor');
@@ -182,7 +173,6 @@ module('Integration | Component | form field', function (hooks) {
     assert.strictEqual(model.get('foo'), selectedValue);
     assert.ok(spy.calledWith('foo', selectedValue), 'onChange called with correct args');
   });
-<<<<<<< HEAD
   test('it renders: radio buttons for possible values, labels, and subtext', async function (assert) {
     const [model, spy] = await setup.call(
       this,
@@ -221,8 +211,6 @@ module('Integration | Component | form field', function (hooks) {
     );
     assert.deepEqual(model.get('bar'), '2023-12-17T00:00', 'sets the value on the model');
   });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
   test('it renders: editType stringArray', async function (assert) {
     const [model, spy] = await setup.call(this, createAttr('foo', 'string', { editType: 'stringArray' }));

@@ -28,11 +28,7 @@ import (
 	"sync/atomic"
 	"time"
 
-<<<<<<< HEAD
 	kv "github.com/hashicorp/vault-plugin-secrets-kv"
-=======
-	kv "github.com/X-Margin-Inc/vault-plugin-secrets-kv"
->>>>>>> 4cb759cfc9 (fixed log)
 
 	"github.com/armon/go-metrics"
 	"github.com/hashicorp/errwrap"
@@ -70,10 +66,7 @@ import (
 	"github.com/hashicorp/vault/vault/plugincatalog"
 	"github.com/hashicorp/vault/vault/quotas"
 	vaultseal "github.com/hashicorp/vault/vault/seal"
-<<<<<<< HEAD
 	uicustommessages "github.com/hashicorp/vault/vault/ui_custom_messages"
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 	"github.com/hashicorp/vault/version"
 	"github.com/patrickmn/go-cache"
 	uberAtomic "go.uber.org/atomic"
@@ -532,12 +525,8 @@ type Core struct {
 	activeNodeReplicationState *uint32
 
 	// uiConfig contains UI configuration
-<<<<<<< HEAD
 	uiConfig             *UIConfig
 	customMessageManager CustomMessagesManager
-=======
-	uiConfig *UIConfig
->>>>>>> 4cb759cfc9 (fixed log)
 
 	// rawEnabled indicates whether the Raw endpoint is enabled
 	rawEnabled bool
@@ -721,11 +710,8 @@ type Core struct {
 	echoDuration                  *uberAtomic.Duration
 	activeNodeClockSkewMillis     *uberAtomic.Int64
 	periodicLeaderRefreshInterval time.Duration
-<<<<<<< HEAD
 
 	clusterAddrBridge *raft.ClusterAddrBridge
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 }
 
 func (c *Core) ActiveNodeClockSkewMillis() int64 {
@@ -902,11 +888,8 @@ type CoreConfig struct {
 	NumRollbackWorkers int
 
 	PeriodicLeaderRefreshInterval time.Duration
-<<<<<<< HEAD
 
 	ClusterAddrBridge *raft.ClusterAddrBridge
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 }
 
 // GetServiceRegistration returns the config's ServiceRegistration, or nil if it does
@@ -980,11 +963,7 @@ func CreateCore(conf *CoreConfig) (*Core, error) {
 	}
 
 	clusterHeartbeatInterval := conf.ClusterHeartbeatInterval
-<<<<<<< HEAD
 	if clusterHeartbeatInterval <= 0 {
-=======
-	if clusterHeartbeatInterval == 0 {
->>>>>>> 4cb759cfc9 (fixed log)
 		clusterHeartbeatInterval = 5 * time.Second
 	}
 
@@ -1231,11 +1210,7 @@ func NewCore(conf *CoreConfig) (*Core, error) {
 	conf.ReloadFuncs = &c.reloadFuncs
 
 	c.rollbackPeriod = conf.RollbackPeriod
-<<<<<<< HEAD
 	if c.rollbackPeriod <= 0 {
-=======
-	if c.rollbackPeriod == 0 {
->>>>>>> 4cb759cfc9 (fixed log)
 		// Default to 1 minute
 		c.rollbackPeriod = 1 * time.Minute
 	}
@@ -1291,10 +1266,7 @@ func NewCore(conf *CoreConfig) (*Core, error) {
 	// UI
 	uiStoragePrefix := systemBarrierPrefix + "ui"
 	c.uiConfig = NewUIConfig(conf.EnableUI, physical.NewView(c.physical, uiStoragePrefix), NewBarrierView(c.barrier, uiStoragePrefix))
-<<<<<<< HEAD
 	c.customMessageManager = uicustommessages.NewManager(c.barrier)
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 	// Listeners
 	err = c.configureListeners(conf)
@@ -1341,11 +1313,8 @@ func NewCore(conf *CoreConfig) (*Core, error) {
 	c.events = events
 	c.events.Start()
 
-<<<<<<< HEAD
 	c.clusterAddrBridge = conf.ClusterAddrBridge
 
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 	return c, nil
 }
 
@@ -2427,10 +2396,6 @@ func (s standardUnsealStrategy) unseal(ctx context.Context, logger log.Logger, c
 
 	// Mark the active time. We do this first so it can be correlated to the logs
 	// for the active startup.
-<<<<<<< HEAD
-=======
-	c.activeTime = time.Now().UTC()
->>>>>>> 4cb759cfc9 (fixed log)
 
 	if err := postUnsealPhysical(c); err != nil {
 		return err
@@ -2439,11 +2404,7 @@ func (s standardUnsealStrategy) unseal(ctx context.Context, logger log.Logger, c
 	if err := c.entPostUnseal(false); err != nil {
 		return err
 	}
-<<<<<<< HEAD
 	if c.isPrimary() {
-=======
-	if !c.ReplicationState().HasState(consts.ReplicationPerformanceSecondary | consts.ReplicationDRSecondary) {
->>>>>>> 4cb759cfc9 (fixed log)
 		// Only perf primarys should write feature flags, but we do it by
 		// excluding other states so that we don't have to change it when
 		// a non-replicated cluster becomes a primary.
@@ -2458,7 +2419,6 @@ func (s standardUnsealStrategy) unseal(ctx context.Context, logger log.Logger, c
 		go c.autoRotateBarrierLoop(autoRotateCtx)
 	}
 
-<<<<<<< HEAD
 	// Run setup-like functions
 	if err := runUnsealSetupFunctions(ctx, buildUnsealSetupFunctionSlice(c)); err != nil {
 		return err
@@ -2467,91 +2427,6 @@ func (s standardUnsealStrategy) unseal(ctx context.Context, logger log.Logger, c
 	if !c.IsDRSecondary() {
 		if err := c.setupCensusAgent(); err != nil {
 			logger.Error("skipping reporting for nil agent", "error", err)
-=======
-	if !c.IsDRSecondary() {
-		if err := c.ensureWrappingKey(ctx); err != nil {
-			return err
-		}
-	}
-	if pluginRuntimeCatalog, err := plugincatalog.SetupPluginRuntimeCatalog(ctx, c.logger, NewBarrierView(c.barrier, pluginRuntimeCatalogPath)); err != nil {
-		return err
-	} else {
-		c.pluginRuntimeCatalog = pluginRuntimeCatalog
-	}
-	if pluginCatalog, err := plugincatalog.SetupPluginCatalog(ctx, c.logger, c.builtinRegistry, NewBarrierView(c.barrier, pluginCatalogPath), c.pluginDirectory, c.enableMlock, c.pluginRuntimeCatalog); err != nil {
-		return err
-	} else {
-		c.pluginCatalog = pluginCatalog
-	}
-	if err := c.loadMounts(ctx); err != nil {
-		return err
-	}
-	if err := c.entSetupFilteredPaths(); err != nil {
-		return err
-	}
-	if err := c.setupMounts(ctx); err != nil {
-		return err
-	}
-	if err := c.entSetupAPILock(ctx); err != nil {
-		return err
-	}
-	if err := c.setupPolicyStore(ctx); err != nil {
-		return err
-	}
-	if err := c.setupManagedKeyRegistry(); err != nil {
-		return err
-	}
-	if err := c.loadCORSConfig(ctx); err != nil {
-		return err
-	}
-	if err := c.loadCredentials(ctx); err != nil {
-		return err
-	}
-	if err := c.entSetupFilteredPaths(); err != nil {
-		return err
-	}
-	if err := c.setupCredentials(ctx); err != nil {
-		return err
-	}
-	if err := c.setupQuotas(ctx, false); err != nil {
-		return err
-	}
-	if err := c.setupHeaderHMACKey(ctx, false); err != nil {
-		return err
-	}
-	if !c.IsDRSecondary() {
-		c.updateLockedUserEntries()
-
-		if err := c.startRollback(); err != nil {
-			return err
-		}
-		if err := c.setupExpiration(expireLeaseStrategyFairsharing); err != nil {
-			return err
-		}
-		if err := c.loadAudits(ctx); err != nil {
-			return err
-		}
-		if err := c.setupAuditedHeadersConfig(ctx); err != nil {
-			return err
-		}
-
-		if err := c.setupAudits(ctx); err != nil {
-			return err
-		}
-		if err := c.loadIdentityStoreArtifacts(ctx); err != nil {
-			return err
-		}
-		if err := loadPolicyMFAConfigs(ctx, c); err != nil {
-			return err
-		}
-		c.setupCachedMFAResponseAuth()
-		if err := c.loadLoginMFAConfigs(ctx); err != nil {
-			return err
-		}
-
-		if err := c.setupCensusAgent(); err != nil {
-			c.logger.Error("skipping reporting for nil agent", "error", err)
->>>>>>> 4cb759cfc9 (fixed log)
 		}
 
 		// not waiting on wg to avoid changing existing behavior
@@ -2565,70 +2440,16 @@ func (s standardUnsealStrategy) unseal(ctx context.Context, logger log.Logger, c
 		if err != nil {
 			return fmt.Errorf("unable to parse feature flag: %q: %w", featureFlagDisableEventLogger, err)
 		}
-<<<<<<< HEAD
 		c.auditBroker, err = NewAuditBroker(logger, !disableEventLogger)
-=======
-		c.auditBroker, err = NewAuditBroker(c.logger, !disableEventLogger)
->>>>>>> 4cb759cfc9 (fixed log)
 		if err != nil {
 			return err
 		}
 	}
 
-<<<<<<< HEAD
 	if c.isPrimary() {
 		if err := c.runUnsealSetupForPrimary(ctx, logger); err != nil {
 			return err
 		}
-=======
-	if !c.ReplicationState().HasState(consts.ReplicationPerformanceSecondary | consts.ReplicationDRSecondary) {
-		// Cannot do this above, as we need other resources like mounts to be setup
-		if err := c.setupPluginReload(); err != nil {
-			return err
-		}
-
-		// Retrieve the seal generation information from storage
-		existingGenerationInfo, err := PhysicalSealGenInfo(ctx, c.physical)
-		if err != nil {
-			c.logger.Error("cannot read existing seal generation info from storage", "error", err)
-			return err
-		}
-
-		sealGenerationInfo := c.seal.GetAccess().GetSealGenerationInfo()
-
-		switch {
-		case existingGenerationInfo == nil:
-			// This is the first time we store seal generation information
-			fallthrough
-		case existingGenerationInfo.Generation < sealGenerationInfo.Generation:
-			// We have incremented the seal generation
-			if err := c.SetPhysicalSealGenInfo(ctx, sealGenerationInfo); err != nil {
-				c.logger.Error("failed to store seal generation info", "error", err)
-				return err
-			}
-
-		case existingGenerationInfo.Generation == sealGenerationInfo.Generation:
-			// Same generation, update the rewrapped flag in case the previous active node
-			// changed its value. In other words, a rewrap may have happened, or a rewrap may have been
-			// started but not completed.
-			c.seal.GetAccess().GetSealGenerationInfo().SetRewrapped(existingGenerationInfo.IsRewrapped())
-
-		case existingGenerationInfo.Generation > sealGenerationInfo.Generation:
-			// Our seal information is out of date. The previous active node used a newer generation.
-			c.logger.Error("A newer seal generation was found in storage. The seal configuration in this node should be updated to match that of the previous active node, and this node should be restarted.")
-			return errors.New("newer seal generation found in storage, in memory seal configuration is out of date")
-		}
-
-		if server.IsMultisealSupported() && !sealGenerationInfo.IsRewrapped() {
-			// Set the migration done flag so that a seal-rewrap gets triggered later.
-			// Note that in the case where multi seal is not supported, Core.migrateSeal() takes care of
-			// triggering the rewrap when necessary.
-			c.logger.Trace("seal generation information indicates that a seal-rewrap is needed", "generation", sealGenerationInfo.Generation)
-			atomic.StoreUint32(c.sealMigrationDone, 1)
-		}
-
-		startPartialSealRewrapping(c)
->>>>>>> 4cb759cfc9 (fixed log)
 	}
 
 	if c.getClusterListener() != nil && (c.ha != nil || shouldStartClusterListener(c)) {
@@ -2659,7 +2480,6 @@ func (s standardUnsealStrategy) unseal(ctx context.Context, logger log.Logger, c
 	return nil
 }
 
-<<<<<<< HEAD
 // setupPluginRuntimeCatalog wraps the plugincatalog.SetupPluginRuntimeCatalog
 // in way where this method can be included in the slice of functions returned
 // by the buildUnsealSetupFunctionsSlice function.
@@ -2824,8 +2644,6 @@ func (c *Core) runUnsealSetupForPrimary(ctx context.Context, logger log.Logger) 
 	return nil
 }
 
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 // postUnseal is invoked on the active node, and performance standby nodes,
 // after the barrier is unsealed, but before
 // allowing any user operations. This allows us to setup any state that
@@ -2953,10 +2771,6 @@ func (c *Core) preSeal() error {
 	}
 	// Clear any pending funcs
 	c.postUnsealFuncs = nil
-<<<<<<< HEAD
-=======
-	c.activeTime = time.Time{}
->>>>>>> 4cb759cfc9 (fixed log)
 
 	// Clear any rekey progress
 	c.barrierRekeyConfig = nil

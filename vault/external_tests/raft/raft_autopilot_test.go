@@ -7,40 +7,22 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-<<<<<<< HEAD
 	"io"
 	"math"
 	"reflect"
-=======
-	"math"
-	"reflect"
-	"sync/atomic"
->>>>>>> 4cb759cfc9 (fixed log)
 	"testing"
 	"time"
 
 	"github.com/google/go-cmp/cmp"
-<<<<<<< HEAD
-=======
-	"github.com/hashicorp/go-hclog"
->>>>>>> 4cb759cfc9 (fixed log)
 	autopilot "github.com/hashicorp/raft-autopilot"
 	"github.com/hashicorp/vault/api"
 	"github.com/hashicorp/vault/helper/constants"
 	"github.com/hashicorp/vault/helper/testhelpers"
-<<<<<<< HEAD
-=======
-	"github.com/hashicorp/vault/helper/testhelpers/teststorage"
->>>>>>> 4cb759cfc9 (fixed log)
 	"github.com/hashicorp/vault/physical/raft"
 	"github.com/hashicorp/vault/sdk/helper/testcluster"
 	"github.com/hashicorp/vault/vault"
 	"github.com/hashicorp/vault/version"
 	"github.com/kr/pretty"
-<<<<<<< HEAD
-=======
-	testingintf "github.com/mitchellh/go-testing-interface"
->>>>>>> 4cb759cfc9 (fixed log)
 	"github.com/stretchr/testify/require"
 )
 
@@ -233,7 +215,6 @@ func TestRaft_Autopilot_Configuration(t *testing.T) {
 // TestRaft_Autopilot_Stabilization_Delay verifies that if a node takes a long
 // time to become ready, it doesn't get promoted to voter until then.
 func TestRaft_Autopilot_Stabilization_Delay(t *testing.T) {
-<<<<<<< HEAD
 	t.Parallel()
 	core2SnapshotDelay := 5 * time.Second
 	conf, opts := raftClusterBuilder(t, &RaftClusterOpts{
@@ -251,31 +232,6 @@ func TestRaft_Autopilot_Stabilization_Delay(t *testing.T) {
 	})
 
 	cluster := vault.NewTestCluster(t, conf, &opts)
-=======
-	t.Skip()
-	t.Parallel()
-	conf, opts := teststorage.ClusterSetup(nil, nil, teststorage.RaftBackendSetup)
-	conf.DisableAutopilot = false
-	opts.InmemClusterLayers = true
-	opts.KeepStandbysSealed = true
-	opts.SetupFunc = nil
-	core2SnapshotDelay := 5 * time.Second
-	opts.PhysicalFactory = func(t testingintf.T, coreIdx int, logger hclog.Logger, conf map[string]interface{}) *vault.PhysicalBackendBundle {
-		config := map[string]interface{}{
-			"snapshot_threshold":           "50",
-			"trailing_logs":                "100",
-			"autopilot_reconcile_interval": "300ms",
-			"autopilot_update_interval":    "100ms",
-			"snapshot_interval":            "1s",
-		}
-		if coreIdx == 2 {
-			config["snapshot_delay"] = core2SnapshotDelay.String()
-		}
-		return teststorage.MakeRaftBackend(t, coreIdx, logger, config)
-	}
-
-	cluster := vault.NewTestCluster(t, conf, opts)
->>>>>>> 4cb759cfc9 (fixed log)
 	defer cluster.Cleanup()
 	testhelpers.WaitForActiveNode(t, cluster)
 
@@ -299,21 +255,12 @@ func TestRaft_Autopilot_Stabilization_Delay(t *testing.T) {
 	require.NoError(t, err)
 
 	// Wait for 110% of the stabilization time to add nodes
-<<<<<<< HEAD
 	stabilizationPadded := time.Duration(math.Ceil(1.25 * float64(config.ServerStabilizationTime)))
 	time.Sleep(stabilizationPadded)
 
 	cli := cluster.Cores[0].Client
 	// Write more keys than snapshot_threshold
 	for i := 0; i < 50; i++ {
-=======
-	stabilizationKickOffWaitDuration := time.Duration(math.Ceil(1.1 * float64(config.ServerStabilizationTime)))
-	time.Sleep(stabilizationKickOffWaitDuration)
-
-	cli := cluster.Cores[0].Client
-	// Write more keys than snapshot_threshold
-	for i := 0; i < 250; i++ {
->>>>>>> 4cb759cfc9 (fixed log)
 		_, err := cli.Logical().Write(fmt.Sprintf("secret/%d", i), map[string]interface{}{
 			"test": "data",
 		})
@@ -322,7 +269,6 @@ func TestRaft_Autopilot_Stabilization_Delay(t *testing.T) {
 		}
 	}
 
-<<<<<<< HEAD
 	// Take a snpashot, which should compact the raft log db, which should prevent
 	// followers from getting logs and require that they instead apply a snapshot,
 	// which should allow our snapshot_delay to come into play, which should result
@@ -336,22 +282,11 @@ func TestRaft_Autopilot_Stabilization_Delay(t *testing.T) {
 	// Add an extra fudge factor, since once the snapshot delay completes it can
 	// take time for the snapshot to actually be applied.
 	core2shouldBeHealthyAt := time.Now().Add(core2SnapshotDelay).Add(stabilizationPadded).Add(5 * time.Second)
-=======
-	joinAndUnseal(t, cluster.Cores[1], cluster, false, false)
-	joinAndUnseal(t, cluster.Cores[2], cluster, false, false)
-
-	core2shouldBeHealthyAt := time.Now().Add(core2SnapshotDelay).Add(config.ServerStabilizationTime)
->>>>>>> 4cb759cfc9 (fixed log)
 
 	// Wait for enough time for stabilization to complete if things were good
 	// - but they're not good, due to our snapshot_delay.  So we fail if both
 	// nodes are healthy.
-<<<<<<< HEAD
 	testhelpers.RetryUntil(t, stabilizationPadded, func() error {
-=======
-	stabilizationWaitDuration := time.Duration(1.25 * float64(config.ServerStabilizationTime))
-	testhelpers.RetryUntil(t, stabilizationWaitDuration, func() error {
->>>>>>> 4cb759cfc9 (fixed log)
 		state, err := client.Sys().RaftAutopilotState()
 		if err != nil {
 			return err
@@ -496,7 +431,6 @@ func TestRaft_VotersStayVoters(t *testing.T) {
 // remove it from Raft until a replacement voter had joined and stabilized/been promoted.
 func TestRaft_Autopilot_DeadServerCleanup(t *testing.T) {
 	t.Parallel()
-<<<<<<< HEAD
 	cluster, _ := raftCluster(t, &RaftClusterOpts{
 		DisableFollowerJoins: true,
 		InmemCluster:         true,
@@ -511,29 +445,6 @@ func TestRaft_Autopilot_DeadServerCleanup(t *testing.T) {
 	core1 := cluster.Cores[1]
 	core2 := cluster.Cores[2]
 	core3 := cluster.Cores[3]
-=======
-	conf, opts := teststorage.ClusterSetup(nil, nil, teststorage.RaftBackendSetup)
-	conf.DisableAutopilot = false
-	opts.NumCores = 4
-	opts.SetupFunc = nil
-	opts.PhysicalFactoryConfig = map[string]interface{}{
-		"autopilot_reconcile_interval": "300ms",
-		"autopilot_update_interval":    "100ms",
-	}
-
-	cluster := vault.NewTestCluster(t, conf, opts)
-	defer cluster.Cleanup()
-	testhelpers.WaitForActiveNode(t, cluster)
-	leader, addressProvider := setupLeaderAndUnseal(t, cluster)
-
-	// Join 2 extra nodes manually, store the 3rd for later
-	core1 := cluster.Cores[1]
-	core2 := cluster.Cores[2]
-	core3 := cluster.Cores[3]
-	core1.UnderlyingRawStorage.(*raft.RaftBackend).SetServerAddressProvider(addressProvider)
-	core2.UnderlyingRawStorage.(*raft.RaftBackend).SetServerAddressProvider(addressProvider)
-	core3.UnderlyingRawStorage.(*raft.RaftBackend).SetServerAddressProvider(addressProvider)
->>>>>>> 4cb759cfc9 (fixed log)
 	joinAsVoterAndUnseal(t, core1, cluster)
 	joinAsVoterAndUnseal(t, core2, cluster)
 	// Do not join node 3
@@ -687,29 +598,6 @@ func joinAndUnseal(t *testing.T, core *vault.TestClusterCore, cluster *vault.Tes
 	}
 }
 
-<<<<<<< HEAD
-=======
-// setupLeaderAndUnseal configures and unseals the leader node.
-// It will wait until the node is active before returning the core and the address of the leader.
-func setupLeaderAndUnseal(t *testing.T, cluster *vault.TestCluster) (*vault.TestClusterCore, *testhelpers.TestRaftServerAddressProvider) {
-	t.Helper()
-	leaderIdx, err := testcluster.LeaderNode(context.Background(), cluster)
-	require.NoError(t, err)
-	leader := cluster.Cores[leaderIdx]
-
-	// Lots of tests seem to do this when they deal with a TestRaftServerAddressProvider, it makes the test work rather than error out.
-	atomic.StoreUint32(&vault.TestingUpdateClusterAddr, 1)
-
-	addressProvider := &testhelpers.TestRaftServerAddressProvider{Cluster: cluster}
-	testhelpers.EnsureCoreSealed(t, leader)
-	leader.UnderlyingRawStorage.(*raft.RaftBackend).SetServerAddressProvider(addressProvider)
-	cluster.UnsealCore(t, leader)
-	vault.TestWaitActive(t, leader.Core)
-
-	return leader, addressProvider
-}
-
->>>>>>> 4cb759cfc9 (fixed log)
 // waitForCoreUnseal waits until the specified core is unsealed.
 // It fails the calling test if the deadline has elapsed and the core is still sealed.
 func waitForCoreUnseal(t *testing.T, core *vault.TestClusterCore) {

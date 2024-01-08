@@ -107,10 +107,7 @@ func Backend(conf *logical.BackendConfig) *databaseBackend {
 				pathListPluginConnection(&b),
 				pathConfigurePluginConnection(&b),
 				pathResetConnection(&b),
-<<<<<<< HEAD
 				pathReloadPlugin(&b),
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 			},
 			pathListRoles(&b),
 			pathRoles(&b),

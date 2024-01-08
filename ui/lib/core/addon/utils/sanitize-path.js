@@ -9,15 +9,12 @@ export function sanitizePath(path) {
   return path.trim().replace(/^\/+|\/+$/g, '');
 }
 
-<<<<<<< HEAD
 export function sanitizeStart(path) {
   if (!path) return '';
   //remove leading slashes
   return path.trim().replace(/^\/+/, '');
 }
 
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 export function ensureTrailingSlash(path) {
   return path.replace(/(\w+[^/]$)/g, '$1/');
 }

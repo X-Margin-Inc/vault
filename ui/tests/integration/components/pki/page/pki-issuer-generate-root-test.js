@@ -14,10 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { setupRenderingTest } from 'vault/tests/helpers';
 import { SELECTORS } from 'vault/tests/helpers/pki/pki-configure-create';
 import { allowAllCapabilitiesStub } from 'vault/tests/helpers/stubs';
-<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 /**
  * this test is for the page component only. A separate test is written for the form rendered
@@ -36,7 +33,6 @@ module('Integration | Component | page/pki-issuer-generate-root', function (hook
     this.secretMountPath = this.owner.lookup('service:secret-mount-path');
     this.secretMountPath.currentPath = 'pki-component';
     this.server.post('/sys/capabilities-self', allowAllCapabilitiesStub());
-<<<<<<< HEAD
     setRunOptions({
       rules: {
         // something strange happening here
@@ -46,8 +42,6 @@ module('Integration | Component | page/pki-issuer-generate-root', function (hook
         'nested-interactive': { enabled: false },
       },
     });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it renders correct title before and after submit', async function (assert) {

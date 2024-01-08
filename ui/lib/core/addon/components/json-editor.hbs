@@ -6,7 +6,6 @@
 <div ...attributes>
   {{#if this.getShowToolbar}}
     <div data-test-component="json-editor-toolbar">
-<<<<<<< HEAD
       <Toolbar aria-label="items for managing JSON editor for {{@title}}">
         <label id="json-editor-title" class="has-text-weight-bold" data-test-component="json-editor-title">
           {{@title}}
@@ -15,16 +14,6 @@
           {{/if}}
         </label>
         <ToolbarActions aria-label="actions for {{@title}} JSON editor">
-=======
-      <Toolbar>
-        <label class="has-text-weight-bold" data-test-component="json-editor-title">
-          {{@title}}
-          {{#if @subTitle}}
-            <span class="is-size-9 is-lowercase has-text-grey">({{@subTitle}})</span>
-          {{/if}}
-        </label>
-        <ToolbarActions>
->>>>>>> 4cb759cfc9 (fixed log)
           {{yield}}
           {{#if @example}}
             <Hds::Button
@@ -36,7 +25,6 @@
               data-test-restore-example
             />
           {{/if}}
-<<<<<<< HEAD
           {{#if (and @obscure @readOnly)}}
             {{! For safety we only use obscured values in readonly mode }}
             <div>
@@ -45,8 +33,6 @@
               </Toggle>
             </div>
           {{/if}}
-=======
->>>>>>> 4cb759cfc9 (fixed log)
           <div class="toolbar-separator"></div>
           <Hds::Copy::Button
             @container={{@container}}
@@ -62,11 +48,7 @@
   {{/if}}
   <div
     {{code-mirror
-<<<<<<< HEAD
       content=(if this.showObfuscatedData this.obfuscatedData (or @value @example))
-=======
-      content=(or @value @example)
->>>>>>> 4cb759cfc9 (fixed log)
       extraKeys=@extraKeys
       gutters=@gutters
       lineNumbers=(if @readOnly false true)

@@ -5,13 +5,8 @@
 
 .empty-state {
   align-items: center;
-<<<<<<< HEAD
   color: var(--token-color-foreground-faint);
   background: var(--token-color-surface-faint);
-=======
-  color: $grey;
-  background: $ui-gray-010;
->>>>>>> 4cb759cfc9 (fixed log)
   display: flex;
   justify-content: center;
   padding: $spacing-48 $spacing-12;
@@ -20,11 +15,7 @@
 
 .empty-state-transparent {
   align-items: center;
-<<<<<<< HEAD
   color: var(--token-color-foreground-faint);
-=======
-  color: $grey;
->>>>>>> 4cb759cfc9 (fixed log)
   background: transparent;
   display: flex;
   justify-content: center;
@@ -59,15 +50,6 @@
   display: flex;
   justify-content: space-between;
 
-<<<<<<< HEAD
-=======
-  a,
-  .link,
-  a:not(.button):not(.file-delete-button):not(.tag) {
-    text-decoration: none;
-  }
-
->>>>>>> 4cb759cfc9 (fixed log)
   > * + * {
     margin-left: $spacing-12;
     margin-right: $spacing-12;

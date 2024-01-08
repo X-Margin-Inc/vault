@@ -17,10 +17,7 @@ import mfaConfig from './mfa-config';
 import mfaLogin from './mfa-login';
 import oidcConfig from './oidc-config';
 import reducedDisclosure from './reduced-disclosure';
-<<<<<<< HEAD
 import sync from './sync';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 export {
   base,
@@ -35,8 +32,5 @@ export {
   mfaLogin,
   oidcConfig,
   reducedDisclosure,
-<<<<<<< HEAD
   sync,
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 };

@@ -1,10 +1,6 @@
 /**
  * Copyright (c) HashiCorp, Inc.
-<<<<<<< HEAD
  * SPDX-License-Identifier: BUSL-1.1
-=======
- * SPDX-License-Identifier: MPL-2.0
->>>>>>> 4cb759cfc9 (fixed log)
  */
 
 import Component from '@glimmer/component';
@@ -13,10 +9,7 @@ import { tracked } from '@glimmer/tracking';
 import { task } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
 import errorMessage from 'vault/utils/error-message';
-<<<<<<< HEAD
 import { isAdvancedSecret } from 'core/utils/advanced-secret';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 /**
  * @module KvSecretEdit is used for creating a new version of a secret
@@ -51,14 +44,7 @@ export default class KvSecretEdit extends Component {
   constructor() {
     super(...arguments);
     this.originalSecret = JSON.stringify(this.args.secret.secretData || {});
-<<<<<<< HEAD
     this.secretDataIsAdvanced = isAdvancedSecret(this.originalSecret);
-=======
-    if (this.originalSecret.lastIndexOf('{') > 0) {
-      // Dumb way to check if there's a nested object in the secret
-      this.secretDataIsAdvanced = true;
-    }
->>>>>>> 4cb759cfc9 (fixed log)
   }
 
   get showOldVersionAlert() {

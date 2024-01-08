@@ -44,15 +44,10 @@ import (
 	"github.com/hashicorp/vault/sdk/logical"
 	"github.com/hashicorp/vault/vault/plugincatalog"
 	"github.com/hashicorp/vault/vault/seal"
-<<<<<<< HEAD
 	uicustommessages "github.com/hashicorp/vault/vault/ui_custom_messages"
 	"github.com/hashicorp/vault/version"
 	"github.com/mitchellh/mapstructure"
 	"github.com/stretchr/testify/assert"
-=======
-	"github.com/hashicorp/vault/version"
-	"github.com/mitchellh/mapstructure"
->>>>>>> 4cb759cfc9 (fixed log)
 	"github.com/stretchr/testify/require"
 )
 
@@ -6390,7 +6385,6 @@ func TestSystemBackend_pluginRuntime_CannotDeleteRuntimeWithReferencingPlugins(t
 		t.Fatalf("err: %v %v", err, resp.Error())
 	}
 }
-<<<<<<< HEAD
 
 type testingCustomMessageManager struct {
 	findFilters []uicustommessages.FindFilter
@@ -6554,5 +6548,3 @@ func TestPathInternalUICustomMessagesCommon(t *testing.T) {
 	assert.Contains(t, resp.Data, "key_info")
 	assert.Equal(t, 3, len(resp.Data["key_info"].(map[string]any)))
 }
-=======
->>>>>>> 4cb759cfc9 (fixed log)

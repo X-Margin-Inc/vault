@@ -21,15 +21,10 @@ import (
 )
 
 // Verify MSSQLBackend satisfies the correct interfaces
-<<<<<<< HEAD
 var (
 	_               physical.Backend = (*MSSQLBackend)(nil)
 	identifierRegex                  = regexp.MustCompile(`^[\p{L}_][\p{L}\p{Nd}@#$_]*$`)
 )
-=======
-var _ physical.Backend = (*MSSQLBackend)(nil)
-var identifierRegex = regexp.MustCompile(`^[\p{L}_][\p{L}\p{Nd}@#$_]*$`)
->>>>>>> 4cb759cfc9 (fixed log)
 
 type MSSQLBackend struct {
 	dbTable    string

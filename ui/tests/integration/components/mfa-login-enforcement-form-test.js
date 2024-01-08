@@ -8,10 +8,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, click, fillIn } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 import { setupMirage } from 'ember-cli-mirage/test-support';
-<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 module('Integration | Component | mfa-login-enforcement-form', function (hooks) {
   setupRenderingTest(hooks);
@@ -31,7 +28,6 @@ module('Integration | Component | mfa-login-enforcement-form', function (hooks) 
         keys: ['123456'],
       },
     }));
-<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO: Fix SearchSelect component
@@ -41,8 +37,6 @@ module('Integration | Component | mfa-login-enforcement-form', function (hooks) 
         'select-name': { enabled: false },
       },
     });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it should render correct fields', async function (assert) {

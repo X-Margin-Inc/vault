@@ -83,11 +83,6 @@ jobs:
 
     - name: SARIF Output
       shell: bash
-<<<<<<< HEAD
-=======
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
->>>>>>> 4cb759cfc9 (fixed log)
       run: |
         cat results.sarif
 

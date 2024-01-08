@@ -1,10 +1,6 @@
 /**
  * Copyright (c) HashiCorp, Inc.
-<<<<<<< HEAD
  * SPDX-License-Identifier: BUSL-1.1
-=======
- * SPDX-License-Identifier: MPL-2.0
->>>>>>> 4cb759cfc9 (fixed log)
  */
 
 import Component from '@glimmer/component';
@@ -14,7 +10,6 @@ import { debounce, next } from '@ember/runloop';
 import type { HTMLElementEvent } from 'vault/forms';
 
 interface Args {
-<<<<<<< HEAD
   wait?: number; // defaults to 500
   autofocus?: boolean; // initially focus the input on did-insert
   hideIcon?: boolean; // hide the search icon in the input
@@ -22,27 +17,6 @@ interface Args {
 }
 
 export default class FilterInputComponent extends Component<Args> {
-=======
-  value?: string; // initial value
-  placeholder?: string; // defaults to Type to filter results
-  wait?: number; // defaults to 200
-  autofocus?: boolean; // initially focus the input on did-insert
-  onInput(value: string): void;
-}
-
-export default class FilterInputComponent extends Component<Args> {
-  value: string | undefined;
-
-  constructor(owner: unknown, args: Args) {
-    super(owner, args);
-    this.value = this.args.value;
-  }
-
-  get placeholder() {
-    return this.args.placeholder || 'Type to filter results';
-  }
-
->>>>>>> 4cb759cfc9 (fixed log)
   @action
   focus(elem: HTMLElement) {
     if (this.args.autofocus) {
@@ -52,19 +26,10 @@ export default class FilterInputComponent extends Component<Args> {
 
   @action
   onInput(event: HTMLElementEvent<HTMLInputElement>) {
-<<<<<<< HEAD
     const wait = this.args.wait || 500;
     // ts complains when trying to pass object of optional args to callback as 3rd arg to debounce
     // eslint-disable-next-line
     // @ts-ignore
     debounce(this, this.args.onInput, event.target.value, wait);
-=======
-    const callback = () => {
-      this.args.onInput(event.target.value);
-    };
-    const wait = this.args.wait || 200;
-    // ts complains when trying to pass object of optional args to callback as 3rd arg to debounce
-    debounce(this, callback, wait);
->>>>>>> 4cb759cfc9 (fixed log)
   }
 }

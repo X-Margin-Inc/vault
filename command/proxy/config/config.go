@@ -77,10 +77,7 @@ type Vault struct {
 	ClientCert       string      `hcl:"client_cert"`
 	ClientKey        string      `hcl:"client_key"`
 	TLSServerName    string      `hcl:"tls_server_name"`
-<<<<<<< HEAD
 	Namespace        string      `hcl:"namespace"`
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 	Retry            *Retry      `hcl:"retry"`
 }
 
@@ -96,20 +93,12 @@ type transportDialer interface {
 
 // APIProxy contains any configuration needed for proxy mode
 type APIProxy struct {
-<<<<<<< HEAD
 	UseAutoAuthTokenRaw        interface{} `hcl:"use_auto_auth_token"`
 	UseAutoAuthToken           bool        `hcl:"-"`
 	ForceAutoAuthToken         bool        `hcl:"-"`
 	EnforceConsistency         string      `hcl:"enforce_consistency"`
 	WhenInconsistent           string      `hcl:"when_inconsistent"`
 	PrependConfiguredNamespace bool        `hcl:"prepend_configured_namespace"`
-=======
-	UseAutoAuthTokenRaw interface{} `hcl:"use_auto_auth_token"`
-	UseAutoAuthToken    bool        `hcl:"-"`
-	ForceAutoAuthToken  bool        `hcl:"-"`
-	EnforceConsistency  string      `hcl:"enforce_consistency"`
-	WhenInconsistent    string      `hcl:"when_inconsistent"`
->>>>>>> 4cb759cfc9 (fixed log)
 }
 
 // Cache contains any configuration needed for Cache mode

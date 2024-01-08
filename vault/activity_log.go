@@ -84,10 +84,7 @@ const (
 	// to support additional buckets for e.g., ACME requests.
 	nonEntityTokenActivityType = "non-entity-token"
 	entityActivityType         = "entity"
-<<<<<<< HEAD
 	secretSyncActivityType     = "secret-sync"
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 )
 
 type segmentInfo struct {
@@ -1980,7 +1977,6 @@ type (
 	summaryByMonth     map[int64]*processMonth
 )
 
-<<<<<<< HEAD
 // getClientType extracts the client type from an EntityRecord. Some
 // EntityRecords don't have the ClientType field set, so we fallback to looking
 // at the NonEntity field
@@ -2002,26 +1998,11 @@ type processCounts struct {
 	// count. This exists for backward compatibility
 	Tokens        uint64
 	ClientsByType map[string]clientIDSet
-=======
-type processCounts struct {
-	// entityID -> present
-	Entities map[string]struct{}
-	// count. This exists for backward compatibility
-	Tokens uint64
-	// clientID -> present
-	NonEntities map[string]struct{}
->>>>>>> 4cb759cfc9 (fixed log)
 }
 
 func newProcessCounts() *processCounts {
 	return &processCounts{
-<<<<<<< HEAD
 		ClientsByType: make(map[string]clientIDSet),
-=======
-		Entities:    make(map[string]struct{}),
-		Tokens:      0,
-		NonEntities: make(map[string]struct{}),
->>>>>>> 4cb759cfc9 (fixed log)
 	}
 }
 
@@ -2029,7 +2010,6 @@ func (p *processCounts) delete(client *activity.EntityRecord) {
 	if !p.contains(client) {
 		return
 	}
-<<<<<<< HEAD
 	delete(p.ClientsByType[getClientType(client)], client.ClientID)
 }
 
@@ -2085,30 +2065,6 @@ func (p *processCounts) clientsByType(typ string) clientIDSet {
 		return clients
 	}
 	return p.ClientsByType[typ]
-=======
-	if client.NonEntity {
-		delete(p.NonEntities, client.ClientID)
-	} else {
-		delete(p.Entities, client.ClientID)
-	}
-}
-
-func (p *processCounts) add(client *activity.EntityRecord) {
-	if client.NonEntity {
-		p.NonEntities[client.ClientID] = struct{}{}
-	} else {
-		p.Entities[client.ClientID] = struct{}{}
-	}
-}
-
-func (p *processCounts) contains(client *activity.EntityRecord) bool {
-	if client.NonEntity {
-		_, ok := p.NonEntities[client.ClientID]
-		return ok
-	}
-	_, ok := p.Entities[client.ClientID]
-	return ok
->>>>>>> 4cb759cfc9 (fixed log)
 }
 
 type processMount struct {
@@ -2276,44 +2232,15 @@ func (a *ActivityLog) breakdownTokenSegment(l *activity.TokenCount, byNamespace 
 
 func (a *ActivityLog) writePrecomputedQuery(ctx context.Context, segmentTime time.Time, opts pqOptions) error {
 	pq := &activity.PrecomputedQuery{
-<<<<<<< HEAD
 		StartTime: segmentTime,
 		EndTime:   opts.endTime,
-=======
-		StartTime:  segmentTime,
-		EndTime:    opts.endTime,
-		Namespaces: make([]*activity.NamespaceRecord, 0, len(opts.byNamespace)),
-		Months:     make([]*activity.MonthRecord, 0, len(opts.byMonth)),
->>>>>>> 4cb759cfc9 (fixed log)
 	}
 	// this will transform the byMonth map into the correctly formatted protobuf
 	pq.Months = a.transformMonthBreakdowns(opts.byMonth)
 
 	// the byNamespace map also needs to be transformed into a protobuf
-<<<<<<< HEAD
 	pq.Namespaces = a.transformALNamespaceBreakdowns(opts.byNamespace)
 
-=======
-	for nsID, entry := range opts.byNamespace {
-		mountRecord := make([]*activity.MountRecord, 0, len(entry.Mounts))
-		for mountAccessor, mountData := range entry.Mounts {
-			mountRecord = append(mountRecord, &activity.MountRecord{
-				MountPath: a.mountAccessorToMountPath(mountAccessor),
-				Counts: &activity.CountsRecord{
-					EntityClients:    len(mountData.Counts.Entities),
-					NonEntityClients: int(mountData.Counts.Tokens) + len(mountData.Counts.NonEntities),
-				},
-			})
-		}
-
-		pq.Namespaces = append(pq.Namespaces, &activity.NamespaceRecord{
-			NamespaceID:     nsID,
-			Entities:        uint64(len(entry.Counts.Entities)),
-			NonEntityTokens: entry.Counts.Tokens + uint64(len(entry.Counts.NonEntities)),
-			Mounts:          mountRecord,
-		})
-	}
->>>>>>> 4cb759cfc9 (fixed log)
 	err := a.queryStore.Put(ctx, pq)
 	if err != nil {
 		a.logger.Warn("failed to store precomputed query", "error", err)
@@ -2389,22 +2316,14 @@ func (a *ActivityLog) segmentToPrecomputedQuery(ctx context.Context, segmentTime
 		if segmentTime == opts.activePeriodEnd {
 			a.metrics.SetGaugeWithLabels(
 				[]string{"identity", "entity", "active", "monthly"},
-<<<<<<< HEAD
 				float32(entry.Counts.countByType(entityActivityType)),
-=======
-				float32(len(entry.Counts.Entities)),
->>>>>>> 4cb759cfc9 (fixed log)
 				[]metricsutil.Label{
 					{Name: "namespace", Value: a.namespaceToLabel(ctx, nsID)},
 				},
 			)
 			a.metrics.SetGaugeWithLabels(
 				[]string{"identity", "nonentity", "active", "monthly"},
-<<<<<<< HEAD
 				float32(entry.Counts.countByType(nonEntityTokenActivityType)),
-=======
-				float32(len(entry.Counts.NonEntities))+float32(entry.Counts.Tokens),
->>>>>>> 4cb759cfc9 (fixed log)
 				[]metricsutil.Label{
 					{Name: "namespace", Value: a.namespaceToLabel(ctx, nsID)},
 				},
@@ -2412,22 +2331,14 @@ func (a *ActivityLog) segmentToPrecomputedQuery(ctx context.Context, segmentTime
 		} else if segmentTime == opts.activePeriodStart {
 			a.metrics.SetGaugeWithLabels(
 				[]string{"identity", "entity", "active", "reporting_period"},
-<<<<<<< HEAD
 				float32(entry.Counts.countByType(entityActivityType)),
-=======
-				float32(len(entry.Counts.Entities)),
->>>>>>> 4cb759cfc9 (fixed log)
 				[]metricsutil.Label{
 					{Name: "namespace", Value: a.namespaceToLabel(ctx, nsID)},
 				},
 			)
 			a.metrics.SetGaugeWithLabels(
 				[]string{"identity", "nonentity", "active", "reporting_period"},
-<<<<<<< HEAD
 				float32(entry.Counts.countByType(nonEntityTokenActivityType)),
-=======
-				float32(len(entry.Counts.NonEntities))+float32(entry.Counts.Tokens),
->>>>>>> 4cb759cfc9 (fixed log)
 				[]metricsutil.Label{
 					{Name: "namespace", Value: a.namespaceToLabel(ctx, nsID)},
 				},
@@ -2668,30 +2579,15 @@ func (a *ActivityLog) transformMonthBreakdowns(byMonth map[int64]*processMonth) 
 			for mountAccessor, mountData := range nsMap[nsID].Mounts {
 				mountRecord = append(mountRecord, &activity.MountRecord{
 					MountPath: a.mountAccessorToMountPath(mountAccessor),
-<<<<<<< HEAD
 					Counts:    mountData.Counts.toCountsRecord(),
-=======
-					Counts: &activity.CountsRecord{
-						EntityClients:    len(mountData.Counts.Entities),
-						NonEntityClients: int(mountData.Counts.Tokens) + len(mountData.Counts.NonEntities),
-					},
->>>>>>> 4cb759cfc9 (fixed log)
 				})
 			}
 
 			// Process ns specific data within a given month
 			nsRecord = append(nsRecord, &activity.MonthlyNamespaceRecord{
 				NamespaceID: nsID,
-<<<<<<< HEAD
 				Counts:      nsData.Counts.toCountsRecord(),
 				Mounts:      mountRecord,
-=======
-				Counts: &activity.CountsRecord{
-					EntityClients:    len(nsData.Counts.Entities),
-					NonEntityClients: int(nsData.Counts.Tokens) + len(nsData.Counts.NonEntities),
-				},
-				Mounts: mountRecord,
->>>>>>> 4cb759cfc9 (fixed log)
 			})
 		}
 		return nsRecord
@@ -2699,29 +2595,14 @@ func (a *ActivityLog) transformMonthBreakdowns(byMonth map[int64]*processMonth) 
 	for timestamp, monthData := range byMonth {
 		newClientsNSRecord := processByNamespaces(monthData.NewClients.Namespaces)
 		newClientRecord := &activity.NewClientRecord{
-<<<<<<< HEAD
 			Counts:     monthData.NewClients.Counts.toCountsRecord(),
-=======
-			Counts: &activity.CountsRecord{
-				EntityClients:    len(monthData.NewClients.Counts.Entities),
-				NonEntityClients: int(monthData.NewClients.Counts.Tokens) + len(monthData.NewClients.Counts.NonEntities),
-			},
->>>>>>> 4cb759cfc9 (fixed log)
 			Namespaces: newClientsNSRecord,
 		}
 
 		// Process all the months
 		monthly = append(monthly, &activity.MonthRecord{
-<<<<<<< HEAD
 			Timestamp:  timestamp,
 			Counts:     monthData.Counts.toCountsRecord(),
-=======
-			Timestamp: timestamp,
-			Counts: &activity.CountsRecord{
-				EntityClients:    len(monthData.Counts.Entities),
-				NonEntityClients: int(monthData.Counts.Tokens) + len(monthData.Counts.NonEntities),
-			},
->>>>>>> 4cb759cfc9 (fixed log)
 			Namespaces: processByNamespaces(monthData.Namespaces),
 			NewClients: newClientRecord,
 		})

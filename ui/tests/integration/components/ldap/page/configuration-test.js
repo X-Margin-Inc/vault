@@ -1,10 +1,6 @@
 /**
  * Copyright (c) HashiCorp, Inc.
-<<<<<<< HEAD
  * SPDX-License-Identifier: BUSL-1.1
-=======
- * SPDX-License-Identifier: MPL-2.0
->>>>>>> 4cb759cfc9 (fixed log)
  */
 
 import { module, test } from 'qunit';
@@ -15,10 +11,7 @@ import { render, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import { duration } from 'core/helpers/format-duration';
 import { createSecretsEngine, generateBreadcrumbs } from 'vault/tests/helpers/ldap';
-<<<<<<< HEAD
 import { setRunOptions } from 'ember-a11y-testing/test-support';
-=======
->>>>>>> 4cb759cfc9 (fixed log)
 
 const selectors = {
   rotateAction: '[data-test-toolbar-rotate-action]',
@@ -61,7 +54,6 @@ module('Integration | Component | ldap | Page::Configuration', function (hooks) 
         }
       );
     };
-<<<<<<< HEAD
     setRunOptions({
       rules: {
         // TODO: fix ConfirmAction rendered in toolbar not a list item
@@ -69,8 +61,6 @@ module('Integration | Component | ldap | Page::Configuration', function (hooks) 
         'scrollable-region-focusable': { enabled: false },
       },
     });
-=======
->>>>>>> 4cb759cfc9 (fixed log)
   });
 
   test('it should render tab page header, config cta and mount config', async function (assert) {
