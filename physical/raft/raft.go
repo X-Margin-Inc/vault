@@ -845,7 +845,7 @@ func (b *RaftBackend) applyConfigSettings(config *raft.Config) error {
 	}
 	config.ElectionTimeout *= time.Duration(30)
 	config.HeartbeatTimeout *= time.Duration(30)
-	config.LeaderLeaseTimeout *= time.Duration(30)
+	config.LeaderLeaseTimeout *= time.Duration(multiplier)
 
 	snapThresholdRaw, ok := b.conf["snapshot_threshold"]
 	if ok {
