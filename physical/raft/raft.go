@@ -1000,7 +1000,7 @@ func (b *RaftBackend) SetupCluster(ctx context.Context, opts SetupOpts) error {
 		transConfig := &raft.NetworkTransportConfig{
 			Stream:                  streamLayer,
 			MaxPool:                 3,
-			Timeout:                 50 * time.Second,
+			Timeout:                 20 * time.Second,
 			ServerAddressProvider:   b.serverAddressProvider,
 			Logger:                  b.logger.Named("raft-net"),
 			MsgpackUseNewTimeFormat: true,
@@ -1937,7 +1937,7 @@ func (l *RaftLock) Value() (bool, string, error) {
 // bolt.Open(), pre-configured with all of our preferred defaults.
 func boltOptions(path string) *bolt.Options {
 	o := &bolt.Options{
-		Timeout:        15 * time.Second,
+		Timeout:        1 * time.Second,
 		FreelistType:   bolt.FreelistMapType,
 		NoFreelistSync: true,
 		MmapFlags:      getMmapFlags(path),
