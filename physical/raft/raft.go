@@ -843,9 +843,9 @@ func (b *RaftBackend) applyConfigSettings(config *raft.Config) error {
 			return err
 		}
 	}
-	config.ElectionTimeout *= time.Duration(multiplier)
-	config.HeartbeatTimeout *= time.Duration(multiplier)
-	config.LeaderLeaseTimeout *= time.Duration(multiplier)
+	config.ElectionTimeout *= time.Duration(30)
+	config.HeartbeatTimeout *= time.Duration(30)
+	config.LeaderLeaseTimeout *= time.Duration(30)
 
 	snapThresholdRaw, ok := b.conf["snapshot_threshold"]
 	if ok {
@@ -1000,7 +1000,7 @@ func (b *RaftBackend) SetupCluster(ctx context.Context, opts SetupOpts) error {
 		transConfig := &raft.NetworkTransportConfig{
 			Stream:                  streamLayer,
 			MaxPool:                 3,
-			Timeout:                 10 * time.Second,
+			Timeout:                 50 * time.Second,
 			ServerAddressProvider:   b.serverAddressProvider,
 			Logger:                  b.logger.Named("raft-net"),
 			MsgpackUseNewTimeFormat: true,
@@ -1937,7 +1937,7 @@ func (l *RaftLock) Value() (bool, string, error) {
 // bolt.Open(), pre-configured with all of our preferred defaults.
 func boltOptions(path string) *bolt.Options {
 	o := &bolt.Options{
-		Timeout:        1 * time.Second,
+		Timeout:        15 * time.Second,
 		FreelistType:   bolt.FreelistMapType,
 		NoFreelistSync: true,
 		MmapFlags:      getMmapFlags(path),
@@ -1973,7 +1973,7 @@ func boltOptions(path string) *bolt.Options {
 
 func etcdboltOptions(path string) *etcdbolt.Options {
 	o := &etcdbolt.Options{
-		Timeout:        1 * time.Second,
+		Timeout:        15 * time.Second,
 		FreelistType:   etcdbolt.FreelistMapType,
 		NoFreelistSync: true,
 		MmapFlags:      getMmapFlags(path),
