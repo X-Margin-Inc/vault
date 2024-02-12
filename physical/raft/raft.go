@@ -843,9 +843,9 @@ func (b *RaftBackend) applyConfigSettings(config *raft.Config) error {
 			return err
 		}
 	}
-	config.ElectionTimeout *= time.Duration(30)
-	config.HeartbeatTimeout *= time.Duration(30)
-	config.LeaderLeaseTimeout *= time.Duration(multiplier*10)
+	config.ElectionTimeout *= time.Duration(multiplier*5)
+	config.HeartbeatTimeout *= time.Duration(multiplier*5)
+	config.LeaderLeaseTimeout *= time.Duration(multiplier*5)
 
 	snapThresholdRaw, ok := b.conf["snapshot_threshold"]
 	if ok {
@@ -979,7 +979,7 @@ func (b *RaftBackend) SetupCluster(ctx context.Context, opts SetupOpts) error {
 	case listenerIsNil(opts.ClusterListener):
 		return errors.New("no cluster listener provided")
 	default:
-		initialTimeoutMultiplier = 3
+		initialTimeoutMultiplier = 30
 		if !opts.StartAsLeader {
 			electionTimeout, heartbeatTimeout := raftConfig.ElectionTimeout, raftConfig.HeartbeatTimeout
 			// Use bigger values for first election
