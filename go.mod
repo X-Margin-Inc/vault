@@ -542,4 +542,4 @@ require (
 
 replace github.com/ma314smith/signedxml v1.1.1 => github.com/moov-io/signedxml v1.1.1
 
-replace github.com/hashicorp/vault-plugin-secrets-kv => github.com/X-Margin-Inc/vault-plugin-secrets-kv v0.0.2
+replace github.com/hashicorp/vault-plugin-secrets-kv => github.com/X-Margin-Inc/vault-plugin-secrets-kv v0.0.3
